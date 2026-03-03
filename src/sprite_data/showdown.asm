@@ -1730,11 +1730,11 @@ byte_34511:     dcb.b 3,0               ; DATA XREF: ROM:00024044↑o
                 dc.l $BBB0000, 0
                 dc.l off_B8+3
                 dcb.l 2,0
-                dc.l unk_B0000
+                dc.l $B0000
                 dc.l 0
                 dc.l off_B8+3
                 dcb.l 2,0
-                dc.l unk_B0000
+                dc.l $B0000
                 dc.l 0
                 dc.l off_B0
                 dcb.l 2,0
@@ -2880,7 +2880,7 @@ aUyvfl:         dc.b 'UYVfl',0
                 dc.l 0
                 dc.l dword_CFEC
                 dc.l $565EFCCF, $F9555C00, 0
-                dc.l off_CFC4+1
+                dc.l $CFC5
                 dc.b $56 ; V
                 dc.b $EF, $C5, $CE
                 dc.l $F555C000, 0

@@ -1,18 +1,19 @@
-rom_level_data_sprite_table_toxic_caves:      dc.b   0                ; DATA XREF: ROM:off_C0AF4↓o
+rom_level_data_sprite_table_toxic_caves:
+		dc.b   0                ; DATA XREF: ROM:off_C0AF4↓o
                                         ; ROM:off_C0AFC↓o
-                dc.b $62
+                dc.b $62 ; b
                 dc.b   0
                 dc.b   0
                 dc.b   0
                 dc.b $C8
                 dc.b   1
-                dc.b $32
+                dc.b $32 ; 2
                 dc.b   2
                 dc.b   4
                 dc.b   2
                 dc.b $F4
                 dc.b   5
-                dc.b $24
+                dc.b $24 ; $
                 dc.b   7
                 dc.b $A6
                 dc.b   8
@@ -26,7 +27,7 @@ rom_level_data_sprite_table_toxic_caves:      dc.b   0                ; DATA XRE
                 dc.b $12
                 dc.b   8
                 dc.b $12
-                dc.b $6C
+                dc.b $6C ; l
                 dc.b $13
                 dc.b $36 ; 6
                 dc.b $14
@@ -140,7 +141,7 @@ rom_level_data_sprite_table_toxic_caves:      dc.b   0                ; DATA XRE
                 dc.b $75 ; u
                 dc.b $7A ; z
                 dc.b $78 ; x
-                dc.b $06
+                dc.b   6
                 dc.b $7A ; z
                 dc.b $38 ; 8
                 dc.b $7A ; z
@@ -1616,7 +1617,7 @@ dword_13C40:    dc.l 1, $2333D455, 0    ; DATA XREF: ROM:000368F0↓o
                 dc.l $4545477B, 0
                 dc.l $1D3221, $44477BB0, 0
                 dc.l $B1221B, $B77BB000, 0
-                dc.l byte_B1111
+                dc.l $B1111
                 dc.b $BB
                 dc.b $B0
                 dcb.b 2,0
@@ -2090,7 +2091,7 @@ aWkdttu:        dc.b 'wKDTTU',0
                 dcb.l 2,0
                 dc.l $BBBB7444, $45450000
                 dcb.l 2,0
-                dc.l unk_BB774
+                dc.l $BB774
                 dc.b $44 ; D
                 dc.b $54
                 dcb.b 2,0
@@ -2106,7 +2107,7 @@ aWkdttu:        dc.b 'wKDTTU',0
                 dc.b $B7
                 dcb.b 2,0
                 dcb.l 3,0
-                dc.l dword_B4400
+                dc.l $B4400
                 dcb.l 3,0
                 dc.b $54 ; T
                 dc.b $44
@@ -2161,7 +2162,7 @@ aWkdttu:        dc.b 'wKDTTU',0
                 dc.l 0
                 dc.l $B74454, $5CCC5454, $4B000000, $B, $744555CC, $55444B00
                 dc.l 0
-                dc.l unk_B7444
+                dc.l $B7444
                 dc.b $55 ; U
                 dc.b $CC, $C5, $54
                 dc.b $44 ; D
@@ -2259,7 +2260,7 @@ a3Dgw:          dc.b '=3!DGw',0
                 dc.b $12
                 dc.b $21, $7B, 0
                 dcb.l 2,0
-                dc.l byte_BB55B
+                dc.l $BB55B
                 dc.b $11
                 dc.b $21, $B0, 0
                 dcb.l 2,0
@@ -2345,11 +2346,11 @@ aDddd:          dc.b 'DDDD',0
                 dc.l 0
                 dc.l $BBB224, $4BB455C5, $44000000, $B, $BBBBB455, $5CC54400
                 dc.l 0
-                dc.l byte_BB445
+                dc.l $BB445
                 dc.b $55 ; U
                 dc.b $55, $CC, $C5
                 dc.l $54000000, $B, $44444555, $5CCC5440, 0
-                dc.l dword_B4444
+                dc.l $B4444
                 dc.b $44 ; D
                 dc.b $55
                 dcb.b 2,$CC
@@ -2357,7 +2358,7 @@ aDddd:          dc.b 'DDDD',0
                 dc.b $40
                 dcb.b 2,0
                 dc.l $B, $44424445, $5CCC5440, 0
-                dc.l word_B4422
+                dc.l $B4422
                 dc.b $44 ; D
                 dc.b $55, $C5, $CC
                 dc.b $54 ; T
@@ -2597,14 +2598,14 @@ aDddd:          dc.b 'DDDD',0
                 dc.b $B8
                 dcb.b 2,0
                 dcb.l 2,0
-                dc.l dword_AA888
+                dc.l $AA888
                 dc.l $88BB0000
                 dcb.l 2,0
                 dc.l $AA8A888, $BBBB0000, 0
                 dc.l $A, $A888B8BB, $BB880000, 0
                 dc.l dword_AA0+8
                 dc.l $8888BBBB, $88880000, 0
-                dc.l dword_AA8A8
+                dc.l $AA8A8
                 dc.l $888BBB88, $88880000, 0
                 dc.b  $A
                 dc.b $A8, $88, $B8
@@ -2624,7 +2625,7 @@ aDddd:          dc.b 'DDDD',0
                 dc.l $B, $BBB8B88B, $AACABBBB, $BBBB0000, 0
                 dc.l $BBBB88BA, $9889AB88, $BBB00000, 0
                 dc.l $BBBBB99, $89A899BB, $BB00000, 0
-                dc.l unk_BBB98
+                dc.l $BBB98
                 dc.l $88888900
                 dcb.l 2,0
                 dc.l dword_BB90+9
@@ -2986,7 +2987,7 @@ dword_15420:    dc.l $88BBBBBB, $BBBBB9A8, $88B00000, 8, $8BBBBBBB, $BBBB8A98
                 dc.l $BB888888, $88999998, $8888B888, $888BB, $BBBB8888
                 dc.l $88888988, $8888B888, 0
                 dc.l $BBBBBBBB, $88888888, $8888B888, 0
-                dc.l byte_BBBBB
+                dc.l $BBBBB
                 dc.b $BB
                 dc.b $B8
                 dcb.b 2,$88
@@ -3009,7 +3010,7 @@ dword_15420:    dc.l $88BBBBBB, $BBBBB9A8, $88B00000, 8, $8BBBBBBB, $BBBB8A98
                 align 8
                 dc.b $A9
                 dc.b $88, $90, 0
-                dc.l word_A989A
+                dc.l $A989A
                 dc.l $8900BBB9, $88888900, $88B998BB, $9900BBB8, $A988A800
                 dc.l $888B8AAA, $8B008888, $B888B000, $BBB88BBB, $B00088BB
                 dc.l $B888B000, $88889888, $B0008888, $9888B000, $88889888
@@ -3680,7 +3681,7 @@ aGwwwwvp:       dc.b 'gwwwwvP',0
                 dc.b $E5
                 dcb.b 2,0
                 dcb.l 2,0
-                dc.l unk_ABB66
+                dc.l $ABB66
                 dc.b $AC
                 dc.b $CC
                 dcb.b 2,0
@@ -3738,7 +3739,7 @@ aGwwwwvp:       dc.b 'gwwwwvP',0
                 dc.b   0
                 dc.b   0
                 dc.b   0
-                dc.l word_ABB6A
+                dc.l $ABB6A
                 dc.b $66 ; f
                 dc.b $F6, $66, $BB
                 dc.b $A0
@@ -5586,7 +5587,7 @@ off_18888:      dc.l unk_66006          ; DATA XREF: ROM:00033DE8↓o
                 dc.b $89
                 dc.b $AC, $A0, 0
                 dc.l 0
-                dc.l unk_ACA98
+                dc.l $ACA98
                 dc.l $8BB6B889, $9ACA8000, 0
                 dc.l $68ACA9, $988B899A, $CCA90600, 0
                 dc.l unk_69ACC
@@ -6925,7 +6926,7 @@ off_18888:      dc.l unk_66006          ; DATA XREF: ROM:00033DE8↓o
                 dc.b $9A
                 dc.b $BB
                 dcb.b 2,0
-                dc.l byte_BBBBA
+                dc.l $BBBBA
                 dc.b $A9
                 dc.b $AB, $B0, 0
                 dc.l byte_BBB9+1
@@ -10230,7 +10231,7 @@ byte_1B98B:     dc.b 0                  ; DATA XREF: ROM:00010418↑o
                 dcb.l 3,0
                 dc.l dword_AE4+$C6
                 dcb.l 3,0
-                dc.l word_AA99A
+                dc.l $AA99A
                 dcb.l 3,0
 dword_1BA80:    dc.l $A999AB            ; DATA XREF: ROM:00030338↓o
                 dcb.l 3,0
@@ -10329,7 +10330,7 @@ byte_1BBBB:     dc.b 0                  ; DATA XREF: ROM:00009B30↑o
                 dcb.l 2,0
                 dc.l $8BB555A, $BA566000
                 dcb.l 2,0
-                dc.l byte_B658B
+                dc.l $B658B
                 dc.b $B8
                 dc.b $55, $56, $70
                 dcb.l 2,0
@@ -10341,7 +10342,7 @@ byte_1BBBB:     dc.b 0                  ; DATA XREF: ROM:00009B30↑o
                 dc.l 0
                 dc.b $76 ; v
 aUuu:           dc.b 'UUU`',0
-                dc.l word_AA99A
+                dc.l $AA99A
                 align $10
                 dc.l 0
                 dc.l byte_76555

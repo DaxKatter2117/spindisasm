@@ -1,5 +1,5 @@
                 dc.b $01
-                dc.l $0010FFF6, $FFE12010, 0
+		dc.l $0010FFF6, $FFE12010, 0
                 dc.b   2
                 dc.l word_2222
                 dcb.b 2,$22
@@ -47,7 +47,7 @@ dword_158C:     dc.l $75075600, $61151155, $58933222, $22232000, $76565500
                 dc.l $889B2232, $766700, $765759, $9B988888, $9B229889
                 dc.l $65655670, $655676B, $BBBBBB1B, $B22BBBBB, $56576576
                 dc.l $7777177, $B9999, $9B222232, $76517575, 0
-                dc.l unk_B9888
+                dc.l $B9888
                 dc.b $94
                 dc.b $32, $20, $22
                 dc.l $7661177, 0
@@ -67,7 +67,7 @@ byte_1615:      dc.b $23, $20, 2        ; DATA XREF: ROM:000122C8↓o
                 dc.l byte_7567
 dword_1650:     dc.l $BB104327, $2000, 0
                                         ; DATA XREF: ROM:00007E54↓o
-                dc.l unk_BBB76
+                dc.l $BBB76
                 dc.b $11
                 dc.b 5, $42, $16
 dword_1664:     dc.l $70000000, 0       ; DATA XREF: ROM:00032EEC↓o
@@ -77,7 +77,7 @@ dword_1664:     dc.l $70000000, 0       ; DATA XREF: ROM:00032EEC↓o
                 dc.b   1
                 dcb.b 2,$11
                 dc.b $10
-                dc.l byte_A8AAB
+                dc.l $A8AAB
                 dc.l $BB100000
                 dcb.l 2,0
                 dc.l $7656AA, $B1000000
@@ -156,7 +156,7 @@ dword_1868:     dc.l $BBB10000, $653267, $10000000, $BBB, $BB100000, $655567
                                         ; ROM:00055060↓o ...
                 dc.l $B1000000, $111, $11000000, $6567B, $B1000000
                 dcb.l 2,0
-                dc.l byte_BBBBB
+                dc.l $BBBBB
                 dc.b $B1
                 align 4
                 dcb.l 2,0
@@ -340,7 +340,7 @@ dword_1CF4:     dc.l $344324B3, $22000000, $2233, $43324B94, $23220000
                 dc.l $55557AB0, $200221, $23422271, $6556AB10, $202222
                 dc.l $12222766, $777AB100, $2200, $1112B77, $B5AB1000
                 dc.l $2000, $BAAB, $57110000, 0
-                dc.l byte_BAAAB
+                dc.l $BAAAB
                 dc.b $11
                 align 4
 dword_1DEC:     dc.l 0                  ; DATA XREF: ROM:000343CC↓o
@@ -378,7 +378,7 @@ unk_1F40:       dc.b   2                ; DATA XREF: ROM:off_D20F0↓o
                                         ; ROM:000D20F4↓o ...
                 dc.b $20
                 dcb.b 2,0
-                dc.l byte_BA677
+                dc.l $BA677
 aEr42:          dc.b 'er42#  ',0
 dword_1F50:     dc.l $BA6556, $17223343, $23200200, $B65555, $75999343
                 dc.l $22002200, $BA76555, $76888933, $20023200, $B065555
@@ -1454,7 +1454,7 @@ a42:            dc.b '42# ',0
                 dc.l byte_23223
                 dc.b $34 ; 4
 aD6vcB:         dc.b 'D6VC#b',0
-                dc.l dword_AB000
+                dc.l $AB000
 dword_3764:     dc.l $232223, $35634555, $64265200, $ABB100, $2322223
                 dc.l $36436567, $56475200, $ABB100, $2322213, $33336511
                 dc.l $55115200, $A1B100, $23222212, $33336511, $55115200
@@ -1790,7 +1790,7 @@ dword_4470:     dc.l $B, $223B9885, $75556700, 0
                 dc.b $21 ; !
                 dc.b $3B, $98, $8B
                 dc.l $7667000, 0
-                dc.l dword_BA8B0
+                dc.l $BA8B0
                 dc.l $243BBB2
                 dcb.l 2,0
                 dc.l $BAAAB0, $332211, $30000000, 0
@@ -2139,7 +2139,7 @@ unk_4E20:       dc.b $76 ; v            ; DATA XREF: ROM:000D2104↓o
                 dc.l $223412, $2333B988, $88889120, 2, $22234321, $2222B988
                 dc.l $8889B000, 0
                 dc.l $222222, $43322B96, $557B0000, 0
-                dc.l unk_B9224
+                dc.l $B9224
 dword_4FFC:     dc.l $3B8B1675, $55560000, 0
                                         ; DATA XREF: ROM:00006E00↓o
                                         ; ROM:0001062C↓o
@@ -2440,7 +2440,7 @@ dword_51C0:     dc.l $3B986558, $81600000, 2, $34122333, $B9888888, $91200000
                 dc.b $56 ; V
                 dc.b $75
                 dcb.b 2,0
-                dc.l unk_BBB00
+                dc.l $BBB00
                 dc.l $43220000, $166, $7B550000, $BAB564, $32000000, $177
                 dc.l $BA660000, $B5B6573, $20000000, $1B, $AA770000, $B55B7672
                 dc.l 0
@@ -6485,7 +6485,7 @@ a32_0:          dc.b '32!"',0
                 dc.l $2555235, $55634333, $21000000, $2555565, $55563982
                 dc.l $10000000, $651755, $17578889, $10000000, $251155
                 dc.l $11588889, $10000000, $B5586, $5588889B, 0
-                dc.l dword_B8888
+                dc.l $B8888
                 dc.l $888889B0, 0
                 dc.l byte_B871
                 dc.l $88889B00, 0
@@ -6494,11 +6494,11 @@ a32_0:          dc.b '32!"',0
                 dc.b $9B, $B0, 0
                 dcb.l 4,0
                 dc.l dword_968+$48
-                dc.l unk_B9000
+                dc.l $B9000
                 dc.l 0
                 dc.l byte_9B19+2
                 dc.l $99BBB900, 0
-                dc.l byte_BB10B
+                dc.l $BB10B
                 dc.l $99B00B00, $77, $670B0000, $BB000076, $70000755, $56000000
                 dc.l $766, $57000555, $67000000, $65, $56000656, $70000000
                 dc.l $65, $51000177, $10000000, $16, $61000011, 0
@@ -7293,7 +7293,7 @@ dword_BBA0:     dc.l $BB765577, $BAAB71 ; DATA XREF: ROM:0000D258↓o
                 dcb.l 2,0
 off_BBB0:       dc.l off_77770          ; DATA XREF: ROM:0002F9F4↓o
                                         ; ROM:000375B4↓o ...
-                dc.l byte_BBB11
+                dc.l $BBB11
                 dc.b 0
 byte_BBB9:      dcb.b 3,0               ; DATA XREF: ROM:0000B3EC↑o
                                         ; ROM:00010550↓o ...
@@ -7302,7 +7302,7 @@ dword_BBBC:     dc.l 0                  ; DATA XREF: ROM:0001F200↓o
                 dc.l unk_99B0
                 dc.l dword_1100+$11
 dword_BBC8:     dcb.l 2,0               ; DATA XREF: ROM:0001DDEC↓o
-                dc.l dword_B88B0
+                dc.l $B88B0
                 dcb.l 3,0
 dword_BBE0:     dc.l $B988B0            ; DATA XREF: ROM:0002E980↓o
                                         ; ROM:0002E98C↓o ...
@@ -7419,7 +7419,7 @@ dword_BEAC:     dc.l $33324894, $24433200, $6600000, $22222, $22229889
                 dcb.l 3,0
                 dc.l $BA7771
                 dcb.l 3,0
-                dc.l byte_BB9B1
+                dc.l $BB9B1
 dword_BFE8:     dcb.l 3,0               ; DATA XREF: ROM:0002BBC0↓o
                 dc.l dword_B884+$17
 dword_BFF8:     dcb.l 3,0               ; DATA XREF: ROM:0001E7A8↓o
@@ -7441,10 +7441,10 @@ dword_BFF8:     dcb.l 3,0               ; DATA XREF: ROM:0001E7A8↓o
                 dc.l off_B8
                 dcb.l 3,0
                 dc.l off_B8+1
-                dc.l byte_B000B
-                dc.l byte_B000B
+                dc.l $B000B
+                dc.l $B000B
                 dc.l dword_AFFC+4
-                dc.l dword_BB000
+                dc.l $BB000
                 dc.b $70 ; p
                 dc.b $B9, $B0, 0
                 dc.l $7BAB1000, $B10000, $B0, $BA10, $BAA100, $BB8B1100
@@ -7736,7 +7736,7 @@ a333_2:         dc.b '333 ',0
                 dc.l 0
                 dc.l $BA1000, $BAB1
                 dcb.l 2,0
-                dc.l dword_B1000
+                dc.l $B1000
                 dc.l asc_110            ; "(C)SEGA 1993.SEP"
                 dcb.l 2,0
                 dc.l dword_598+$BF
@@ -8214,7 +8214,7 @@ aD3C33:         dc.b 'D3#C33"',0
                 dc.l $55658888, $89B23344, $32233200, $B0007, $5676BBBB
                 dc.l $BB222233, $43222220, $BA0000, $77070000, $B98B23
                 dc.l $33322000, $55A0000, 0
-off_CFC4:       dc.l byte_B989B         ; DATA XREF: ROM:00035D44↓o
+		dc.l $B989B
 a32V:           dc.b '#32"&V',0         ; DATA XREF: ROM:000356F0↓o
                                         ; ROM:00035700↓o ...
                 align $10
@@ -8256,7 +8256,7 @@ a333C:          dc.b '333"C" ',0
                 dc.b $44 ; D
 aC24332:        dc.b 'C24332 ',0
                 align 4
-                dc.l word_B2342
+                dc.l $B2342
                 dc.l $22332499, $22222222, $20000000, $234234, $43233988
                 dc.l $32000000, 0
                 dc.l $342346, $55633498, $23220000, 0
@@ -8280,7 +8280,7 @@ aUv3c2:         dc.b 'UV3C2"""" ',0
                 dc.l $AA560007, $70700000, $B989333, $22000265, $6B550000
                 dc.l 0
                 dc.l $B889B3, $33222376, $7B550000, 0
-                dc.l word_B99B2
+                dc.l $B99B2
 a32wE:          dc.b '#32w{e',0
                 align 4
                 dc.l 0
@@ -8714,12 +8714,12 @@ dword_E000:     dc.l $88891233, $13344334, $65555644, $44441B88, $88891232
                 dc.b $65, $56, $11
                 dc.l 0
                 dc.l $B, $77766017, $65610000, 0
-                dc.l byte_BBBBB
+                dc.l $BBBBB
                 dc.b $B0
                 dc.b 1, $75, $61
                 dc.l 0
                 dc.l $B, $BBBB1000, $16710000, 0
-                dc.l byte_BBBBB
+                dc.l $BBBBB
                 dc.b $10
                 align 2
                 dc.w $1110

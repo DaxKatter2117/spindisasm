@@ -224,11 +224,11 @@ InitGEMS:                               ; CODE XREF: ROM:loc_6EE↑p
                 jsr     GEMS_putcbyte(pc)
                 move.l  #GEMSPatches,-(sp)
                 jsr     GEMS_putptr(pc)
-                move.l  #byte_AB4AB,-(sp)
+                move.l  #GEMSModEnv,-(sp)
                 jsr     GEMS_putptr(pc)
                 move.l  #GEMSSequences,-(sp)
                 jsr     GEMS_putptr(pc)
-                move.l  #byte_B39DD,-(sp)
+                move.l  #GEMSSamples,-(sp)
                 jsr     GEMS_putptr(pc)
                 unlk    a6
                 rts

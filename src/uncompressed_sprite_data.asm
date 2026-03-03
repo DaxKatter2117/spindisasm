@@ -72,7 +72,7 @@ word_E47A:      dc.w $2B                ; DATA XREF: ROM:off_C0B04↓o
                 dc.l $AAAAAAAA, $AAAAAA00, 0
                 dc.l dword_AA64+$46
                 dc.l $AA999999, $99AAAAAA, 0
-                dc.l byte_AAAA9
+                dc.l $AAAA9
 dword_E794:     dc.l $99999999, $99999AAA, $A0000000, $AAA999, $88888888
                 dc.l $8899999A, $AA000000, $AAA9988, $88555555, $58889999
                 dc.l $AAA00000, $AAA99885, $55555555, $55588899, $9AAA000A
@@ -114,7 +114,7 @@ dword_E794:     dc.l $99999999, $99999AAA, $A0000000, $AAA999, $88888888
                 dc.l $AA000000
                 dcb.l 2,$AAAAAAAA
                 dc.l 0
-                dc.l word_AAAAA
+                dc.l $AAAAA
                 dc.b $AA
                 dc.b $AA, $A0, 0
                 dc.l dword_9FF8+8
@@ -126,7 +126,7 @@ dword_E990:     dc.l $AA00AA00, $AAA09AA0, $9AA09AAA
                 dc.l $24FFE8, $FFD12010, $FFE8FFF1, $10100008, $FFD21F08
                 dc.l $8FFF1, $F080000, 0
                 dc.l $B, $BBBBBBBB, $B0000000, 0
-                dc.l byte_BBBBA
+                dc.l $BBBBA
                 dc.b $AA
                 dcb.b 3,$AA
                 dc.l $ABBB0000, 0
@@ -222,7 +222,7 @@ dword_EA00:     dc.l $99999999, $AAAA0000, $B, $BAAA9999, $88888888, $99990000
                 dc.b $BA
                 dcb.b 2,$AA
                 dc.l $99999999, $AAAA0000, 0
-                dc.l byte_BBBBA
+                dc.l $BBBBA
                 dc.b $AA
                 dcb.b 3,$AA
                 dc.l $ABBB0000, 0
@@ -276,7 +276,7 @@ dword_EEA8:     dc.l $BBBB0A0A, $A00000, $A0000000, $B0BB, 0
                                         ; DATA XREF: ROM:0002E3A8↓o
                                         ; ROM:0001F76C↓o
                 dc.l $A, 0
-                dc.l dword_B0B00
+                dc.l $B0B00
                 dc.l $A0009000, 0
 dword_EED0:     dc.l $9000000, $B00B00, $A00, $9000, $900000, $BB000A0
                                         ; DATA XREF: ROM:0001170C↓o
@@ -362,7 +362,7 @@ dword_F0F0:     dc.l $90900000, $BB00, $AA90A, $9099090, $AA0000, $BBB0
                 dc.l dword_AE4+$27
                 dc.l $B0BBB0
                 dcb.l 2,0
-                dc.l unk_BBBB0
+                dc.l $BBBB0
                 dc.b $B0
                 align 2
                 dc.w $B00
@@ -1085,7 +1085,7 @@ dword_10530:    dc.l 1, $11000000, 1, $9FFF8, $FFE9150A, 0
                 dc.b $A0
                 dcb.b 2,0
 dword_10558:    dc.l $B, $BAAAAAA0, 0   ; DATA XREF: ROM:000C274C↓o
-                dc.l byte_BBB77
+                dc.l $BBB77
                 dc.l $65567700, 0
                 dc.b $B7
 aFuuvp:         dc.b 'fUUVp',0
@@ -3065,6 +3065,7 @@ a3333330:       dc.b '3333330',0
                 dc.l $44400000, $44400044, $44444400, $33000033, $33300000
                 dc.l $20000033, $33300000, $22200022, $23300000, $22200022
                 dc.l $22222222
+
 ; ---------------------------------------------------------------------------
                 include src/sprite_data/toxic_caves.asm
 ; ---------------------------------------------------------------------------

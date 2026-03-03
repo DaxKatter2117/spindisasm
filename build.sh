@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-PROJECT_NAME="$1"
-BIN_FOLDER_NAME="bin"
-OUTPUT_FOLDER_NAME="output"
-ERRORS_OUTPUT_FILENAME="errors.txt"
+OUTPUT_FOLDER_NAME="_output"
+ERRORS_OUTPUT_FILENAME="error.log"
 ERRORS_OUTPUT_FILE="${OUTPUT_FOLDER_NAME}/${ERRORS_OUTPUT_FILENAME}"
 
 main() {
@@ -22,21 +20,17 @@ init_env() {
     mkdir ${OUTPUT_FOLDER_NAME}
   fi
 
-  if [[ ! -d ${BIN_FOLDER_NAME} ]]; then
-    mkdir ${BIN_FOLDER_NAME}
-  fi
-
-  if [[ -e "./${BIN_FOLDER_NAME}/${PROJECT_NAME}.bin" ]]; then
-    mv "./${BIN_FOLDER_NAME}/${PROJECT_NAME}.bin" "./${BIN_FOLDER_NAME}/${PROJECT_NAME}.prev.bin"
+  if [[ -e "./${OUTPUT_FOLDER_NAME}/sbbuilt.gen" ]]; then
+    mv "./${OUTPUT_FOLDER_NAME}/sbbuilt.gen" "./${OUTPUT_FOLDER_NAME}/sbbuilt.prev.gen"
   fi
 }
 
 try_run_assembler() {
   if [[ -e "./$1.exe" ]]; then
     echo "------------------------------------------------------------------------"
-    echo "Building ${PROJECT_NAME} w/ $1"
+    echo "Building Sonic Spinball..."
     echo "------------------------------------------------------------------------"
-    wine $1 /k /p /o ae-,v+,c+ "${PROJECT_NAME}.asm", "${BIN_FOLDER_NAME}\\${PROJECT_NAME}.bin" >"${ERRORS_OUTPUT_FILE}" , "${OUTPUT_FOLDER_NAME}\\${PROJECT_NAME}.sym", "${OUTPUT_FOLDER_NAME}\\${PROJECT_NAME}.lst"
+    wine $1 /k /p /o ae-,v+,c+ "spinball.asm", "${OUTPUT_FOLDER_NAME}\\sbbuilt.gen" >"${ERRORS_OUTPUT_FILE}" , "${OUTPUT_FOLDER_NAME}\\spinball.sym", "${OUTPUT_FOLDER_NAME}\\spinball.lst"
     return 0
   fi
 
@@ -53,7 +47,7 @@ finalise_build() {
   cat ${ERRORS_OUTPUT_FILE}
 
   echo "------------------------------------------------------------------------"
-  echo "Build Completed!"
+  echo "Build completed!"
   echo "------------------------------------------------------------------------"
 }
 

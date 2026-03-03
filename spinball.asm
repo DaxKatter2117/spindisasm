@@ -60891,7 +60891,7 @@ loc_F96A2:                              ; CODE XREF: sub_F9656+44↑j
                 jsr     Multiply_unsigned_long
                 sub.l   (sp)+,d0
                 move.l  d0,var_4(a6)
-                cmpi.l  #unk_B0000,var_4(a6)
+                cmpi.l  #$B0000,var_4(a6)
                 bge.w   loc_F99F2
                 cmpi.l  #$FFF50000,var_4(a6)
                 blt.w   loc_F99F2
@@ -61502,7 +61502,7 @@ loc_F9CC4:                              ; CODE XREF: sub_F9656+896↓j
                 jsr     Multiply_unsigned_long
                 sub.l   (sp)+,d0
                 move.l  d0,var_4(a6)
-                cmpi.l  #unk_B0000,var_4(a6)
+                cmpi.l  #$B0000,var_4(a6)
                 bge.w   loc_F9EE4
                 tst.l   var_4(a6)
                 blt.w   loc_F9EE4
