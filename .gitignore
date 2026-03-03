@@ -1,11 +1,9 @@
-bin/*
-output/*
+_output/*
 profiles/*
 /\.vscode/
 *\.code-workspace
 
-errors*\.txt
-/asm68k\.exe
+error*\.log
 ghidra/*
 !ghidra/*.gar
 *.mdp
