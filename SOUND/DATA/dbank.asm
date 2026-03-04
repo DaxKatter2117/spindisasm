@@ -2,6 +2,9 @@
 ; GEMS Sample Macros
 ; ---------------------------------------------------------------------------
 
+_8bit	equ	0
+_4bit	equ	1
+
 DACPtr macro loc, bit, sign, clip, rate, lpdac, endptr, lpstart, lpend
 	if narg=1
 		dc.l 0,0,0
@@ -30,28 +33,28 @@ IncDAC: macro name,path
 ; ---------------------------------------------------------------------------
 
 GEMSSamples:		; TODO: Write a macro for DAC Pointers
-	DACPtr	Sample_00, 0,0,1,0,0, Sample_00_End
-	DACPtr	Sample_01, 0,0,1,0,0, Sample_01_End
-	DACPtr	Sample_02, 0,0,0,0,0, Sample_02_End
-	DACPtr	Sample_03, 0,0,1,0,0, Sample_03_End
-	DACPtr	Sample_04, 0,0,0,0,0, Sample_04_End
-	DACPtr	Sample_05, 0,1,0,0,0, Sample_05_End
-	DACPtr	Sample_06, 0,1,0,0,0, Sample_06_End
+	DACPtr	Sample_00, _8bit, 0,1,0,0, Sample_00_End
+	DACPtr	Sample_01, _8bit, 0,1,0,0, Sample_01_End
+	DACPtr	Sample_02, _8bit, 0,0,0,0, Sample_02_End
+	DACPtr	Sample_03, _8bit, 0,1,0,0, Sample_03_End
+	DACPtr	Sample_04, _8bit, 0,0,0,0, Sample_04_End
+	DACPtr	Sample_05, _8bit, 1,0,0,0, Sample_05_End
+	DACPtr	Sample_06, _8bit, 1,0,0,0, Sample_06_End
 	DACPtr	0
 	DACPtr	0
 	DACPtr	0
 	DACPtr	0
 	DACPtr	0
-	DACPtr	Sample_0C, 0,1,1,0,0, Sample_0C_End
-	DACPtr	Sample_0D, 0,1,1,0,0, Sample_0D_End
+	DACPtr	Sample_0C, _8bit, 1,1,0,0, Sample_0C_End
+	DACPtr	Sample_0D, _8bit,1,1,0,0, Sample_0D_End
 	DACPtr	0
-	DACPtr	Sample_0F, 0,1,1,0,0, Sample_0F_End
-	DACPtr	Sample_10, 0,1,1,0,0, Sample_10_End
+	DACPtr	Sample_0F, _8bit, 1,1,0,0, Sample_0F_End
+	DACPtr	Sample_10, _8bit, 1,1,0,0, Sample_10_End
 	DACPtr	0
-	DACPtr	Sample_12, 0,1,0,0,0, Sample_12_End
+	DACPtr	Sample_12, _8bit, 1,0,0,0, Sample_12_End
 	DACPtr	0
-	DACPtr	Sample_14, 0,1,1,0,0, Sample_14_End
-	DACPtr	Sample_15, 0,1,1,0,0, Sample_15_End
+	DACPtr	Sample_14, _8bit, 1,1,0,0, Sample_14_End
+	DACPtr	Sample_15, _8bit, 1,1,0,0, Sample_15_End
 
 ; ---------------------------------------------------------------------------
 ; GEMS Sample Data
