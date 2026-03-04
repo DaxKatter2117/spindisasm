@@ -1,8 +1,64 @@
-GEMSModEnv:
-		dc.b $C
-		dc.l $15001E, $30003C, $510000, $192C01, $4350FB00, $200
-		dc.l $2738FF, $1C, $FEFF3802, $38FEFF, $36020036, $FEFF0014
-		dc.l $F0A00, $131D000D, $A000000, $1CFEFF, $38020038, $FEFF3802
-		dc.l $38FEFF, $1C020000, $20FA
-		dc.w 0
+; ---------------------------------------------------------------------------
+; GEMS ModEnv Macros
+; ---------------------------------------------------------------------------
 
+ModPtr	macro loc
+	dc.w ((loc-GEMSModEnv)&$00FF)<<8|((loc-GEMSModEnv)&$FF00)>>8
+	endm
+
+; ---------------------------------------------------------------------------
+; GEMS Modulation Pointers
+; ---------------------------------------------------------------------------
+
+; ModEnv Index
+
+GEMSModEnv:
+	ModPtr	ModEnv_00
+	ModPtr	ModEnv_01
+	ModPtr	ModEnv_02
+	ModPtr	ModEnv_03
+	ModPtr	ModEnv_04
+	ModPtr	ModEnv_05
+
+ModEnv_00:
+	dc.b	$00, $00
+	dc.b	$19, $2C, $01
+	dc.b	$43, $50, $FB
+	dc.b	0
+
+ModEnv_01:
+	dc.b	$00, $00
+	dc.b	$02, $00, $00
+	dc.b	$27, $38, $FF
+	dc.b	0
+
+ModEnv_02:
+	dc.b	$00, $00
+	dc.b	$1C, $FE, $FF
+	dc.b	$38, $02, $00
+	dc.b	$38, $FE, $FF
+	dc.b	$36, $02, $00
+	dc.b	$36, $FE, $FF
+	dc.b	0
+
+ModEnv_03:
+	dc.b	$14, $00
+	dc.b	$0F, $0A, $00
+	dc.b	$13, $1D, $00
+	dc.b	$0D, $0A, $00
+	dc.b	0
+
+ModEnv_04:
+	dc.b	$00, $00
+	dc.b	$1C, $FE, $FF
+	dc.b	$38, $02, $00
+	dc.b	$38, $FE, $FF
+	dc.b	$38, $02, $00
+	dc.b	$38, $FE, $FF
+	dc.b	$1C, $02, $00
+	dc.b	0
+
+ModEnv_05:
+	dc.b	$00, $00
+	dc.b	$20, $FA, $00
+	dc.b	0
