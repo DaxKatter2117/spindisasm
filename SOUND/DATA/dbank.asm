@@ -1,3 +1,7 @@
+; ---------------------------------------------------------------------------
+; GEMS Sample Pointers
+; ---------------------------------------------------------------------------
+
 GEMSSamples:		; TODO: Write a macro for DAC Pointers
 	; Sample 00
 		dc.b $25
@@ -153,4 +157,62 @@ GEMSSamples:		; TODO: Write a macro for DAC Pointers
 		dc.b $54, $0B
 		dc.b 0, 0, 0, 0
 
-	INCBIN	"SOUND/DATA/DAC/SampleData.bin"		; TODO - Identify individual samples
+; ---------------------------------------------------------------------------
+; GEMS Sample Data
+; ---------------------------------------------------------------------------
+
+Sample_00:
+	INCBIN	"SOUND/DATA/DAC/00.pcm"
+Sample_00_End:
+
+Sample_01:
+	INCBIN	"SOUND/DATA/DAC/01.pcm"
+Sample_01_End:
+
+Sample_02:
+	INCBIN	"SOUND/DATA/DAC/02.pcm"
+Sample_02_End:
+
+Sample_03:
+	INCBIN	"SOUND/DATA/DAC/03.pcm"
+Sample_03_End:
+
+Sample_04:
+	INCBIN	"SOUND/DATA/DAC/04.pcm"
+Sample_04_End:
+
+Sample_05:
+	INCBIN	"SOUND/DATA/DAC/05.pcm"
+Sample_05_End:
+
+Sample_06:
+	INCBIN	"SOUND/DATA/DAC/06.pcm"
+Sample_06_End:
+
+Sample_0C:
+	INCBIN	"SOUND/DATA/DAC/0C.pcm"
+Sample_0C_End:
+
+Sample_0D:
+	INCBIN	"SOUND/DATA/DAC/0D.pcm"
+Sample_0D_End:
+
+Sample_0F:
+	INCBIN	"SOUND/DATA/DAC/0F.pcm"
+Sample_0F_End:
+
+Sample_10:
+	INCBIN	"SOUND/DATA/DAC/10.pcm"
+Sample_10_End:
+
+Sample_12:
+	INCBIN	"SOUND/DATA/DAC/12.pcm"
+Sample_12_End:
+
+Sample_14:
+	INCBIN	"SOUND/DATA/DAC/14.pcm"
+Sample_14_End:
+
+Sample_15:
+	INCBIN	"SOUND/DATA/DAC/15.pcm"
+Sample_15_End:

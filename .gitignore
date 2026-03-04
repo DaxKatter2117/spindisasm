@@ -9,3 +9,4 @@ ghidra/*
 *.mdp
 *.profile
 *.orig
+*.bak

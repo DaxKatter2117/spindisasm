@@ -1,11 +1,11 @@
 @echo off
 
-if not exist "_output\" mkdir _output
+if not exist "_output\" mkdir "_output"
 
 set cmd_params=/k /p /o ae- spinball.asm, "_output\sbbuilt.gen" >"_output\error.log", , "_output\spinball.lst"
 
 if exist "_output\sbbuilt.gen" (
-  move /Y "_output\sbbuilt.gen" "_output\sbbuilt.prev.gen >NUL
+  move /Y "_output\sbbuilt.gen" "_output\sbbuilt.prev.gen" >NUL
 )
 
 if exist TOOLS\asm68k.exe (
