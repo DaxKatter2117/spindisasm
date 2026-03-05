@@ -2,9 +2,6 @@
 ; GEMS Sample Macros
 ; ---------------------------------------------------------------------------
 
-_8bit	equ	0
-_4bit	equ	1
-
 DACPtr macro loc, bit, sign, clip, rate, lpdac, endptr, lpstart, lpend
 	if narg=1
 		dc.l 0,0,0
@@ -22,6 +19,9 @@ DACPtr macro loc, bit, sign, clip, rate, lpdac, endptr, lpstart, lpend
 		endif
 	endif
 	endm
+
+_8bit	equ	0
+_4bit	equ	1
 
 IncDAC: macro name,path
 \name:	incbin \path

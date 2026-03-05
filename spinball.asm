@@ -19,165 +19,96 @@
 
 ; Segment type: Pure code
 ; segment "ROM"
-                include "src/macros.asm"
-                include "src/global_defines.asm"
-                dc.l $1000000
-off_4:          dc.l EntryPoint         ; DATA XREF: VDP_LoadTilesetToVRAM+40↓o
-                                        ; sub_D8E12+46↓o ...
-off_8:          dc.l BusError           ; DATA XREF: RunUpdate_ToxicCaves+1A92↓o
-                                        ; RunUpdate_ToxicCaves+1D2C↓o ...
-off_C:          dc.l AddressError       ; DATA XREF: RunUpdate_ToxicCaves+74E↓o
-                                        ; RunUpdate_ToxicCaves+13D6↓o ...
-off_10:         dc.l IllegalInstruction ; DATA XREF: PlayPlayerVictoryAnimation+5C↓o
-                                        ; RunUpdate_ToxicCaves+10D4↓o ...
-off_14:         dc.l ZeroDivide         ; DATA XREF: RunUpdate_TallyScoreAndEndLevel+24A↓o
-                                        ; RunUpdate_TallyScoreAndEndLevel+328↓o ...
-off_18:         dc.l CHKException       ; DATA XREF: RunUpdate_ToxicCaves:loc_DA09C↓o
-                                        ; RunUpdate_ToxicCaves+1AA2↓o ...
-off_1C:         dc.l TRAPVException     ; DATA XREF: RunPlayerCollision_ToxicCaves:loc_E7094↓o
-                                        ; sub_EAF4E+44↓o ...
-off_20:         dc.l PrivlegeViolation  ; DATA XREF: ROM:00005363↓o
-                                        ; ROM:00009CB4↓o ...
-off_24:         dc.l TraceException     ; DATA XREF: ROM:0000A7B0↓o
-                                        ; ROM:0000B1AC↓o ...
-off_28:         dc.l LINE1010Emulator   ; DATA XREF: sub_D3FAC+110↓o
-                                        ; LoadLevelTileData+60↓o ...
-off_2C:         dc.l LINE1111Emulator   ; DATA XREF: ROM:00027FBC↓o
-                                        ; ROM:00055A18↓o ...
-off_30:         dc.l Error              ; DATA XREF: ROM:00021750↓o
-                                        ; PlayPlayerVictoryAnimation+78↓o ...
-off_34:         dc.l Error              ; DATA XREF: ROM:0000B190↓o
-                                        ; ROM:000288FC↓o ...
-off_38:         dc.l ReservedException1 ; DATA XREF: ROM:000570F8↓o
-                                        ; ROM:00057358↓o ...
-off_3C:         dc.l ReservedException2 ; DATA XREF: AwardScore+BC↓o
-                                        ; RunLevelIntro+36↓o ...
-off_40:         dc.l Error              ; DATA XREF: ROM:off_A980↓o
-                                        ; ROM:00017D10↓o ...
-off_44:         dc.l Error              ; DATA XREF: ROM:00013A78↓o
-                                        ; ROM:00014A38↓o ...
-off_48:         dc.l Error              ; DATA XREF: ROM:0004B538↓o
-                                        ; RunUpdate_ToxicCaves+20FC↓o ...
-off_4C:         dc.l Error              ; DATA XREF: RunFlippersUpdate+DE↓o
-                                        ; sub_FED7E+9C↓o ...
-off_50:         dc.l Error              ; DATA XREF: ROM:0000E828↓o
-                                        ; ROM:0000E888↓o ...
-off_54:         dc.l Error              ; DATA XREF: ROM:0001C244↓o
-                                        ; ROM:0001C254↓o ...
-off_58:         dc.l Error              ; DATA XREF: ROM:00013FF0↓o
-                                        ; ROM:00017FD8↓o ...
-off_5C:         dc.l Error              ; DATA XREF: TriggerOSDMessage:loc_DFD6C↓o
-                                        ; sub_ED5D8+2FC↓o ...
-off_60:         dc.l SpuriousException  ; DATA XREF: ROM:0000156B↓o
-                                        ; ROM:0000CB68↓o ...
-off_64:         dc.l IRQ1               ; DATA XREF: ROM:000249AC↓o
-                                        ; ROM:000249BC↓o ...
-off_68:         dc.l IRQ2               ; DATA XREF: ROM:00013078↓o
-                                        ; ROM:0001311C↓o ...
-off_6C:         dc.l IRQ3               ; DATA XREF: ROM:0001F404↓o
-                                        ; ROM:0004EF98↓o ...
-off_70:         dc.l HBlank             ; DATA XREF: ROM:0000A754↓o
-                                        ; ROM:0000F528↓o ...
-off_74:         dc.l IRQ5               ; DATA XREF: ROM:0005D2D4↓o
-                                        ; ROM:000634A0↓o ...
-off_78:         dc.l VBlank             ; DATA XREF: ROM:00024CE8↓o
-                                        ; ROM:0002509C↓o ...
-off_7C:         dc.l IRQ7               ; DATA XREF: ROM:0002651C↓o
-                                        ; RunUpdate_TallyScoreAndEndLevel+1AE↓o ...
-off_80:         dc.l Trap               ; DATA XREF: ROM:0009B65C↓o
-                                        ; ROM:0009B670↓o ...
-off_84:         dc.l Trap               ; DATA XREF: ROM:00056ACC↓o
-                                        ; ROM:000A9FD4↓o ...
-off_88:         dc.l Trap               ; DATA XREF: ROM:0000E634↓o
-                                        ; ROM:00015F0C↓o ...
-off_8C:         dc.l Trap               ; DATA XREF: ROM:off_30003↓o
-                                        ; ROM:000C26E8↓o ...
-off_90:         dc.l Trap               ; DATA XREF: ROM:0000F21C↓o
-                                        ; ROM:0002C3C4↓o ...
-off_94:         dc.l Trap               ; DATA XREF: ROM:00013FFC↓o
-                                        ; ROM:0005D410↓o ...
-off_98:         dc.l Trap               ; DATA XREF: StartGame+4↓o
-                                        ; RunBossRoomExploding_ToxicCaves+4A↓o ...
-off_9C:         dc.l Trap               ; DATA XREF: ROM:00057BC8↓o
-                                        ; ROM:000D3634↓o ...
-off_A0:         dc.l Trap               ; DATA XREF: ROM:00022DB0↓o
-                                        ; RunUpdate_ToxicCaves+6B4↓o ...
-off_A4:         dc.l Trap               ; DATA XREF: ROM:00058840↓o
-                                        ; ROM:00057918↓o ...
-off_A8:         dc.l Trap               ; DATA XREF: ROM:000374BC↓o
-                                        ; ROM:000936F4↓o ...
-off_AC:         dc.l Trap               ; DATA XREF: ROM:00020668↓o
-                                        ; ROM:00038FFC↓o ...
-off_B0:         dc.l Trap               ; DATA XREF: ROM:0000EF30↓o
-                                        ; ROM:0000EFC0↓o ...
-off_B4:         dc.l Trap               ; DATA XREF: ROM:00014B40↓o
-                                        ; ROM:0005D560↓o ...
-off_B8:         dc.l Trap               ; DATA XREF: ROM:0000C064↓o
-                                        ; ROM:0000C074↓o ...
-off_BC:         dc.l Trap               ; DATA XREF: ROM:00029130↓o
-                                        ; ROM:0002AA58↓o ...
-off_C0:         dc.l Error              ; DATA XREF: ROM:off_C13F0↓o
-                                        ; ROM:off_C1400↓o ...
-off_C4:         dc.l Error              ; DATA XREF: ROM:00035CA8↓o
-                                        ; ROM:00059460↓o ...
-off_C8:         dc.l Error              ; DATA XREF: LavaPowerhouse_BossRoomExploding_Begin+72↓o
-                                        ; ToxicCaves_BossRoomExploding_Begin+60↓o ...
-off_CC:         dc.l Error              ; DATA XREF: ROM:0002CA74↓o
-                                        ; ROM:000357E8↓o ...
-off_D0:         dc.l Error              ; DATA XREF: ROM:00010984↓o
-                                        ; ROM:000109BC↓o ...
-off_D4:         dc.l Error              ; DATA XREF: ROM:000D3944↓o
-                                        ; ROM:00097A0C↓o
-off_D8:         dc.l Error              ; DATA XREF: ROM:0005D740↓o
-                                        ; ROM:0005D7B0↓o ...
-off_DC:         dc.l Error              ; DATA XREF: ROM:00021720↓o
-                                        ; ROM:0002BFDC↓o ...
-off_E0:         dc.l Error              ; DATA XREF: ROM:off_10880↓o
-                                        ; ROM:00010C54↓o ...
-off_E4:         dc.l Error              ; DATA XREF: ROM:00016F48↓o
-                                        ; ROM:00056878↓o ...
-off_E8:         dc.l Error              ; DATA XREF: ROM:00078714↓o
-                                        ; ROM:00028C44↓o ...
-off_EC:         dc.l Error              ; DATA XREF: ROM:00010884↓o
-                                        ; ROM:00010C68↓o ...
-off_F0:         dc.l Error              ; DATA XREF: ROM:000C23A0↓o
-                                        ; ROM:000A8868↓o
-                dc.l Error
-off_F8:         dc.l Error              ; DATA XREF: ROM:000C023C↓o
-                                        ; ROM:000938B4↓o ...
-dword_FC:       dc.l $FC370000          ; DATA XREF: ROM:000256C4↓o
-                                        ; ROM:00059290↓o ...
-asc_100:        dc.b 'SEGA GENESIS    ' ; DATA XREF: ROM:00008994↓o
-                                        ; ROM:00008BE4↓o ...
-asc_110:        dc.b '(C)SEGA 1993.SEP' ; DATA XREF: ROM:00004B1C↓o
-                                        ; ROM:00006FE0↓o ...
-asc_120:        dc.b 'Sonic Spinball                                  '
-                                        ; DATA XREF: ROM:0008DCD5↓o
-                                        ; ROM:0008E2F1↓o ...
-asc_150:        dc.b 'Sonic Spinball                                  '
-                                        ; DATA XREF: ROM:0005DE30↓o
-                                        ; ROM:000C0758↓o ...
-asc_180:        dc.b 'GM MK-1537 -00'   ; DATA XREF: ROM:00033288↓o
-                                        ; ROM:000C2418↓o ...
-                dc.w $2A3F
-asc_190:        dc.b 'J               ' ; DATA XREF: ROM:000BFFF8↓o
-                                        ; ROM:000C22EC↓o ...
-                dc.l 0
-dword_1A4:      dc.l $FFFFF             ; DATA XREF: ROM:off_1A64↓o
-dword_1A8:      dc.l $FF0000            ; DATA XREF: ROM:00030320↓o
-                                        ; ROM:00001A54↓o ...
-                dc.l $FFFFFF
-dword_1B0:      dc.l $20202020          ; DATA XREF: ROM:00008D68↓o
-                                        ; ROM:00004B0C↓o ...
-dword_1B4:      dc.l $20202020          ; DATA XREF: ROM:00012344↓o
-                                        ; ROM:0000748C↓o
-dword_1B8:      dc.l $20202020          ; DATA XREF: ROM:0002C640↓o
-                                        ; ROM:00030314↓o ...
-asc_1BC:        dc.b '                                                    '
-                                        ; DATA XREF: ROM:0004C0B0↓o
-                                        ; ROM:0004C114↓o ...
-CountryCode:    dc.b 'U               ' ; DATA XREF: ROM:0000031A↓o
-                                        ; ROM:loc_390↓o ...
+		include "src/macros.asm"
+		include "src/global_defines.asm"
+		include "src/_gems2asm.asm"
+
+; ===========================================================================
+
+StartOfRom:
+Vectors:	dc.l $1000000
+off_4:		dc.l EntryPoint
+off_8:		dc.l BusError
+off_C:		dc.l AddressError
+off_10:		dc.l IllegalInstruction
+off_14:		dc.l ZeroDivide
+off_18:		dc.l CHKException
+off_1C:		dc.l TRAPVException
+off_20:		dc.l PrivlegeViolation
+off_24:		dc.l TraceException
+off_28:		dc.l LINE1010Emulator
+off_2C:		dc.l LINE1111Emulator
+off_30:		dc.l Error
+off_34:		dc.l Error
+off_38:		dc.l ReservedException1
+off_3C:		dc.l ReservedException2
+off_40:		dc.l Error
+off_44:		dc.l Error
+off_48:		dc.l Error
+off_4C:		dc.l Error
+off_50:		dc.l Error
+off_54:		dc.l Error
+off_58:		dc.l Error
+off_5C:		dc.l Error
+off_60:		dc.l SpuriousException
+off_64:		dc.l IRQ1
+off_68:		dc.l IRQ2
+off_6C:		dc.l IRQ3
+off_70:		dc.l HBlank
+off_74:		dc.l IRQ5
+off_78:		dc.l VBlank
+off_7C:		dc.l IRQ7 
+off_80:		dc.l Trap 
+off_84:		dc.l Trap 
+off_88:		dc.l Trap 
+off_8C:		dc.l Trap 
+off_90:		dc.l Trap 
+off_94:		dc.l Trap 
+off_98:		dc.l Trap 
+off_9C:		dc.l Trap 
+off_A0:		dc.l Trap 
+off_A4:		dc.l Trap 
+off_A8:		dc.l Trap 
+off_AC:		dc.l Trap 
+off_B0:		dc.l Trap 
+off_B4:		dc.l Trap 
+off_B8:		dc.l Trap 
+off_BC:		dc.l Trap 
+off_C0:		dc.l Error
+off_C4:		dc.l Error
+off_C8:		dc.l Error
+off_CC:		dc.l Error
+off_D0:		dc.l Error
+off_D4:		dc.l Error
+off_D8:		dc.l Error
+off_DC:		dc.l Error
+off_E0:		dc.l Error
+off_E4:		dc.l Error
+off_E8:		dc.l Error
+off_EC:		dc.l Error
+off_F0:		dc.l Error
+		dc.l Error
+off_F8:		dc.l Error
+dword_FC:	dc.l $FC370000
+
+asc_100:	dc.b 'SEGA GENESIS    '
+asc_110:	dc.b '(C)SEGA 1993.SEP'
+asc_120:	dc.b 'Sonic Spinball                                  '
+asc_150:	dc.b 'Sonic Spinball                                  '
+asc_180:	dc.b 'GM MK-1537 -00'
+Checksum:	dc.w $2A3F
+asc_190:	dc.b 'J               '
+		dc.l StartOfRom
+dword_1A4:	dc.l EndofRom-1
+dword_1A8:	dc.l $FF0000
+		dc.l $FFFFFF
+dword_1B0:	dc.l $20202020
+dword_1B4:	dc.l $20202020
+dword_1B8:	dc.l $20202020
+asc_1BC:	dc.b '                                                    '
+CountryCode:	dc.b 'U               '
+EndofHeader:
+
 ; ---------------------------------------------------------------------------
 
 EntryPoint:                             ; DATA XREF: ROM:off_4↑o
@@ -69664,5 +69595,5 @@ byte_FFFF1:     dcb.b 3,$FF             ; DATA XREF: ROM:off_A1490↑o
 byte_FFFFF:     dc.b $FF                ; DATA XREF: ROM:000363CC↑o
 ; end of 'ROM'
 
-
+EndofRom:
                 END

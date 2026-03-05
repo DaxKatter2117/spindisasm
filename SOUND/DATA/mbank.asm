@@ -6,19 +6,6 @@ ModPtr	macro loc
 	dc.w ((loc-GEMSModEnv)&$00FF)<<8|((loc-GEMSModEnv)&$FF00)>>8
 	endm
 
-gmModStart macro mod
-	BEW2LEW	\mod
-	endm
-
-gmModSect macro len,mod
-	dc.b	len
-	BEW2LEW	\mod
-	endm
-
-gmModEnd macro
-	dc.b	0
-	endm
-
 ; ---------------------------------------------------------------------------
 ; GEMS Modulation Pointers
 ; ---------------------------------------------------------------------------
