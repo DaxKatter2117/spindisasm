@@ -2967,29 +2967,29 @@ dword_30614:    dcb.l 4,$BBBEEEEB       ; DATA XREF: sub_E6240:off_E63A8↓o
                 dc.l $CCCCCCCC, 0
                 dc.l 1, $3FFFC, $FFF4070A, 0
                 dc.l $A, $23000000, 0
-                dc.l dword_B22C+4
+                dc.l $B230
                 dcb.l 2,0
                 dc.b  $B
                 dc.b $23
                 dcb.b 2,0
                 dc.l 0
-                dc.l dword_AE4+$3F
+                dc.l $B23
                 dcb.l 2,0
                 dc.l $A230000, 0
-                dc.l off_20+3
+                dc.l $23
                 dc.l $BB000
                 dc.l 0
                 dc.l 1, $8FFF0, $FFF30D10
                 dcb.l 3,0
-                dc.l unk_A230
+                dc.l $A230
                 dcb.l 3,0
-                dc.l unk_A230
+                dc.l $A230
                 dcb.l 3,0
-                dc.l dword_A08+$1B
+                dc.l $A23
                 dcb.l 3,0
-                dc.l dword_A08+$1B
+                dc.l $A23
                 dc.l 0
-                dc.l dword_8828+$60
+                dc.l $8888
                 dc.l $88880000, $A23, $888, $88888899, $99888888, $88800A23
                 dc.l $888888, $88888889, $98888888, $88888823, $88888888
                 dc.l $8888888B, $B8888888, $88888888, $C8888888

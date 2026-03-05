@@ -111,7 +111,7 @@ EndofHeader:
 
 ; ---------------------------------------------------------------------------
 
-EntryPoint:                             ; DATA XREF: ROM:off_4↑o
+EntryPoint:                             ; DATA XREF: ROM:$04↑o
                                         ; ROM:0000548C↓o ...
                 tst.l   ($A10008).l
                 bne.s   PortA_OK
@@ -557,7 +557,7 @@ off_414:        dc.l MNTSCMD            ; DATA XREF: ROM:0004E22C↓o
                 dc.l $550000, $4610045
 off_420:        dc.l MPALSECAM          ; DATA XREF: ROM:0000CDB4↓o
                                         ; ROM:0008A889↓o ...
-                dcb.b 2,0
+                dc.w 0
 MDeveloped:     dc.b 6                  ; DATA XREF: ROM:00000388↑o
 asc_427:        dc.b 'DEVELOPED FOR USE ONLY WITH'
                                         ; DATA XREF: ROM:000C2284↓o
@@ -611,7 +611,7 @@ dword_4D4:      dc.l $20100C00, $30080404, $4083000, $82A1C, $2A080000
 unk_4F6:        dc.b $30 ; 0            ; DATA XREF: RunTriggerDetection_ToxicCaves+1A92↓o
                                         ; RunTriggerDetection_ToxicCaves+1AC4↓o ...
                 dc.b $40
-                dc.l off_7C+3
+                dc.l $7F
 dword_4FC:      dcb.l 2,0               ; DATA XREF: ROM:000062AC↓o
                                         ; ROM:00014374↓o ...
 dword_504:      dc.l $303000, $1020408, $10204000, $1E333333, $33331E00
@@ -895,7 +895,7 @@ IRQ7:                                   ; CODE XREF: IRQ7↓j
 ; Attributes: noreturn
 
 BusError:                               ; CODE XREF: BusError↓j
-                                        ; DATA XREF: ROM:off_8↑o
+                                        ; DATA XREF: ROM:$08↑o
                 bra.s   BusError
 ; End of function BusError
 
@@ -905,7 +905,7 @@ BusError:                               ; CODE XREF: BusError↓j
 ; Attributes: noreturn
 
 IllegalInstruction:                     ; CODE XREF: IllegalInstruction↓j
-                                        ; DATA XREF: ROM:off_10↑o
+                                        ; DATA XREF: ROM:$10↑o
                 bra.s   IllegalInstruction
 ; End of function IllegalInstruction
 
@@ -915,7 +915,7 @@ IllegalInstruction:                     ; CODE XREF: IllegalInstruction↓j
 ; Attributes: noreturn
 
 CHKException:                           ; CODE XREF: CHKException↓j
-                                        ; DATA XREF: ROM:off_18↑o
+                                        ; DATA XREF: ROM:$18↑o
                 bra.s   CHKException
 ; End of function CHKException
 
@@ -925,7 +925,7 @@ CHKException:                           ; CODE XREF: CHKException↓j
 ; Attributes: noreturn
 
 TRAPVException:                         ; CODE XREF: TRAPVException↓j
-                                        ; DATA XREF: ROM:off_1C↑o
+                                        ; DATA XREF: ROM:$1C↑o
                 bra.s   TRAPVException
 ; End of function TRAPVException
 
@@ -935,7 +935,7 @@ TRAPVException:                         ; CODE XREF: TRAPVException↓j
 ; Attributes: noreturn
 
 PrivlegeViolation:                      ; CODE XREF: PrivlegeViolation↓j
-                                        ; DATA XREF: ROM:off_20↑o
+                                        ; DATA XREF: ROM:$20↑o
                 bra.s   PrivlegeViolation
 ; End of function PrivlegeViolation
 
@@ -945,7 +945,7 @@ PrivlegeViolation:                      ; CODE XREF: PrivlegeViolation↓j
 ; Attributes: noreturn
 
 TraceException:                         ; CODE XREF: TraceException↓j
-                                        ; DATA XREF: ROM:off_24↑o
+                                        ; DATA XREF: ROM:$24↑o
                 bra.s   TraceException
 ; End of function TraceException
 
@@ -955,7 +955,7 @@ TraceException:                         ; CODE XREF: TraceException↓j
 ; Attributes: noreturn
 
 LINE1010Emulator:                       ; CODE XREF: LINE1010Emulator↓j
-                                        ; DATA XREF: ROM:off_28↑o
+                                        ; DATA XREF: ROM:$28↑o
                 bra.s   LINE1010Emulator
 ; End of function LINE1010Emulator
 
@@ -1025,7 +1025,7 @@ Trap:                                   ; CODE XREF: Trap↓j
 ; Attributes: noreturn
 
 AddressError:                           ; CODE XREF: AddressError↓j
-                                        ; DATA XREF: ROM:off_C↑o
+                                        ; DATA XREF: ROM:$0C↑o
                 bra.s   AddressError
 ; End of function AddressError
 
@@ -1045,7 +1045,7 @@ IRQ2:                                   ; CODE XREF: IRQ2↓j
 ; Attributes: noreturn
 
 ZeroDivide:                             ; CODE XREF: ZeroDivide↓j
-                                        ; DATA XREF: ROM:off_14↑o
+                                        ; DATA XREF: ROM:$14↑o
                 bra.s   ZeroDivide
 ; End of function ZeroDivide
 
@@ -1272,7 +1272,7 @@ loc_D4094:                              ; CODE XREF: sub_D3FAC+E4↑j
                 jsr     sub_E1A48
                 pea     (1).w
                 move.l  #$D000,-(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 jsr     sub_DF7A6
                 lea     $1C(sp),sp
                 clr.w   ($FF783C).l
@@ -1428,7 +1428,7 @@ LoadLevelTileData:                              ; CODE XREF: RunMain+14A↓p
                 jsr     LoadSSCCompressedTiles
                 pea     (1).w
                 move.l  #$D000,-(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 jsr     sub_DF7A6
                 move.w  ($FF5754).l,d0
                 addq.w  #1,d0
@@ -2066,7 +2066,7 @@ PlayPlayerVictoryAnimation:                              ; CODE XREF: SetGameSta
                 move.l  a0,(a2)
                 jsr     GEMS_MuteAllSounds(pc)
                 nop
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     GEMS_PlayJingle(pc)
                 nop
                 jsr     sub_D86E6
@@ -2303,8 +2303,8 @@ loc_D4B00:                              ; DATA XREF: RunUpdate_TallyScoreAndEndL
                 move.l  (a0,d0.w),-(sp)
 
 loc_D4B2A:                              ; CODE XREF: RunUpdate_TallyScoreAndEndLevel+3B4↓j
-                clr.l   -(sp)
-                pea     (off_14).w
+                clr.l   -(sp) 
+                pea     ($14).w
                 pea     (5).w
                 pea     (2).w
                 pea     (7).w
@@ -2378,7 +2378,7 @@ loc_D4BDC:                              ; DATA XREF: RunUpdate_TallyScoreAndEndL
 
 loc_D4C08:                              ; CODE XREF: RunUpdate_TallyScoreAndEndLevel+43C↓j
                 clr.l   -(sp)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     (5).w
                 pea     (2).w
                 pea     (6).w
@@ -2455,7 +2455,7 @@ loc_D4CBE:                              ; CODE XREF: RunUpdate_TallyScoreAndEndL
 loc_D4CF4:                              ; CODE XREF: RunUpdate_TallyScoreAndEndLevel+488↓j
                 jsr     OSD_QueueMessage
                 lea     $18(sp),sp
-                pea     (off_28).w
+                pea     ($28).w
                 bra.w   loc_D4BC8
 ; ---------------------------------------------------------------------------
 
@@ -3119,7 +3119,7 @@ loc_D53B6:                              ; CODE XREF: RunMain+148↑j
                 bsr.w   LoadLevelTileData
                 pea     (aWelcomeBack).l ; "WELCOME BACK!"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (4).w
                 clr.l   -(sp)
                 pea     (1).w
@@ -10257,8 +10257,8 @@ loc_D904A:                              ; CODE XREF: RunUpdate_ToxicCaves+120↑
                 cmp.l   d1,d0
                 blt.w   loc_DB222
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 move.l  d0,-(sp)
                 move.w  8(a3),d0
@@ -10706,7 +10706,7 @@ loc_D95C2:                              ; CODE XREF: RunUpdate_ToxicCaves+684↑
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
                 lea     $20(sp),sp
-                pea     (off_14).w
+                pea     ($14).w
                 pea     (off_70).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -10754,8 +10754,8 @@ loc_D9654:                              ; DATA XREF: RunUpdate_ToxicCaves+37C↑
                 andi.w  #$FFFB,6(a0)
                 move.w  #$100A,$C(a4)
                 ori.b   #2,$C(a4)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 pea     (unk_4000).w
                 pea     ($BE).w
@@ -10888,7 +10888,7 @@ loc_D97F8:                              ; CODE XREF: RunUpdate_ToxicCaves+8C8↑
 loc_D9814:                              ; CODE XREF: RunUpdate_ToxicCaves+8D4↑j
                 movea.l $66(a2),a0
                 move.b  #1,$2F(a0)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($23).w
                 move.l  $66(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -10936,7 +10936,7 @@ loc_D987A:                              ; DATA XREF: RunUpdate_ToxicCaves:off_D9
                 bne.w   loc_D9A64
                 tst.b   $4C(a2)
                 beq.w   loc_D9A64
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($23).w
                 move.l  $66(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -10980,8 +10980,8 @@ loc_D9908:                              ; DATA XREF: RunUpdate_ToxicCaves+950↑
                 beq.w   loc_D9A64
                 movea.l $44(a2),a0
                 clr.b   $2F(a0)
-                pea     (off_4).w
-                pea     (off_24).w
+                pea     ($04).w
+                pea     ($24).w
                 move.l  $66(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -11075,8 +11075,8 @@ loc_D9A3C:                              ; DATA XREF: RunUpdate_ToxicCaves+956↑
                 addq.w  #1,$C(a2)
                 cmpi.w  #$3C,$C(a2) ; '<'
                 blt.s   loc_D9A64
-                pea     (off_4).w
-                pea     (off_24).w
+                pea     ($04).w
+                pea     ($24).w
                 move.l  $66(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -11326,7 +11326,7 @@ loc_D9D28:                              ; CODE XREF: RunUpdate_ToxicCaves+DBA↑
                 pea     ($11).w
                 pea     (3).w
                 jsr     sub_D85A0
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetGameState
                 lea     $C(sp),sp
                 move.b  #6,$C(a4)
@@ -11420,8 +11420,8 @@ loc_D9E2E:                              ; CODE XREF: RunUpdate_ToxicCaves+F00↑
                 tst.b   $B(a2)
                 bne.w   loc_DB222
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $14(a2),d0
                 move.l  d0,-(sp)
                 move.w  $12(a2),d0
@@ -11555,8 +11555,8 @@ loc_D9F9C:                              ; DATA XREF: RunUpdate_ToxicCaves:off_D9
                 move.b  #1,9(a2)
                 clr.b   $A(a2)
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 pea     (unk_590).w
                 pea     ($280).w
                 pea     (off_C0EA4).l
@@ -11587,7 +11587,7 @@ loc_DA048:                              ; CODE XREF: RunUpdate_ToxicCaves+1158�
 
 loc_DA04C:                              ; CODE XREF: RunUpdate_ToxicCaves+111E↑j
                                         ; RunUpdate_ToxicCaves+1156↓j
-                pea     (off_28).w
+                pea     ($28).w
 
 loc_DA050:                              ; CODE XREF: RunUpdate_ToxicCaves+117E↓j
                 move.l  a2,-(sp)
@@ -11623,7 +11623,7 @@ loc_DA07C:                              ; DATA XREF: RunUpdate_ToxicCaves+1076�
                 addq.b  #1,9(a2)
 
 loc_DA09C:                              ; CODE XREF: RunUpdate_ToxicCaves+1174↑j
-                pea     (off_18).w
+                pea     ($18).w
                 bra.s   loc_DA050
 ; ---------------------------------------------------------------------------
 
@@ -11655,7 +11655,7 @@ loc_DA0DA:                              ; CODE XREF: RunUpdate_ToxicCaves+11AC�
                 ori.w   #$8000,$22(a0)
 
 loc_DA100:                              ; CODE XREF: RunUpdate_ToxicCaves+119A↑j
-                pea     (off_10).w
+                pea     ($10).w
                 move.l  a2,-(sp)
                 jsr     sub_DB5B8(pc)
                 nop
@@ -11831,8 +11831,8 @@ loc_DA2B2:                              ; CODE XREF: RunUpdate_ToxicCaves+1384�
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
                 move.w  #$100A,$C(a4)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 lea     $14(sp),sp
                 move.w  #$1E,($FFF1FA).l
@@ -11854,8 +11854,8 @@ loc_DA31E:                              ; DATA XREF: RunUpdate_ToxicCaves+1342�
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
                 move.w  #$100A,$C(a4)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 lea     $14(sp),sp
                 move.w  #$1E,($FFF1FA).l
@@ -11873,7 +11873,7 @@ loc_DA37A:                              ; CODE XREF: RunUpdate_ToxicCaves+1406�
                 ori.w   #$4080,$22(a3)
                 movea.l (a4),a0
                 ori.w   #$4080,$22(a0)
-                pea     (off_C).w
+                pea     ($0C).w
                 pea     ($26).w
                 jsr     SetPlayerAnimation
                 addq.l  #8,sp
@@ -11894,7 +11894,7 @@ loc_DA3BA:                              ; CODE XREF: RunUpdate_ToxicCaves+1462�
                 andi.w  #$BFFF,$22(a0)
                 movea.l (a4),a0
                 ori.w   #$80,$22(a0)
-                pea     (off_C).w
+                pea     ($0C).w
                 pea     ($26).w
                 jsr     SetPlayerAnimation
                 addq.l  #8,sp
@@ -12243,7 +12243,7 @@ loc_DA7B6:                              ; CODE XREF: RunUpdate_ToxicCaves+1878�
                 move.w  $12(a2),($FF005E).l
                 move.w  $14(a2),($FF0062).l
                 move.b  #$22,$C(a4) ; '"'
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($2B).w
                 jsr     SetPlayerAnimation
                 clr.l   -(sp)
@@ -12421,11 +12421,11 @@ loc_DA994:                              ; CODE XREF: RunUpdate_ToxicCaves+1A5A�
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
                 pea     (2).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     (2).w
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     SetPlayerAnimation
                 lea     $1C(sp),sp
                 movea.l $3A(a3),a0
@@ -12503,8 +12503,8 @@ loc_DAAE0:                              ; CODE XREF: RunUpdate_ToxicCaves+1B44�
                 movea.l (a0),a0
                 tst.b   $2F(a0)
                 beq.s   loc_DAB18
-                pea     (off_4).w
-                pea     (off_24).w
+                pea     ($04).w
+                pea     ($24).w
                 jsr     SetPlayerAnimation
                 pea     ($2D).w
                 jsr     TriggerOSDMessage
@@ -12611,10 +12611,10 @@ loc_DAC2C:                              ; DATA XREF: RunUpdate_ToxicCaves+17D8�
                 bne.w   loc_DB222
                 move.b  #2,$C(a4)
                 pea     (2).w
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     SetPlayerAnimation
                 pea     (2).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
                 cmpi.w  #$1DC,8(a3)
@@ -12940,8 +12940,8 @@ loc_DB05E:                              ; CODE XREF: RunUpdate_ToxicCaves+20D4�
                 bne.w   loc_DB222
                 move.b  #$A,$D(a4)
                 move.b  #$10,$C(a4)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 pea     (unk_4000).w
                 cmpa.l  #$FF896E,a2
@@ -13202,8 +13202,8 @@ loc_DB30C:                              ; CODE XREF: sub_DB234+CA↑j
                 move.b  #4,$B(a2)
                 clr.l   ($FF006E).l
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 movea.l ($FF0074).l,a0
                 movea.l (a0),a0
                 move.w  $A(a0),d0
@@ -13223,8 +13223,8 @@ loc_DB30C:                              ; CODE XREF: sub_DB234+CA↑j
                 move.w  #$14,4(a0)
 
 loc_DB372:                              ; CODE XREF: sub_DB234+12E↑j
-                pea     (off_4).w
-                pea     (off_24).w
+                pea     ($04).w
+                pea     ($24).w
                 jsr     SetPlayerAnimation
                 pea     ($2E).w
                 jsr     TriggerOSDMessage
@@ -13558,7 +13558,7 @@ loc_DB6BA:                              ; CODE XREF: sub_DB69C+14↑j
                 move.w  $12(a2),8(a3)
                 move.w  $14(a2),$A(a3)
                 pea     (2).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  a3,-(sp)
                 jsr     (a5)
                 lea     $C(sp),sp
@@ -13718,7 +13718,7 @@ loc_DB868:                              ; CODE XREF: sub_DB836+2A↑j
 loc_DB86E:                              ; CODE XREF: sub_DB836+24↑j
                                         ; sub_DB836+30↑j
                 clr.w   $C(a1)
-                pea     (off_8).w
+                pea     ($08).w
                 clr.l   -(sp)
                 bsr.w   SetPlayerAnimation
                 addq.l  #8,sp
@@ -13745,8 +13745,8 @@ sub_DB880:                              ; CODE XREF: sub_E3150+61A↓p
                 cmpi.b  #$28,$2E(a0) ; '('
                 beq.s   loc_DB8C8
                 clr.l   $1E(a2)
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 bsr.w   SetPlayerAnimation
                 addq.l  #8,sp
                 move.b  #$10,$C(a2)
@@ -14771,7 +14771,7 @@ loc_DC210:                              ; CODE XREF: LoseLife+2A↑j
                 subq.b  #1,$46(a2)
                 beq.s   GameOver
                 pea     (aTooBaaad).l   ; "() TOO BAAAD ()"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_78).w
                 pea     (6).w
                 bra.s   loc_DC27C
@@ -14838,7 +14838,7 @@ loc_DC2EE:                              ; CODE XREF: Trigger_OnEmeraldCollected+
                 move.w  #$611,$C(a2)
                 clr.l   $1E(a2)
                 clr.l   $22(a2)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($B3).w
                 pea     (off_A0).w
                 bsr.w   MoveCameraToLocationAtSpeed
@@ -15365,7 +15365,7 @@ loc_DC7D6:                              ; CODE XREF: RunPlayerPinballPhysics+3EE
 loc_DC7F6:                              ; CODE XREF: RunPlayerPinballPhysics+40C↑j
                 tst.w   $10(a2)
                 bne.w   loc_DC896
-                pea     (off_4).w
+                pea     ($04).w
                 move.w  ($FF75B0).l,d0
                 movea.l #word_C06DA,a0
                 move.b  (a0,d0.w),d1
@@ -15478,7 +15478,7 @@ loc_DC928:                              ; CODE XREF: RunPlayerPinballPhysics+556
 
 loc_DC930:                              ; DATA XREF: RunPlayerPinballPhysics+53A↑o
                                         ; RunPlayerPinballPhysics+540↑o ...
-                pea     (off_C).w
+                pea     ($0C).w
                 bra.s   loc_DC928
 ; ---------------------------------------------------------------------------
 
@@ -15541,8 +15541,8 @@ loc_DC984:                              ; CODE XREF: RunPlayerPinballPhysics+5A2
                 clr.l   $22(a3)
                 move.l  a2,($FF0092).l
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  ($FF75B0).l,d0
                 movea.l #unk_C06EE,a0
                 move.b  (a0,d0.w),d0
@@ -15673,7 +15673,7 @@ loc_DCAF2:                              ; DATA XREF: RunPlayerPinballPhysics+6D8
                 clr.l   $1E(a3)
                 clr.l   $22(a3)
                 move.w  #$507,$C(a3)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($13).w
                 bsr.w   SetPlayerAnimation
                 cmpi.w  #7,var_1A(a6)
@@ -16180,7 +16180,7 @@ arg_0           =  4
                 bcc.s   loc_DCF14
                 move.b  #8,$D(a2)
                 pea     ($A).w
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     (a3)
                 clr.w   $18(a2)
                 tst.w   d3
@@ -16708,7 +16708,7 @@ loc_DD44E:                              ; DATA XREF: RunPlayerUpdate+108↑o
                 cmpi.l  #off_10000,d0
                 bcc.s   loc_DD484
                 move.b  #1,$D(a2)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($11).w
                 bsr.w   SetPlayerAnimation
                 addq.l  #8,sp
@@ -16892,7 +16892,7 @@ loc_DD600:                              ; DATA XREF: RunPlayerUpdate+11A↑o
                 tst.w   (a5)
                 bgt.s   loc_DD63E
                 pea     (aHeyAnybodyHome).l ; "HEY, ANYBODY HOME?"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (6).w
                 pea     (2).w
@@ -16901,7 +16901,7 @@ loc_DD600:                              ; DATA XREF: RunPlayerUpdate+11A↑o
                 lea     $18(sp),sp
                 move.b  #$F,$D(a2)
                 pea     (6).w
-                pea     (off_8).w
+                pea     ($08).w
                 bsr.w   SetPlayerAnimation
                 bra.w   loc_DD20C
 ; ---------------------------------------------------------------------------
@@ -17182,7 +17182,7 @@ loc_DD8DA:                              ; CODE XREF: RunPlayerUpdate+902↑j
 loc_DD8E0:                              ; CODE XREF: RunPlayerUpdate+8FC↑j
                 move.b  #5,$D(a2)
                 pea     (2).w
-                pea     (off_10).w
+                pea     ($10).w
                 bsr.w   SetPlayerAnimation
                 addq.l  #8,sp
                 clr.l   $22(a2)
@@ -17204,8 +17204,8 @@ loc_DD8FC:                              ; CODE XREF: RunPlayerUpdate+872↑j
                 ble.s   loc_DD956
                 cmpi.b  #$B,$D(a2)
                 beq.s   loc_DD930
-                pea     (off_8).w
-                pea     (off_4).w
+                pea     ($08).w
+                pea     ($04).w
                 bsr.w   SetPlayerAnimation
                 addq.l  #8,sp
 
@@ -17236,8 +17236,8 @@ loc_DD956:                              ; CODE XREF: RunPlayerUpdate+948↑j
                 cmp.w   6(a0),d0
                 bne.s   loc_DD9AC
                 move.w  #$180A,$C(a2)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 bsr.w   SetPlayerAnimation
                 pea     (unk_4000).w
                 movea.l 8(a2),a0
@@ -18273,7 +18273,7 @@ loc_DE3D8:                              ; CODE XREF: RunFlipperCollision+344↑j
                 move.w  #$FFE8,var_2(a6)
 
 loc_DE3F6:                              ; CODE XREF: RunFlipperCollision+360↑j
-                pea     (off_18).w
+                pea     ($18).w
                 tst.w   var_2(a6)
                 bge.s   loc_DE406
                 move.w  #$1700,d0
@@ -18852,7 +18852,7 @@ arg_0           =  4
                 addi.b  #$30,d0 ; '0'
                 move.b  d0,4(a2)
                 clr.b   5(a2)
-                pea     (off_4).w
+                pea     ($04).w
                 move.l  4(a3),-(sp)
                 move.l  a2,-(sp)
                 bsr.w   sub_DE816
@@ -19365,7 +19365,7 @@ loc_DED38:                              ; CODE XREF: sub_DEC6C+C2↑j
                 bne.s   loc_DED58
 
 loc_DED4C:                              ; CODE XREF: sub_DEC6C+D4↑j
-                pea     (off_4).w
+                pea     ($04).w
                 bsr.w   sub_DEBB4
                 addq.l  #4,sp
                 bra.s   loc_DED1A
@@ -19373,7 +19373,7 @@ loc_DED4C:                              ; CODE XREF: sub_DEC6C+D4↑j
 
 loc_DED58:                              ; CODE XREF: sub_DEC6C+DE↑j
                 clr.b   ($FF41C2).l
-                pea     (off_20).w
+                pea     ($20).w
                 bsr.w   OSD_UpdateTilesInRAM
                 addq.l  #4,sp
                 move.b  #1,($FF009A).l
@@ -19406,7 +19406,7 @@ arg_4           =  $C
                 move.w  ($FFF210).l,d4
                 ext.l   d4
                 move.b  #1,($FF009A).l
-                pea     (off_20).w
+                pea     ($20).w
                 bsr.w   OSD_UpdateTilesInRAM
                 addq.l  #4,sp
                 clr.w   d6
@@ -20646,7 +20646,7 @@ loc_DF830:                              ; CODE XREF: sub_DF7A6+76↑j
                 move.l  d0,-(sp)
                 pea     (ArtSSC_HUD).l
                 jsr     LoadSSCCompressedTiles
-                pea     (off_20).w
+                pea     ($20).w
                 bsr.w   OSD_UpdateTilesInRAM
                 lea     $14(sp),sp
                 move.b  #1,($FF009A).l
@@ -20976,7 +20976,7 @@ Alert_GotAnEmerald:                     ; CODE XREF: TriggerOSDMessage+3C↑j
                 pea     (a500000).l     ; "500,000"
                 pea     (6).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 pea     (7).w
                 jsr     (a3)
@@ -21004,7 +21004,7 @@ Alert_AllEmeraldsAwardScore:               ; CODE XREF: TriggerOSDMessage+42↑j
                 pea     (aTheBossRoomIsO).l ; "THE BOSS ROOM IS OPEN"
                 pea     (6).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 pea     (7).w
                 jsr     (a3)
@@ -21234,7 +21234,7 @@ loc_DFD94:                              ; CODE XREF: TriggerOSDMessage+296↑j
 loc_DFD9C:                              ; DATA XREF: TriggerOSDMessage+1B2↑o
                 bsr.w   OSD_ClearMessageQueue
                 pea     (aDrainingSlime).l ; "* DRAINING SLIME *"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($5A).w
                 pea     (3).w
                 pea     (2).w
@@ -21316,7 +21316,7 @@ loc_DFE62:                              ; DATA XREF: TriggerOSDMessage+1D4↑o
                 tst.b   d3
                 beq.s   loc_DFE84
                 pea     (aSewerWarp___).l ; "SEWER WARP..."
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($46).w
 
 loc_DFE74:                              ; CODE XREF: TriggerOSDMessage+8C2↓j
@@ -21340,10 +21340,10 @@ loc_DFE92:                              ; DATA XREF: TriggerOSDMessage+1C0↑o
                 beq.s   loc_DFEB4
                 pea     (aExcellent).l  ; "EXCELLENT!"
                 pea     (3).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (5).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_DFEAE:                              ; CODE XREF: TriggerOSDMessage+56A↓j
                                         ; TriggerOSDMessage+A26↓j
@@ -21385,8 +21385,8 @@ loc_DFEE6:                              ; DATA XREF: TriggerOSDMessage+1C6↑o
                 tst.b   d3
                 beq.s   loc_DFF08
                 pea     (aOoops___).l   ; "OOOPS..."
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 pea     (3).w
 
 loc_DFEFC:                              ; CODE XREF: TriggerOSDMessage+D1A↓j
@@ -21468,7 +21468,7 @@ loc_DFF98:                              ; DATA XREF: TriggerOSDMessage+1CE↑o
                 tst.b   d3
                 beq.s   loc_DFFBA
                 pea     (aTargetDown).l ; "TARGET DOWN!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($1E).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -21505,7 +21505,7 @@ loc_DFFDA:                              ; CODE XREF: TriggerOSDMessage+139C↓j
 loc_DFFE0:                              ; DATA XREF: TriggerOSDMessage+1DA↑o
                 pea     (aSwitchLoopBonu).l ; "SWITCH LOOP BONUS"
                 pea     (3).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (5).w
                 pea     (2).w
 
@@ -21547,7 +21547,7 @@ loc_E002A:                              ; DATA XREF: TriggerOSDMessage+1E0↑o
 loc_E002C:                              ; DATA XREF: ROM:off_BFD64↑o
                 beq.w   loc_DFEB4
                 pea     (aWormLoop).l   ; "() WORM LOOP ()"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (5).w
                 pea     (2).w
@@ -21608,7 +21608,7 @@ loc_E00C6:                              ; DATA XREF: TriggerOSDMessage+1E8↑o
                 tst.b   d3
                 beq.s   loc_E00E8
                 pea     (aWrongMove___).l ; "WRONG MOVE..."
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($46).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -21683,7 +21683,7 @@ loc_E017C:                              ; DATA XREF: TriggerOSDMessage+1FA↑o
                 pea     (aGoingAnywhere?).l ; "GOING ANYWHERE?"
                 pea     (3).w
                 pea     ($1E).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
 
@@ -21721,11 +21721,11 @@ loc_E01D0:                              ; DATA XREF: TriggerOSDMessage+1FE↑o
                 tst.b   d3
                 beq.s   loc_E01F2
                 pea     (aMoveIt).l     ; "MOVE IT!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($A).w
                 pea     (6).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     (a3)
                 lea     $18(sp),sp
 
@@ -21740,7 +21740,7 @@ loc_E0200:                              ; DATA XREF: TriggerOSDMessage+200↑o
                 beq.w   loc_E193E
                 pea     (aHangOnSonic).l ; "HANG ON, SONIC!"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (3).w
                 clr.l   -(sp)
                 pea     (2).w
@@ -21762,7 +21762,7 @@ loc_E022C:                              ; DATA XREF: TriggerOSDMessage+204↑o
                 clr.l   -(sp)
 
 loc_E0242:                              ; CODE XREF: TriggerOSDMessage+1902↓j
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_E0246:                              ; CODE XREF: TriggerOSDMessage+1A96↓j
                 jsr     (a3)
@@ -21820,8 +21820,8 @@ loc_E02B8:                              ; DATA XREF: TriggerOSDMessage+20E↑o
                 pea     (aGreatEscape).l ; "* GREAT ESCAPE *"
 
 loc_E02C2:                              ; DATA XREF: ROM:00098280↑o
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 pea     (5).w
 
 loc_E02CE:                              ; DATA XREF: ROM:00060614↑o
@@ -21841,7 +21841,7 @@ loc_E02E4:                              ; DATA XREF: TriggerOSDMessage+210↑o
                 pea     (aLaunchingUp).l ; "LAUNCHING UP"
                 pea     (3).w
                 pea     ($1E).w
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_E02FC:                              ; CODE XREF: TriggerOSDMessage+1D36↓j
                 clr.l   -(sp)
@@ -21856,10 +21856,10 @@ loc_E0306:                              ; DATA XREF: TriggerOSDMessage+212↑o
                 beq.s   loc_E0326
                 pea     (aArghhH).l     ; "() ARGHH H ()"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 pea     (1).w
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_E0320:                              ; CODE XREF: TriggerOSDMessage+1934↓j
                 jsr     (a3)
@@ -21879,7 +21879,7 @@ loc_E0334:                              ; DATA XREF: TriggerOSDMessage+214↑o
                 beq.s   loc_E0354
                 pea     (aKeepItUp).l   ; "KEEP IT UP!!!"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 pea     (1).w
                 pea     (3).w
@@ -21902,7 +21902,7 @@ loc_E0362:                              ; CODE XREF: TriggerOSDMessage+C00↓j
 loc_E036C:                              ; DATA XREF: TriggerOSDMessage+226↑o
                 pea     (aBonus200000).l ; "* BONUS 200,000 *"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (5).w
                 pea     (2).w
                 pea     (5).w
@@ -21916,8 +21916,8 @@ loc_E0384:                              ; CODE XREF: TriggerOSDMessage+930↓j
 
 loc_E0394:                              ; DATA XREF: TriggerOSDMessage+228↑o
                 pea     (aMovingUp___).l ; "MOVING UP..."
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 bra.w   loc_DFE74
 ; ---------------------------------------------------------------------------
 
@@ -21967,15 +21967,15 @@ loc_E0414:                              ; DATA XREF: TriggerOSDMessage+230↑o
                 pea     (6).w
 
 loc_E041E:                              ; CODE XREF: TriggerOSDMessage+1C9A↓j
-                pea     (off_28).w
+                pea     ($28).w
                 bra.w   loc_E192E
 ; ---------------------------------------------------------------------------
 
 loc_E0426:                              ; DATA XREF: TriggerOSDMessage+232↑o
                 pea     (aTailDestroyed).l ; "TAIL DESTROYED"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 pea     (5).w
                 jsr     (a3)
@@ -22063,8 +22063,8 @@ loc_E04E8:                              ; DATA XREF: TriggerOSDMessage:off_E049E
                 beq.w   loc_DFEB4
                 pea     (aGotcha).l     ; "GOTCHA!"
                 pea     (6).w
-                pea     (off_28).w
-                pea     (off_4).w
+                pea     ($28).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
                 bra.w   loc_DFEAE
@@ -22072,7 +22072,7 @@ loc_E04E8:                              ; DATA XREF: TriggerOSDMessage:off_E049E
 
 loc_E050A:                              ; DATA XREF: TriggerOSDMessage+9C0↑o
                 pea     (aTeleporting___).l ; "TELEPORTING..."
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($5A).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -22158,7 +22158,7 @@ loc_E05B0:                              ; CODE XREF: TriggerOSDMessage+AC8↑j
                 move.l  a5,-(sp)
                 pea     (5).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 pea     (5).w
 
@@ -22174,7 +22174,7 @@ loc_E05EE:                              ; DATA XREF: TriggerOSDMessage+9CA↑o
                 beq.s   loc_E0610
                 pea     (aLuckyAgain?).l ; "LUCKY AGAIN?"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (2).w
                 clr.l   -(sp)
                 pea     (3).w
@@ -22199,14 +22199,14 @@ loc_E0632:                              ; CODE XREF: TriggerOSDMessage+DB6↓j
                 clr.l   -(sp)
 
 loc_E0634:                              ; CODE XREF: TriggerOSDMessage+1B24↓j
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_E1938
 ; ---------------------------------------------------------------------------
 
 loc_E063C:                              ; DATA XREF: TriggerOSDMessage+9CE↑o
                 pea     (aPressureBonus).l ; "* PRESSURE BONUS *"
                 pea     (3).w
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 pea     (2).w
                 pea     (5).w
@@ -22233,7 +22233,7 @@ loc_E067A:                              ; DATA XREF: TriggerOSDMessage+9D2↑o
                 tst.b   d3
                 beq.w   loc_DFFBA
                 pea     (aSteamArena).l ; "() STEAM ARENA ()"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (5).w
                 pea     (2).w
@@ -22271,7 +22271,7 @@ loc_E06DE:                              ; DATA XREF: TriggerOSDMessage+9D8↑o
                 pea     (aGoingDown?).l ; "() GOING DOWN? ()"
                 pea     (2).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
                 jsr     (a3)
@@ -22300,7 +22300,7 @@ loc_E0724:                              ; DATA XREF: TriggerOSDMessage+9E0↑o
                 pea     (off_3C).w
 
 loc_E0736:                              ; CODE XREF: TriggerOSDMessage+123A↓j
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
                 jsr     (a3)
@@ -22317,7 +22317,7 @@ loc_E0750:                              ; DATA XREF: TriggerOSDMessage+9E2↑o
                 pea     (aGoingDown?_0).l ; "() GOING DOWN? ()"
                 pea     (3).w
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
                 jsr     (a3)
@@ -22332,9 +22332,9 @@ loc_E077C:                              ; DATA XREF: TriggerOSDMessage+9E4↑o
                 pea     (aOhNoooOO___).l ; "OH, NOOO O O..."
                 pea     (5).w
                 pea     ($5A).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     (a3)
                 lea     $18(sp),sp
                 pea     ($5F).w
@@ -22346,8 +22346,8 @@ loc_E07A2:                              ; DATA XREF: TriggerOSDMessage+9E6↑o
                 beq.w   loc_E193E
                 pea     (aGotHim).l     ; "GOT HIM!"
                 pea     (3).w
-                pea     (off_28).w
-                pea     (off_4).w
+                pea     ($28).w
+                pea     ($04).w
 
 loc_E07BA:                              ; CODE XREF: TriggerOSDMessage+DD2↓j
                 clr.l   -(sp)
@@ -22360,10 +22360,10 @@ loc_E07C4:                              ; DATA XREF: TriggerOSDMessage+9E8↑o
                 beq.w   loc_DFFBA
                 pea     (aRightOnSonic).l ; "RIGHT ON, SONIC!"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_DFFB4
 ; ---------------------------------------------------------------------------
 
@@ -22372,7 +22372,7 @@ loc_E07E4:                              ; DATA XREF: TriggerOSDMessage+9EA↑o
                 beq.w   loc_DFF08
                 pea     (aTotalAction).l ; "** TOTAL ACTION **"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
 
 loc_E07F8:                              ; CODE XREF: TriggerOSDMessage+1340↓j
                 clr.l   -(sp)
@@ -22452,7 +22452,7 @@ loc_E089A:                              ; DATA XREF: TriggerOSDMessage+9F4↑o
                 tst.b   d3
                 beq.w   loc_E193E
                 pea     (aJumpInsideRobo).l ; "JUMP INSIDE ROBOILER!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
                 pea     (6).w
                 bra.w   loc_E07BA
@@ -22461,7 +22461,7 @@ loc_E089A:                              ; DATA XREF: TriggerOSDMessage+9F4↑o
 loc_E08B6:                              ; DATA XREF: TriggerOSDMessage+9F8↑o
                 pea     (aHitItAgain___).l ; "HIT IT AGAIN..."
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 clr.l   -(sp)
                 pea     (1).w
@@ -22498,10 +22498,10 @@ loc_E091C:                              ; DATA XREF: TriggerOSDMessage+9FC↑o
                 beq.s   loc_E093C
                 pea     (aLetSBoogie___).l ; "LET'S BOOGIE..."
                 clr.l   -(sp)
-                pea     (off_14).w
+                pea     ($14).w
                 clr.l   -(sp)
                 pea     (1).w
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     (a3)
                 lea     $18(sp),sp
 
@@ -22546,8 +22546,8 @@ loc_E0986:                              ; CODE XREF: TriggerOSDMessage+E9E↑j
                 lea     $C(sp),sp
                 move.l  a5,-(sp)
                 pea     (6).w
-                pea     (off_14).w
-                pea     (off_4).w
+                pea     ($14).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (3).w
 
@@ -22641,7 +22641,7 @@ off_E09F2:      dc.w loc_E0A58-*        ; DATA XREF: TriggerOSDMessage+F0A↑r
 
 loc_E0A58:                              ; DATA XREF: TriggerOSDMessage:off_E09F2↑o
                 pea     (aEnteringLiftSh).l ; "ENTERING LIFT SHAFT"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
                 pea     (1).w
 
@@ -22657,7 +22657,7 @@ loc_E0A6A:                              ; CODE XREF: TriggerOSDMessage+FB6↓j
 
 loc_E0A84:                              ; DATA XREF: TriggerOSDMessage+F14↑o
                 pea     (aFindOtherGems).l ; "FIND OTHER GEMS!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
                 pea     (2).w
                 bra.s   loc_E0A6A
@@ -22775,7 +22775,7 @@ loc_E0B86:                              ; DATA XREF: TriggerOSDMessage+F24↑o
                 pea     (aRadicalShootin).l ; "RADICAL SHOOTIN'"
                 pea     (6).w
                 pea     ($32).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 pea     (7).w
                 bra.w   loc_DFD8E
@@ -22783,11 +22783,11 @@ loc_E0B86:                              ; DATA XREF: TriggerOSDMessage+F24↑o
 
 loc_E0BA4:                              ; DATA XREF: TriggerOSDMessage+F26↑o
                 pea     (aRightOnTarget).l ; "RIGHT ON TARGET!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($1E).w
                 pea     (3).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_DFD30
 ; ---------------------------------------------------------------------------
 
@@ -22806,7 +22806,7 @@ loc_E0BC0:                              ; DATA XREF: TriggerOSDMessage+F2A↑o
 
 loc_E0BE4:                              ; DATA XREF: TriggerOSDMessage+F2C↑o
                 pea     (aRapidTransport).l ; "RAPID TRANSPORT..."
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
 
 loc_E0BF2:                              ; CODE XREF: TriggerOSDMessage+116E↓j
@@ -22842,7 +22842,7 @@ loc_E0C38:                              ; CODE XREF: TriggerOSDMessage+12B6↓j
 
 loc_E0C40:                              ; DATA XREF: TriggerOSDMessage+F30↑o
                 pea     (aFindHiddenEmer).l ; "FIND HIDDEN EMERALD"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
                 bra.s   loc_E0BF2
 ; ---------------------------------------------------------------------------
@@ -22858,9 +22858,9 @@ loc_E0C50:                              ; DATA XREF: TriggerOSDMessage+F32↑o
                                         ; A specialized version that only handles %%, %d, and %s with no special flags.
                 lea     $C(sp),sp
                 move.l  a5,-(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_E0668
 ; ---------------------------------------------------------------------------
 
@@ -22891,7 +22891,7 @@ loc_E0CBE:                              ; DATA XREF: TriggerOSDMessage+F38↑o
                 beq.w   loc_E193E
                 pea     (aUltraCoolSlide).l ; "* ULTRA COOL SLIDE *"
                 pea     (2).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (5).w
                 clr.l   -(sp)
                 pea     (1).w
@@ -22905,10 +22905,10 @@ loc_E0CBE:                              ; DATA XREF: TriggerOSDMessage+F38↑o
 loc_E0CF0:                              ; DATA XREF: TriggerOSDMessage+F3A↑o
                 pea     (aBusterBusted).l ; "BUSTER BUSTED!"
                 pea     (1).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (6).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_E09AC
 ; ---------------------------------------------------------------------------
 
@@ -22930,8 +22930,8 @@ Alert_TMPistonLights:                   ; DATA XREF: TriggerOSDMessage+F3E↑o
                 lea     $C(sp),sp
                 move.l  a5,-(sp)
                 pea     (6).w
-                pea     (off_28).w
-                pea     (off_4).w
+                pea     ($28).w
+                pea     ($04).w
                 clr.l   -(sp)
 
 loc_E0D4A:                              ; CODE XREF: TriggerOSDMessage+1758↓j
@@ -22942,7 +22942,7 @@ loc_E0D4A:                              ; CODE XREF: TriggerOSDMessage+1758↓j
 loc_E0D52:                              ; DATA XREF: TriggerOSDMessage+F40↑o
                 pea     (aBadMoveBro___).l ; "BAD MOVE, BRO..."
                 pea     (1).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (1).w
                 clr.l   -(sp)
                 pea     (2).w
@@ -22972,7 +22972,7 @@ loc_E0D9A:                              ; DATA XREF: TriggerOSDMessage+F44↑o
 loc_E0DA4:                              ; DATA XREF: TriggerOSDMessage+F48↑o
                 pea     (aCellOpen).l   ; "* CELL OPEN *"
                 pea     (2).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (5).w
                 bra.w   loc_E0544
 ; ---------------------------------------------------------------------------
@@ -22988,8 +22988,8 @@ loc_E0DBA:                              ; DATA XREF: TriggerOSDMessage+F4A↑o
 
 loc_E0DD0:                              ; DATA XREF: TriggerOSDMessage+F4C↑o
                 pea     (aAllCellsOpen).l ; "ALL CELLS OPEN"
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 pea     (3).w
                 pea     (2).w
                 pea     (5).w
@@ -23031,7 +23031,7 @@ loc_E0E24:                              ; DATA XREF: TriggerOSDMessage+F54↑o
 
 loc_E0E4C:                              ; DATA XREF: TriggerOSDMessage+F56↑o
                 pea     (aSurgeActivated).l ; "SURGE ACTIVATED"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
                 pea     (6).w
                 pea     (2).w
@@ -23051,14 +23051,14 @@ loc_E0E6A:                              ; DATA XREF: TriggerOSDMessage+F58↑o
 loc_E0E80:                              ; DATA XREF: TriggerOSDMessage+F5A↑o
                 pea     (aNeverGiveUp).l ; "NEVER GIVE UP!"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 bra.w   loc_E0892
 ; ---------------------------------------------------------------------------
 
 loc_E0E90:                              ; DATA XREF: TriggerOSDMessage+F5C↑o
                 pea     (aPlatformStoppe).l ; "PLATFORM STOPPED"
                 pea     (1).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (1).w
                 bra.w   loc_E09D0
 ; ---------------------------------------------------------------------------
@@ -23066,7 +23066,7 @@ loc_E0E90:                              ; DATA XREF: TriggerOSDMessage+F5C↑o
 loc_E0EA6:                              ; DATA XREF: TriggerOSDMessage+F5E↑o
                 pea     (aPlatformStarte).l ; "PLATFORM STARTED"
                 pea     (1).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (1).w
                 clr.l   -(sp)
                 bra.w   loc_E0046
@@ -23074,8 +23074,8 @@ loc_E0EA6:                              ; DATA XREF: TriggerOSDMessage+F5E↑o
 
 loc_E0EBE:                              ; DATA XREF: TriggerOSDMessage+F60↑o
                 pea     (aLoopOfDeceptio).l ; "LOOP OF DECEPTION"
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 pea     (5).w
                 clr.l   -(sp)
                 pea     (2).w
@@ -23089,7 +23089,7 @@ loc_E0ED6:                              ; CODE XREF: TriggerOSDMessage+1BD8↓j
 loc_E0EE0:                              ; DATA XREF: ROM:0002A038↑o
                                         ; TriggerOSDMessage+F62↑o
                 pea     (aWrongWay?).l  ; "WRONG WAY?"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($1E).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -23118,7 +23118,7 @@ loc_E0F2A:                              ; DATA XREF: TriggerOSDMessage+F66↑o
                 pea     (1).w
                 clr.l   -(sp)
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_DFFFA
 ; ---------------------------------------------------------------------------
 
@@ -23195,7 +23195,7 @@ loc_E0FDA:                              ; DATA XREF: TriggerOSDMessage+F6E↑o
 
 loc_E1018:                              ; DATA XREF: TriggerOSDMessage+F70↑o
                 pea     (aBustTubesFirst).l ; "BUST TUBES FIRST!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -23355,7 +23355,7 @@ loc_E116A:                              ; DATA XREF: TriggerOSDMessage+15D0↑o
                 pea     (aChimney3x).l  ; "CHIMNEY 3X"
 
 loc_E1170:                              ; CODE XREF: TriggerOSDMessage+185C↓j
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 clr.l   -(sp)
                 pea     (2).w
@@ -23381,7 +23381,7 @@ loc_E11AA:                              ; CODE XREF: TriggerOSDMessage+1832↓j
                 move.l  a5,-(sp)
                 pea     (6).w
                 pea     ($32).w
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_E071C
 ; ---------------------------------------------------------------------------
 
@@ -23426,7 +23426,7 @@ loc_E1200:                              ; DATA XREF: TriggerOSDMessage+15D4↑o
                 move.l  a5,-(sp)
                 pea     (5).w
                 pea     ($1E).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
                 bra.w   loc_E0D4A
 ; ---------------------------------------------------------------------------
@@ -23488,7 +23488,7 @@ loc_E12BE:                              ; DATA XREF: TriggerOSDMessage+15E2↑o
                 bsr.w   OSD_ClearMessageQueue
                 pea     (aEruptionBonus).l ; "!! ERUPTION BONUS !!"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 pea     (1).w
                 pea     (5).w
@@ -23531,7 +23531,7 @@ loc_E1336:                              ; DATA XREF: TriggerOSDMessage+15E8↑o
 loc_E1340:                              ; DATA XREF: TriggerOSDMessage+15EA↑o
                 pea     (aRumblingLoop).l ; "** RUMBLING LOOP **"
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 clr.l   -(sp)
                 clr.l   -(sp)
                 pea     (5).w
@@ -23540,7 +23540,7 @@ loc_E1340:                              ; DATA XREF: TriggerOSDMessage+15EA↑o
 
 loc_E1358:                              ; DATA XREF: TriggerOSDMessage+15F2↑o
                 pea     (aDashAway).l   ; "DASH AWAY!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (3).w
                 clr.l   -(sp)
@@ -23559,7 +23559,7 @@ loc_E1358:                              ; DATA XREF: TriggerOSDMessage+15F2↑o
 loc_E1392:                              ; DATA XREF: TriggerOSDMessage+15FA↑o
                 pea     (aKeepGoing___).l ; "  KEEP GOING..."
                 clr.l   -(sp)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     (3).w
                 clr.l   -(sp)
                 pea     (7).w
@@ -23591,7 +23591,7 @@ loc_E13D0:                              ; DATA XREF: TriggerOSDMessage+166C↑o
 
 loc_E13E6:                              ; DATA XREF: TriggerOSDMessage+166E↑o
                 pea     (aAirSurfingDude).l ; "AIR SURFING, DUDE!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($1E).w
                 clr.l   -(sp)
                 pea     (6).w
@@ -23680,7 +23680,7 @@ loc_E148A:                              ; CODE XREF: TriggerOSDMessage+19A0↑j
 loc_E14AC:                              ; DATA XREF: TriggerOSDMessage+167C↑o
                 pea     (aRockIt).l     ; "ROCK IT !!"
                 clr.l   -(sp)
-                pea     (off_14).w
+                pea     ($14).w
                 clr.l   -(sp)
                 clr.l   -(sp)
                 pea     (6).w
@@ -23698,7 +23698,7 @@ loc_E14AC:                              ; DATA XREF: TriggerOSDMessage+167C↑o
                 move.l  a5,-(sp)
                 pea     (6).w
                 pea     ($32).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (2).w
 
 loc_E14F8:                              ; CODE XREF: TriggerOSDMessage+1B5A↓j
@@ -23741,7 +23741,7 @@ loc_E1536:                              ; CODE XREF: TriggerOSDMessage+1A4E↑j
                 pea     ($1E).w
                 pea     (5).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_E054C
 ; ---------------------------------------------------------------------------
 
@@ -23759,7 +23759,7 @@ loc_E157A:                              ; DATA XREF: TriggerOSDMessage+1688↑o
                 pea     (aNotEnoughEmera).l ; "NOT ENOUGH EMERALDS"
                 clr.l   -(sp)
                 pea     ($32).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (6).w
                 jsr     (a3)
@@ -23788,7 +23788,7 @@ loc_E157A:                              ; DATA XREF: TriggerOSDMessage+1688↑o
                 move.l  a5,-(sp)
                 pea     (6).w
                 pea     (off_3C).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (6).w
                 bra.w   loc_E0198
@@ -23797,7 +23797,7 @@ loc_E157A:                              ; DATA XREF: TriggerOSDMessage+1688↑o
 loc_E15F2:                              ; DATA XREF: TriggerOSDMessage:off_E10A2↑o
                 pea     (unk_BEEBC).l
                 clr.l   -(sp)
-                pea     (off_14).w
+                pea     ($14).w
                 clr.l   -(sp)
                 pea     (1).w
                 bra.w   loc_E0634
@@ -23949,8 +23949,8 @@ loc_E1792:                              ; DATA XREF: TriggerOSDMessage+1622↑o
                 bsr.w   OSD_ClearMessageQueue
                 pea     (aBustBlocksFirs).l ; "BUST BLOCKS FIRST!"
                 pea     (3).w
-                pea     (off_28).w
-                pea     (off_4).w
+                pea     ($28).w
+                pea     ($04).w
                 bra.w   loc_E172A
 ; ---------------------------------------------------------------------------
 
@@ -23990,7 +23990,7 @@ loc_E17E0:                              ; DATA XREF: TriggerOSDMessage+1632↑o
                 lea     $1C(sp),sp
                 pea     (aGoGetHim).l   ; "GO GET HIM !!"
                 pea     (6).w
-                pea     (off_14).w
+                pea     ($14).w
                 clr.l   -(sp)
                 bra.w   loc_E02FC
 ; ---------------------------------------------------------------------------
@@ -24000,7 +24000,7 @@ loc_E181A:                              ; DATA XREF: TriggerOSDMessage+1636↑o
 
 loc_E1820:                              ; CODE XREF: TriggerOSDMessage+1D54↓j
                                         ; TriggerOSDMessage+1D5C↓j
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 clr.l   -(sp)
                 bra.w   loc_E0632
@@ -24050,7 +24050,7 @@ loc_E1854:                              ; DATA XREF: TriggerOSDMessage+1648↑o
                 beq.s   loc_E18B2
                 move.l  a5,-(sp)
                 clr.l   -(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (3).w
                 clr.l   -(sp)
                 pea     (6).w
@@ -24166,8 +24166,8 @@ ls_messageBuffer= -$3C
                 lsl.w   #2,d0
                 movea.l #LevelNames,a0
                 move.l  (a0,d0.w),-(sp)
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 pea     (5).w
                 pea     (2).w
                 pea     (7).w
@@ -24472,14 +24472,14 @@ arg_0           =  4
                 jsr     OSD_ClearMessageQueue
                 pea     (aAllRingsCollec).l ; "ALL RINGS COLLECTED"
                 pea     (6).w
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (3).w
                 clr.l   -(sp)
                 pea     (5).w
                 jsr     OSD_QueueMessage
                 lea     $1C(sp),sp
                 pea     (aFindTheBonusGa).l ; "FIND THE BONUS GATES!"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_3C).w
                 pea     (6).w
                 pea     (2).w
@@ -24676,8 +24676,8 @@ loc_E1E0A:                              ; CODE XREF: sub_E1D10+E4↑j
                 clr.l   $1E(a4)
                 clr.l   $22(a4)
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  ($FF75B0).l,d0
                 movea.l #unk_C06EE,a0
                 move.b  (a0,d0.w),d0
@@ -25214,7 +25214,7 @@ loc_E22FA:                              ; CODE XREF: sub_E206A+26C↑j
                 move.b  #7,$A(a2)
                 cmpi.b  #4,($FFF1F8).l
                 bne.w   loc_E2F78
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetGameState
                 addq.l  #4,sp
                 bra.w   loc_E2F8A
@@ -25448,7 +25448,7 @@ loc_E258A:                              ; CODE XREF: sub_E206A+518↑j
 loc_E258C:                              ; CODE XREF: sub_E206A+51E↑j
                 move.b  d0,$B(a2)
                 pea     ($32).w
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     sub_D69E4
                 lea     $18(sp),sp
                 move.w  d0,$C(a2)
@@ -25510,7 +25510,7 @@ loc_E2610:                              ; CODE XREF: sub_E206A+59E↑j
 loc_E2612:                              ; CODE XREF: sub_E206A+5A4↑j
                 move.b  d0,$B(a2)
                 pea     ($32).w
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     sub_D69E4
                 lea     $10(sp),sp
                 move.w  d0,$C(a2)
@@ -25609,8 +25609,8 @@ loc_E271C:                              ; DATA XREF: sub_E206A:off_E270C↑o
                 jsr     SetPlayerAnimation
                 move.b  #2,8(a2)
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 pea     (unk_740).w
                 pea     (loc_300).w
                 pea     (off_C0DFC).l
@@ -25629,8 +25629,8 @@ loc_E275E:                              ; DATA XREF: sub_E206A+6A4↑o
                 bne.w   loc_E2F78
                 pea     (aChainUnstable).l ; "!!! CHAIN UNSTABLE !!!"
                 pea     (6).w
-                pea     (off_28).w
-                pea     (off_4).w
+                pea     ($28).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (6).w
                 jsr     OSD_QueueMessage
@@ -26130,13 +26130,13 @@ loc_E2CC6:                              ; DATA XREF: sub_E206A:off_E2CBA↑o
                 bne.w   loc_E2F78
                 tst.w   $10(a2)
                 bne.s   loc_E2CE0
-                pea     (off_4).w
-                pea     (off_4).w
+                pea     ($04).w
+                pea     ($04).w
                 bra.s   loc_E2CE8
 ; ---------------------------------------------------------------------------
 
 loc_E2CE0:                              ; CODE XREF: sub_E206A+C6A↑j
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (5).w
 
 loc_E2CE8:                              ; CODE XREF: sub_E206A+C74↑j
@@ -26176,7 +26176,7 @@ loc_E2D2A:                              ; DATA XREF: sub_E206A+C54↑o
 
 loc_E2D64:                              ; CODE XREF: sub_E206A+CF0↑j
                 jsr     sub_E4A4A
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
                 bra.s   loc_E2D7E
@@ -26197,7 +26197,7 @@ loc_E2D7E:                              ; CODE XREF: sub_E206A+CF8↑j
 loc_E2D92:                              ; DATA XREF: sub_E206A+C56↑o
                 tst.w   ($FF9988).l
                 bne.w   loc_E2F78
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($19).w
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -26421,7 +26421,7 @@ arg_0           =  4
                 movea.l a0,a2
                 jsr     sub_DB836
                 move.l  #$FFFDB000,$22(a2)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($17).w
                 move.l  d2,d0
                 lsl.l   #4,d0
@@ -26453,7 +26453,7 @@ arg_0           =  4
                 beq.s   loc_E3082
                 move.b  #3,9(a2)
                 pea     (2).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -26594,7 +26594,7 @@ sub_E3150:                              ; CODE XREF: RunCurrentLevelUpdate+76↑
                 pea     (5).w
                 pea     (1).w
                 jsr     sub_D85A0
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (3).w
                 jsr     sub_D85A0
                 lea     $10(sp),sp
@@ -26624,7 +26624,7 @@ loc_E31E0:                              ; CODE XREF: sub_E3150+60↑j
                 move.b  #6,($FFEE7D).l
                 cmpi.b  #6,($FF5685).l
                 beq.w   loc_E328E
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     sub_D562C
                 addq.l  #4,sp
                 bra.w   loc_E328E
@@ -26765,7 +26765,7 @@ loc_E334E:                              ; CODE XREF: sub_E3150+1E2↑j
 loc_E3384:                              ; CODE XREF: sub_E3150+256↓j
                 clr.b   8(a2)
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -26896,7 +26896,7 @@ loc_E34DC:                              ; CODE XREF: sub_E3150+328↑j
                                         ; sub_E3150+35E↑j ...
                 tst.b   d2
                 beq.s   loc_E34EC
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -27230,7 +27230,7 @@ loc_E3876:                              ; CODE XREF: sub_E3150+20E↑j
 loc_E38A4:                              ; CODE XREF: sub_E3150+776↓j
                 clr.b   8(a2)
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -27353,7 +27353,7 @@ loc_E39FE:                              ; CODE XREF: sub_E3150+848↑j
                                         ; sub_E3150+87E↑j ...
                 tst.b   d2
                 beq.s   loc_E3A0E
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -27682,7 +27682,7 @@ loc_E3D88:                              ; CODE XREF: sub_E3150+72E↑j
 loc_E3DB6:                              ; CODE XREF: sub_E3150+C88↓j
                 clr.b   8(a2)
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -27934,7 +27934,7 @@ loc_E4046:                              ; CODE XREF: sub_E3150+C40↑j
 loc_E4074:                              ; CODE XREF: sub_E3150+F46↓j
                 clr.b   8(a2)
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -28229,7 +28229,7 @@ loc_E4380:                              ; CODE XREF: sub_E3150+EFE↑j
                 bne.s   loc_E43F6
                 subq.w  #1,($FF0286).l
                 bgt.s   loc_E43F6
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     sub_E496E(pc)
                 nop
                 addq.l  #4,sp
@@ -28239,7 +28239,7 @@ loc_E43F6:                              ; CODE XREF: sub_E3150+1286↑j
                 tst.b   ($FF8CC8).l
                 bne.s   loc_E4448
                 move.b  #1,($FF8CC8).l
-                pea     (off_C).w
+                pea     ($0C).w
                 jsr     TriggerOSDMessage
                 bra.s   loc_E4446
 ; ---------------------------------------------------------------------------
@@ -28495,7 +28495,7 @@ loc_E4676:                              ; CODE XREF: sub_E3150+158E↓j
                 move.w  d3,d0
                 move.l  d0,-(sp)
                 jsr     sub_E1FE0
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -28532,7 +28532,7 @@ loc_E46D4:                              ; CODE XREF: sub_E3150+155E↑j
                 pea     (loc_300).w
                 jsr     sub_DBF62
                 jsr     sub_DB880
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     TriggerOSDMessage
                 lea     $C(sp),sp
                 move.b  #2,$C(a4)
@@ -28555,8 +28555,8 @@ loc_E4746:                              ; CODE XREF: sub_E3150+15E6↑j
                 bgt.s   loc_E4768
                 cmpi.w  #$43D,$28(a4)
                 ble.s   loc_E4760
-                pea     (off_4).w
-                pea     (off_28).w
+                pea     ($04).w
+                pea     ($28).w
                 bra.s   loc_E4770
 ; ---------------------------------------------------------------------------
 
@@ -28804,7 +28804,7 @@ arg_0           =  4
 loc_E497E:                              ; CODE XREF: sub_E496E+A2↓j
                 tst.b   8(a2)
                 bne.w   loc_E4A06
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($17).w
                 cmpi.b  #4,d3
                 bne.s   loc_E4998
@@ -29547,8 +29547,8 @@ arg_0           =  4
                 cmpi.b  #$A,$D(a2)
                 beq.s   loc_E5104
                 move.w  #$180A,$C(a2)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 move.w  #$1E,($FFF1FA).l
                 clr.l   $1E(a2)
@@ -29575,7 +29575,7 @@ arg_0           =  4
                 move.l  a2,-(sp)
                 movea.l 4+arg_0(sp),a2
                 pea     (2).w
-                pea     (off_C).w
+                pea     ($0C).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     ($7D).w
@@ -29908,14 +29908,14 @@ loc_E544C:                              ; CODE XREF: sub_E5138+860↓j
 ; ---------------------------------------------------------------------------
 
 loc_E5456:                              ; CODE XREF: sub_E5138+292↑j
-                pea     (off_C).w
+                pea     ($0C).w
                 jsr     ApplyFlipperForceToPlayer
                 pea     (3).w
-                pea     (off_10).w
+                pea     ($10).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $10(sp),sp
-                pea     (off_20).w
+                pea     ($20).w
 
 loc_E5478:                              ; CODE XREF: sub_E5138+A34↓j
                                         ; sub_E5138+B76↓j ...
@@ -30050,9 +30050,9 @@ loc_E55DC:                              ; CODE XREF: sub_E5138+4A0↑j
                 bsr.w   sub_E510A
                 move.w  #$A,$C(a2)
                 pea     (aHipHop).l     ; "* HIP * HOP *"
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($32).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (1).w
                 jsr     OSD_QueueMessage
@@ -30156,7 +30156,7 @@ loc_E5706:                              ; DATA XREF: sub_E5138+15E↑o
                 bne.s   loc_E574C
                 clr.b   ($FF927E).l
                 pea     (2).w
-                pea     (off_18).w
+                pea     ($18).w
                 move.l  ($FF92BA).l,-(sp)
                 bra.s   loc_E5760
 ; ---------------------------------------------------------------------------
@@ -30164,7 +30164,7 @@ loc_E5706:                              ; DATA XREF: sub_E5138+15E↑o
 loc_E574C:                              ; CODE XREF: sub_E5138+5FC↑j
                 clr.b   ($FF9306).l
                 pea     (2).w
-                pea     (off_18).w
+                pea     ($18).w
                 move.l  ($FF9342).l,-(sp)
 
 loc_E5760:                              ; CODE XREF: sub_E5138+612↑j
@@ -30344,8 +30344,8 @@ loc_E58F6:                              ; CODE XREF: sub_E5138+7B0↑j
                 movea.l (a5),a0
                 cmpi.b  #4,$2E(a0)
                 beq.w   loc_E52DA
-                pea     (off_8).w
-                pea     (off_4).w
+                pea     ($08).w
+                pea     ($04).w
                 bra.w   loc_E5328
 ; ---------------------------------------------------------------------------
 
@@ -30542,7 +30542,7 @@ loc_E5B1E:                              ; CODE XREF: sub_E5138+98A↑j
                 move.l  a5,-(sp)
                 jsr     sub_DBD1E
                 pea     (2).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
@@ -30658,7 +30658,7 @@ loc_E5C42:                              ; CODE XREF: sub_E5138+A4C↑j
                 move.l  a2,-(sp)
                 jsr     sub_E3056
                 addq.l  #4,sp
-                pea     (off_24).w
+                pea     ($24).w
                 bra.w   loc_E5478
 ; ---------------------------------------------------------------------------
 
@@ -30724,7 +30724,7 @@ loc_E5D22:                              ; DATA XREF: sub_E5138+184↑o
                 bgt.w   loc_E6032
                 clr.l   -(sp)
                 pea     (off_30).w
-                pea     (off_10).w
+                pea     ($10).w
                 move.w  $7A(a2),d0
                 addi.w  #-$18,d0
                 move.l  d0,-(sp)
@@ -31171,8 +31171,8 @@ loc_E61A0:                              ; CODE XREF: sub_E603E+140↑j
 
 loc_E61D0:                              ; CODE XREF: sub_E603E+17C↑j
                 move.w  #$180A,$C(a5)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 addq.l  #8,sp
                 move.w  #$1E,($FFF1FA).l
@@ -31940,8 +31940,8 @@ loc_E6918:                              ; DATA XREF: RunPlayerCollision_ToxicCav
                 clr.l   $22(a4)
                 clr.b   8(a2)
                 move.b  #1,9(a2)
-                pea     (off_8).w
-                pea     (off_4).w
+                pea     ($08).w
+                pea     ($04).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 move.w  $14(a2),d0
@@ -32114,11 +32114,11 @@ loc_E6B3E:                              ; CODE XREF: RunPlayerCollision_ToxicCav
 
 loc_E6B44:                              ; CODE XREF: RunPlayerCollision_ToxicCaves+562↑j
                 move.b  #1,8(a3)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($26).w
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
-                pea     (off_28).w
+                pea     ($28).w
                 pea     ($2A).w
                 jsr     SetPlayerAnimation
                 move.b  #$16,$C(a4)
@@ -32416,7 +32416,7 @@ loc_E6E68:                              ; CODE XREF: RunPlayerCollision_ToxicCav
                 move.l  a5,-(sp)
                 move.l  a4,-(sp)
                 jsr     sub_DBD1E
-                pea     (off_C).w
+                pea     ($0C).w
                 jsr     ApplyFlipperForceToPlayer
                 lea     $10(sp),sp
                 tst.b   ($FF84AE).l
@@ -32434,7 +32434,7 @@ loc_E6E9C:                              ; CODE XREF: RunPlayerCollision_ToxicCav
                 tst.l   4(a2)
                 bne.s   loc_E6EF0
                 clr.l   -(sp)
-                pea     (off_20).w
+                pea     ($20).w
                 pea     (off_30).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
@@ -32589,7 +32589,7 @@ loc_E708E:                              ; CODE XREF: RunPlayerCollision_ToxicCav
 ; ---------------------------------------------------------------------------
 
 loc_E7094:                              ; CODE XREF: RunPlayerCollision_ToxicCaves+AB2↑j
-                pea     (off_1C).w
+                pea     ($1C).w
 
 loc_E7098:                              ; CODE XREF: RunPlayerCollision_ToxicCaves+AB8↑j
                 jsr     TriggerOSDMessage
@@ -33060,12 +33060,12 @@ loc_E746E:                              ; CODE XREF: sub_E738C+1E↑j
                 jsr     sub_DBD1E
                 tst.w   arg_12(a6)
                 bne.s   loc_E7490
-                pea     (off_C).w
+                pea     ($0C).w
                 bra.s   loc_E7494
 ; ---------------------------------------------------------------------------
 
 loc_E7490:                              ; CODE XREF: sub_E738C+FC↑j
-                pea     (off_8).w
+                pea     ($08).w
 
 loc_E7494:                              ; CODE XREF: sub_E738C+102↑j
                 jsr     ApplyFlipperForceToPlayer
@@ -33187,12 +33187,12 @@ arg_0           =  4
                 move.l  a2,-(sp)
                 movea.l 4+arg_0(sp),a2
                 pea     (2).w
-                pea     (off_20).w
+                pea     ($20).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 move.b  #1,8(a2)
                 pea     (2).w
-                pea     (off_20).w
+                pea     ($20).w
                 move.l  $22(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
@@ -33275,7 +33275,7 @@ loc_E764A:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E7654:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+72↑j
                 tst.b   ($FF7845).l
                 beq.s   loc_E766C
-                pea     (off_10).w
+                pea     ($10).w
                 pea     (3).w
                 jsr     sub_D85A0
                 addq.l  #8,sp
@@ -33361,7 +33361,7 @@ loc_E773C:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 beq.w   loc_E7866
                 cmpi.w  #4,($FF548E).l
                 beq.w   loc_E7866
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     sub_D562C
 
 loc_E777C:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+1FC↓j
@@ -33767,7 +33767,7 @@ loc_E7BA0:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
                 lea     $C(sp),sp
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_E7BE6:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+64A↓j
                 jsr     TriggerOSDMessage
@@ -33882,8 +33882,8 @@ loc_E7CCA:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 bne.s   loc_E7D64
                 tst.w   d3
                 beq.s   loc_E7D64
-                pea     (off_4).w
-                pea     (off_18).w
+                pea     ($04).w
+                pea     ($18).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -33969,7 +33969,7 @@ loc_E7E04:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 jsr     sub_E1ECA
                 addq.l  #8,sp
                 addq.b  #1,($FF02A4).l
-                pea     (off_8).w
+                pea     ($08).w
 
 loc_E7E18:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+8D6↓j
                 jsr     TriggerOSDMessage
@@ -34102,7 +34102,7 @@ loc_E7F8C:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 jsr     sub_DB836
                 clr.l   $1E(a5)
                 clr.l   $22(a5)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -34123,7 +34123,7 @@ loc_E7FC6:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 bne.s   loc_E8004
                 tst.w   d3
                 beq.s   loc_E8004
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -34142,8 +34142,8 @@ loc_E8004:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E8018:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+A94↓j
                 tst.b   9(a2)
                 bne.s   loc_E8040
-                pea     (off_4).w
-                pea     (off_18).w
+                pea     ($04).w
+                pea     ($18).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -34175,7 +34175,7 @@ loc_E8050:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 bne.s   loc_E808E
                 tst.w   d3
                 beq.s   loc_E808E
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -34194,8 +34194,8 @@ loc_E808E:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E80A2:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+B1E↓j
                 tst.b   9(a2)
                 bne.s   loc_E80CA
-                pea     (off_4).w
-                pea     (off_18).w
+                pea     ($04).w
+                pea     ($18).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -34385,7 +34385,7 @@ loc_E82CA:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.b  #$3C,9(a3) ; '<'
                 clr.b   ($FF02A5).l
                 addq.w  #1,($FF5756).l
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -34480,7 +34480,7 @@ loc_E83E0:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 blt.s   loc_E83E0
                 tst.b   ($FF7EF8).l
                 beq.s   loc_E8418
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     TriggerOSDMessage
                 bra.s   loc_E842E
 ; ---------------------------------------------------------------------------
@@ -34573,7 +34573,7 @@ loc_E850A:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 clr.b   8(a3)
                 clr.b   9(a3)
                 jsr     sub_DB836
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -34624,7 +34624,7 @@ loc_E85CA:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 clr.b   9(a3)
                 clr.w   $C(a2)
                 jsr     sub_DB836
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -34728,8 +34728,8 @@ loc_E8708:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E8728:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+11AC↓j
                 tst.b   9(a2)
                 bne.s   loc_E8758
-                pea     (off_4).w
-                pea     (off_18).w
+                pea     ($04).w
+                pea     ($18).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -34956,7 +34956,7 @@ loc_E89A8:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.b  #$3C,9(a3) ; '<'
                 clr.b   ($FF02A6).l
                 addq.w  #1,($FF5756).l
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
 
@@ -35051,7 +35051,7 @@ loc_E8ABE:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 blt.s   loc_E8ABE
                 tst.b   ($FF7F3C).l
                 beq.s   loc_E8AF6
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     TriggerOSDMessage
                 bra.s   loc_E8B0C
 ; ---------------------------------------------------------------------------
@@ -35144,7 +35144,7 @@ loc_E8BE8:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 clr.b   8(a3)
                 clr.b   9(a3)
                 jsr     sub_DB836
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -35195,7 +35195,7 @@ loc_E8CA8:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 clr.b   9(a3)
                 clr.w   $C(a2)
                 jsr     sub_DB836
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -35299,8 +35299,8 @@ loc_E8DE6:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E8E06:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+188A↓j
                 tst.b   9(a2)
                 bne.s   loc_E8E36
-                pea     (off_4).w
-                pea     (off_18).w
+                pea     ($04).w
+                pea     ($18).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -35361,7 +35361,7 @@ loc_E8EB2:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35397,7 +35397,7 @@ loc_E8F36:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35422,7 +35422,7 @@ loc_E8FA0:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 
 loc_E8FAE:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+1A3C↓j
                 clr.l   $22(a5)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 bra.w   loc_E8796
 ; ---------------------------------------------------------------------------
@@ -35621,7 +35621,7 @@ loc_E9228:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35635,7 +35635,7 @@ loc_E9266:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35649,7 +35649,7 @@ loc_E9298:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35663,7 +35663,7 @@ loc_E92CA:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 move.w  $12(a3),d0
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -35999,7 +35999,7 @@ loc_E96B0:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 clr.l   $1E(a5)
                 clr.l   $22(a5)
                 move.w  #$78,$C(a3) ; 'x'
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -36092,7 +36092,7 @@ loc_E981C:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 blt.s   loc_E985A
                 tst.w   ($FF9988).l
                 bne.s   loc_E985A
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
                 cmpi.b  #5,8(a3)
                 bne.s   loc_E9840
@@ -36136,7 +36136,7 @@ loc_E9892:                              ; CODE XREF: RunTriggerDetection_ToxicCa
 loc_E98A2:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+22E2↑j
                 clr.b   ($FF405A).l
                 clr.b   ($FF405B).l
-                pea     (off_28).w
+                pea     ($28).w
 
 loc_E98B2:                              ; CODE XREF: RunTriggerDetection_ToxicCaves+126C↑j
                                         ; RunTriggerDetection_ToxicCaves+1D64↑j
@@ -36173,7 +36173,7 @@ arg_0           =  4
                 lea     $14(sp),sp
 
 loc_E98F4:                              ; CODE XREF: sub_E98C0+A↑j
-                pea     (off_20).w
+                pea     ($20).w
                 jsr     TriggerOSDMessage
                 addq.l  #4,sp
                 movea.l (sp)+,a2
@@ -36263,8 +36263,8 @@ arg_0           =  4
 
 loc_E999E:                              ; DATA XREF: ROM:0002A13C↑o
                 move.w  #$100A,$C(a3)
-                pea     (off_14).w
-                pea     (off_C).w
+                pea     ($14).w
+                pea     ($0C).w
                 jsr     SetPlayerAnimation
                 pea     (unk_4000).w
                 pea     ($1E0).w
@@ -36549,7 +36549,7 @@ sub_E9C9E:                              ; CODE XREF: RunTriggerDetection_ToxicCa
                 addq.l  #4,sp
                 tst.b   (a2)
                 bne.s   loc_E9CE4
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($5A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -37405,7 +37405,7 @@ loc_EA55A:                              ; DATA XREF: sub_EA2BA+202↑o
                 cmpi.b  #$B,$D(a3)
                 beq.s   loc_EA582
                 pea     ($1E).w
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetPlayerAnimation
                 addq.l  #8,sp
 
@@ -37979,7 +37979,7 @@ loc_EAC54:                              ; DATA XREF: sub_EA2BA+250↑o
                 jsr     TriggerOSDMessage
                 addq.l  #8,sp
                 pea     (1).w
-                pea     (off_24).w
+                pea     ($24).w
 
 loc_EAC84:                              ; CODE XREF: sub_EA2BA+998↑j
                 move.l  $22(a2),-(sp)
@@ -38263,7 +38263,7 @@ sub_EAF4E:                              ; CODE XREF: sub_ED5D8:loc_EDA58↓p
                 movea.l a4,a2
                 lea     $1AB2(a2),a2
                 pea     (1).w
-                pea     (off_1C).w
+                pea     ($1C).w
                 move.l  (a2),-(sp)
                 jsr     (a3)
                 movea.l a4,a2
@@ -38339,7 +38339,7 @@ sub_EB01C:                              ; CODE XREF: sub_ED5D8+486↓p
                 movea.l a4,a2
                 lea     $1B3A(a2),a2
                 pea     (1).w
-                pea     (off_1C).w
+                pea     ($1C).w
                 move.l  (a2),-(sp)
                 jsr     (a3)
                 movea.l a4,a2
@@ -38921,12 +38921,12 @@ loc_EB61E:                              ; DATA XREF: sub_EB504+CE↑o
 
 loc_EB634:                              ; CODE XREF: sub_EB504+126↑j
                 pea     (3).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  $22(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
                 move.b  #1,$2D(a2)
-                pea     (off_18).w
+                pea     ($18).w
                 bra.s   loc_EB662
 ; ---------------------------------------------------------------------------
 
@@ -39442,7 +39442,7 @@ loc_EBB9E:                              ; CODE XREF: sub_EB764+3E0↑j
                 cmpi.b  #$B,$D(a3)
                 beq.s   loc_EBBC6
                 pea     ($A).w
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetPlayerAnimation
                 addq.l  #8,sp
 
@@ -39832,7 +39832,7 @@ loc_EBFAA:                              ; DATA XREF: sub_EB764+7EE↑o
                 lsl.l   d1,d0
                 subi.l  #$1E0000,d0
                 move.l  d0,$12(a3)
-                pea     (off_1C).w
+                pea     ($1C).w
                 jsr     TriggerOSDMessage
 
 loc_EBFDE:                              ; CODE XREF: sub_EB764+992↓j
@@ -40377,13 +40377,13 @@ loc_EC544:                              ; CODE XREF: sub_EB764+ECE↓j
 
 loc_EC552:                              ; DATA XREF: sub_EB764+DBA↑o
                 pea     (2).w
-                pea     (off_C).w
+                pea     ($0C).w
                 bra.s   loc_EC538
 ; ---------------------------------------------------------------------------
 
 loc_EC55C:                              ; DATA XREF: sub_EB764+DBC↑o
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
                 addi.w  #-8,d0
@@ -40541,7 +40541,7 @@ loc_EC722:                              ; CODE XREF: sub_EB764+1024↓j
 
 loc_EC736:                              ; DATA XREF: sub_EB764+F68↑o
                 pea     (2).w
-                pea     (off_C).w
+                pea     ($0C).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 clr.l   -(sp)
@@ -40624,7 +40624,7 @@ loc_EC83C:                              ; CODE XREF: sub_EB764+10A6↑j
                 jsr     TriggerOSDMessage
                 clr.l   -(sp)
                 jsr     TriggerOSDMessage
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($39).w
                 jsr     SetPlayerAnimation
                 move.w  #$100B,$C(a3)
@@ -40700,7 +40700,7 @@ loc_EC908:                              ; CODE XREF: sub_EB764+13FE↓j
                 movea.l (a4),a0
                 movea.l $3A(a0),a0
                 move.w  #2,6(a0)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (5).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -40742,7 +40742,7 @@ loc_EC976:                              ; DATA XREF: sub_EB764+1182↑o
                 movea.l (a4),a0
                 movea.l $3A(a0),a0
                 move.w  #2,6(a0)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (5).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -40756,7 +40756,7 @@ loc_EC976:                              ; DATA XREF: sub_EB764+1182↑o
                 movea.l $3A(a0),a0
                 move.w  #2,6(a0)
                 pea     (6).w
-                pea     (off_4).w
+                pea     ($04).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $20(sp),sp
@@ -40779,7 +40779,7 @@ loc_ECA1C:                              ; CODE XREF: sub_EB764+147A↓j
                 movea.l $3A(a0),a0
                 move.w  #2,6(a0)
                 pea     (6).w
-                pea     (off_4).w
+                pea     ($04).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -40907,7 +40907,7 @@ loc_ECB82:                              ; DATA XREF: sub_EB764+13D8↑o
                 movea.l (a4),a0
                 movea.l $3A(a0),a0
                 move.w  #2,6(a0)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (5).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -41017,7 +41017,7 @@ loc_ECCEA:                              ; CODE XREF: sub_EB764+156C↑j
 
 loc_ECD08:                              ; CODE XREF: sub_EB764+1592↑j
                 pea     (1).w
-                pea     (off_18).w
+                pea     ($18).w
 
 loc_ECD10:                              ; CODE XREF: sub_EB764+15E4↓j
                                         ; sub_EB764+169E↓j ...
@@ -41047,7 +41047,7 @@ loc_ECD56:                              ; CODE XREF: sub_EB764+16D2↓j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     (1).w
-                pea     (off_1C).w
+                pea     ($1C).w
                 move.l  $22(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
@@ -41116,7 +41116,7 @@ loc_ECE06:                              ; CODE XREF: sub_EB764:loc_ECDEE↑j
                 move.l  #unk_70000,$1E(a3)
                 clr.l   $22(a3)
                 pea     (1).w
-                pea     (off_20).w
+                pea     ($20).w
                 bra.w   loc_ECD10
 ; ---------------------------------------------------------------------------
 
@@ -41404,7 +41404,7 @@ loc_ED0F8:                              ; CODE XREF: sub_ED044+62↑j
                 cmpi.b  #1,$4C(a2)
                 bne.s   loc_ED13C
                 move.w  #$50,($FFF1EA).l ; 'P'
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     (a5)
                 addq.l  #4,sp
                 move.b  #$F,9(a2)
@@ -41431,11 +41431,11 @@ loc_ED13C:                              ; CODE XREF: sub_ED044+BA↑j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  $22(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  $44(a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $24(sp),sp
@@ -41508,13 +41508,13 @@ loc_ED20C:                              ; CODE XREF: sub_ED1B6+1C↑j
                 jsr     (a3)
                 lea     $C(sp),sp
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 bra.s   loc_ED25E
 ; ---------------------------------------------------------------------------
 
 loc_ED246:                              ; CODE XREF: sub_ED1B6+74↑j
                 pea     (2).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a2),-(sp)
                 jsr     (a3)
                 lea     $C(sp),sp
@@ -41868,12 +41868,12 @@ arg_8           =  $C
                 addq.b  #1,9(a2)
                 cmpi.b  #3,d2
                 bne.s   loc_ED58C
-                pea     (off_14).w
+                pea     ($14).w
                 bra.s   loc_ED5CE
 ; ---------------------------------------------------------------------------
 
 loc_ED58C:                              ; CODE XREF: sub_ED506+7E↑j
-                pea     (off_8).w
+                pea     ($08).w
                 bra.s   loc_ED5CE
 ; ---------------------------------------------------------------------------
 
@@ -41944,7 +41944,7 @@ sub_ED5D8:                              ; CODE XREF: RunCurrentLevelUpdate+9E↑
                 cmpi.w  #$276,$E(a3)
                 ble.s   loc_ED64A
                 move.w  #1,($FF5892).l
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     sub_D562C
                 pea     ($2F).w
                 jsr     TriggerOSDMessage
@@ -41978,7 +41978,7 @@ loc_ED690:                              ; CODE XREF: sub_ED5D8+78↑j
                 lea     $7F8(a2),a2
                 move.l  a3,-(sp)
                 pea     ($5B).w
-                pea     (off_8).w
+                pea     ($08).w
                 move.l  a2,-(sp)
                 bsr.w   sub_ED044
                 movea.l a5,a2
@@ -41991,7 +41991,7 @@ loc_ED690:                              ; CODE XREF: sub_ED5D8+78↑j
                 movea.l a5,a2
                 lea     $990(a2),a2
                 pea     ($5F).w
-                pea     (off_18).w
+                pea     ($18).w
                 move.l  a2,-(sp)
                 bsr.w   sub_ED2C2
                 lea     $2C(sp),sp
@@ -42016,11 +42016,11 @@ loc_ED690:                              ; CODE XREF: sub_ED5D8+78↑j
                 movea.l a5,a2
                 lea     $85E(a2),a2
                 pea     ($5F).w
-                pea     (off_1C).w
+                pea     ($1C).w
                 move.l  a2,-(sp)
                 bsr.w   sub_ED1B6
                 lea     $30(sp),sp
-                pea     (off_1C).w
+                pea     ($1C).w
                 pea     ($AB).w
                 bsr.w   sub_ED288
                 movea.l a5,a2
@@ -42075,7 +42075,7 @@ loc_ED7EC:                              ; CODE XREF: sub_ED5D8+1D6↑j
                 bsr.w   sub_ED358
                 pea     ($59).w
                 bsr.w   sub_ED358
-                pea     (off_1C).w
+                pea     ($1C).w
                 pea     (off_50).w
                 bsr.w   sub_ED47E
                 pea     ($1D).w
@@ -42156,7 +42156,7 @@ loc_ED7EC:                              ; CODE XREF: sub_ED5D8+1D6↑j
 loc_ED92C:                              ; CODE XREF: sub_ED5D8+34E↑j
                 tst.w   $42(a4)
                 bne.s   loc_ED93E
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetGameState
                 addq.l  #4,sp
 
@@ -42166,8 +42166,8 @@ loc_ED93E:                              ; CODE XREF: sub_ED5D8+358↑j
                 jsr     sub_D69B6
                 andi.l  #$4000,d0
                 move.l  d0,-(sp)
-                pea     (off_20).w
-                pea     (off_10).w
+                pea     ($20).w
+                pea     ($10).w
                 jsr     sub_D69B6
                 andi.l  #$F,d0
                 movea.l (a2),a0
@@ -42703,7 +42703,7 @@ loc_EDED0:                              ; DATA XREF: sub_EDDF2+DC↑o
                 addq.w  #1,$C(a2)
                 cmpi.w  #$32,$C(a2) ; '2'
                 bne.s   loc_EDF52
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SetGameState
                 addq.l  #4,sp
                 move.b  #6,$C(a4)
@@ -42952,8 +42952,8 @@ loc_EE1B6:                              ; CODE XREF: sub_EDDF2+3B2↑j
                 jsr     AnimObj_PlayAnimation
                 move.w  $22(a3),d0
                 move.l  d0,-(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 move.l  d0,-(sp)
                 move.w  8(a3),d0
@@ -43227,8 +43227,8 @@ loc_EE44C:                              ; DATA XREF: sub_EDDF2+588↑o
                 andi.w  #$4000,d0
                 beq.s   loc_EE50C
                 pea     (unk_4000).w
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 move.w  $A(a3),d0
                 addi.w  #-5,d0
                 move.l  d0,-(sp)
@@ -43248,8 +43248,8 @@ loc_EE4FC:                              ; CODE XREF: sub_EDDF2+770↓j
 
 loc_EE50C:                              ; CODE XREF: sub_EDDF2+6E4↑j
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 move.w  $A(a3),d0
                 addi.w  #-5,d0
                 move.l  d0,-(sp)
@@ -43265,8 +43265,8 @@ loc_EE52A:                              ; CODE XREF: sub_EDDF2+6DA↑j
                 andi.w  #$4000,d0
                 beq.s   loc_EE564
                 pea     (unk_4000).w
-                pea     (off_10).w
-                pea     (off_20).w
+                pea     ($10).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$1C,d0
                 move.l  d0,-(sp)
@@ -43281,8 +43281,8 @@ loc_EE55A:                              ; CODE XREF: sub_EDDF2+78E↓j
 
 loc_EE564:                              ; CODE XREF: sub_EDDF2+748↑j
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_20).w
+                pea     ($10).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$1C,d0
                 move.l  d0,-(sp)
@@ -43510,7 +43510,7 @@ loc_EE790:                              ; DATA XREF: sub_EDDF2+D4↑o
                 move.l  d0,-(sp)
                 jsr     sub_DBF62
                 clr.l   -(sp)
-                pea     (off_20).w
+                pea     ($20).w
                 pea     (off_30).w
                 move.w  $28(a4),d0
                 addi.w  #$10,d0
@@ -43521,11 +43521,11 @@ loc_EE790:                              ; DATA XREF: sub_EDDF2+D4↑o
                 move.l  a2,-(sp)
                 jsr     AnimObj_CreateInstance
                 pea     (1).w
-                pea     (off_1C).w
+                pea     ($1C).w
                 move.l  a3,-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $30(sp),sp
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -43569,7 +43569,7 @@ loc_EE876:                              ; DATA XREF: sub_EDDF2:off_EE86E↑o
                 cmpi.b  #5,$47(a4)
                 bne.s   loc_EE8A2
                 move.b  #1,$A(a2)
-                pea     (off_24).w
+                pea     ($24).w
                 bra.s   loc_EE8CA
 ; ---------------------------------------------------------------------------
 
@@ -43970,8 +43970,8 @@ loc_EECC6:                              ; CODE XREF: sub_EDDF2+EC6↑j
                 move.b  #1,9(a5)
                 move.b  #1,8(a5)
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$2C,d0
                 move.l  d0,-(sp)
@@ -43987,14 +43987,14 @@ loc_EECC6:                              ; CODE XREF: sub_EDDF2+EC6↑j
                 lea     $28(sp),sp
                 cmpa.l  #$FF7C8C,a2
                 beq.w   loc_EEDB8
-                pea     (off_1C).w
+                pea     ($1C).w
                 jsr     TriggerOSDMessage
                 jsr     sub_D69B6
                 andi.w  #3,d0
                 move.w  d0,d2
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$2C,d0
                 move.l  d0,-(sp)
@@ -44111,8 +44111,8 @@ loc_EEE58:                              ; CODE XREF: sub_EDDF2+1050↑j
                 andi.w  #3,d0
                 move.w  d0,d2
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$2C,d0
                 move.l  d0,-(sp)
@@ -44175,8 +44175,8 @@ loc_EEF06:                              ; CODE XREF: sub_EDDF2+106A↑j
                 tst.l   $32(a4,a0.l)
                 bne.w   loc_EF448
                 clr.l   -(sp)
-                pea     (off_20).w
-                pea     (off_20).w
+                pea     ($20).w
+                pea     ($20).w
                 move.w  $A(a3),d0
                 addi.w  #-$2C,d0
                 move.l  d0,-(sp)
@@ -44413,7 +44413,7 @@ loc_EF184:                              ; DATA XREF: sub_EDDF2+C4↑o
                 pea     ($4A).w
                 jsr     PlaySong
                 addq.l  #4,sp
-                pea     (off_14).w
+                pea     ($14).w
 
 loc_EF1C8:                              ; CODE XREF: sub_EDDF2+1456↓j
                 pea     ($C3).w
@@ -44922,7 +44922,7 @@ loc_EF6BC:                              ; CODE XREF: sub_EF590+110↑j
                 move.b  #4,($FFEE7D).l
                 cmpi.b  #4,($FF5685).l
                 beq.s   loc_EF6FC
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     sub_D562C
                 addq.l  #4,sp
                 bra.s   loc_EF6FC
@@ -45049,7 +45049,7 @@ loc_EF850:                              ; CODE XREF: sub_EF590+29A↑j
                 jsr     sub_F0948(pc)
                 nop
                 clr.b   ($FF4047).l
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     TriggerOSDMessage
                 addq.l  #8,sp
 
@@ -45221,7 +45221,7 @@ loc_EFA5A:                              ; CODE XREF: sub_EF590+4C0↑j
                                         ; sub_EF590+55E↓j
                 movea.l (a4),a0
                 move.b  #1,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($13).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45240,7 +45240,7 @@ loc_EFA5A:                              ; CODE XREF: sub_EF590+4C0↑j
 loc_EFA94:                              ; CODE XREF: sub_EF590+4C8↑j
                 movea.l (a4),a0
                 move.b  #6,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($12).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45307,7 +45307,7 @@ loc_EFB56:                              ; CODE XREF: sub_EF590+49C↑j
                 clr.w   $C(a4)
                 movea.l (a4),a0
                 move.b  #6,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($13).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45336,7 +45336,7 @@ loc_EFB9E:                              ; CODE XREF: sub_EF590+474↑j
                 move.b  #1,8(a4)
                 move.b  #1,9(a4)
                 ori.b   #4,$C(a5)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($AA).w
                 pea     (off_A0).w
 
@@ -45434,7 +45434,7 @@ loc_EFCF0:                              ; CODE XREF: sub_EF590+73A↑j
                 jsr     sub_F0948(pc)
                 nop
                 clr.b   ($FF404E).l
-                pea     (off_14).w
+                pea     ($14).w
                 jsr     TriggerOSDMessage
                 addq.l  #8,sp
 
@@ -45523,7 +45523,7 @@ loc_EFDE6:                              ; CODE XREF: sub_EF590+84E↑j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
-                pea     (off_C).w
+                pea     ($0C).w
 
 loc_EFE04:                              ; CODE XREF: sub_EF590+854↑j
                 jsr     TriggerOSDMessage
@@ -45604,7 +45604,7 @@ loc_EFEDE:                              ; CODE XREF: sub_EF590+8C0↑j
                 clr.b   8(a4)
                 clr.w   $C(a4)
                 jsr     sub_DB836
-                pea     (off_8).w
+                pea     ($08).w
                 pea     (1).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45620,7 +45620,7 @@ loc_EFF0E:                              ; CODE XREF: sub_EF590+954↑j
                 blt.s   loc_EFF3C
                 clr.w   $10(a4)
                 pea     (2).w
-                pea     (off_C).w
+                pea     ($0C).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -45659,7 +45659,7 @@ loc_EFF80:                              ; CODE XREF: sub_EF590+9DC↑j
                 bne.w   loc_F0076
                 movea.l (a4),a0
                 move.b  #6,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($12).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45720,7 +45720,7 @@ loc_F002E:                              ; CODE XREF: sub_EF590+9E8↑j
                 clr.w   $C(a4)
                 movea.l (a4),a0
                 move.b  #1,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($13).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -45752,7 +45752,7 @@ loc_F008C:                              ; DATA XREF: ROM:000D0EC8↑o
                 move.b  #1,8(a4)
                 move.b  #1,9(a4)
                 ori.b   #4,$C(a5)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     ($4A).w
                 pea     (off_78).w
                 bra.w   loc_EFBE8
@@ -45775,7 +45775,7 @@ loc_F00F4:                              ; CODE XREF: sub_EF590+B50↑j
 loc_F00FC:                              ; DATA XREF: ROM:00035F64↑o
                                         ; ROM:000361E8↑o
                 clr.b   ($FF405B).l
-                pea     (off_28).w
+                pea     ($28).w
 
 loc_F0106:                              ; DATA XREF: ROM:00062380↑o
                 jsr     TriggerOSDMessage
@@ -45878,7 +45878,7 @@ loc_F01D4:                              ; CODE XREF: sub_EF590+BE8↑j
 
 loc_F0206:                              ; CODE XREF: sub_EF590+C68↑j
                 clr.b   8(a4)
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     TriggerOSDMessage
                 move.w  $14(a2),d0
                 addi.w  #-$10,d0
@@ -45920,7 +45920,7 @@ loc_F0276:                              ; DATA XREF: ROM:000609AC↑o
                 blt.s   loc_F02AA
                 clr.w   $10(a4)
                 pea     (2).w
-                pea     (off_C).w
+                pea     ($0C).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -45934,7 +45934,7 @@ loc_F02AA:                              ; CODE XREF: sub_EF590+CF0↑j
                 pea     ($FF7D7A).l
                 jsr     sub_F0AF6(pc)
                 nop
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #8,sp
 
@@ -45976,7 +45976,7 @@ loc_F0314:                              ; CODE XREF: sub_EF590+D5E↑j
                 move.b  #1,8(a4)
                 move.b  #1,9(a4)
                 ori.b   #4,$C(a5)
-                pea     (off_14).w
+                pea     ($14).w
                 pea     (off_64).w
                 pea     (off_A0).w
                 jsr     MoveCameraToLocationAtSpeed
@@ -46163,7 +46163,7 @@ loc_F051A:                              ; CODE XREF: sub_EF590:loc_F04BE↑j
                 pea     ($FF7B16).l
                 jsr     sub_F0AF6(pc)
                 nop
-                pea     (off_18).w
+                pea     ($18).w
                 jsr     TriggerOSDMessage
                 addq.l  #8,sp
 
@@ -46238,7 +46238,7 @@ loc_F0610:                              ; CODE XREF: sub_EF590+106C↑j
                 move.b  #1,8(a2)
                 movea.l (a4),a0
                 clr.b   $30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($12).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46250,7 +46250,7 @@ loc_F0610:                              ; CODE XREF: sub_EF590+106C↑j
 loc_F0648:                              ; CODE XREF: sub_EF590+1090↑j
                 movea.l (a4),a0
                 move.b  #7,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($12).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46326,7 +46326,7 @@ loc_F071C:                              ; CODE XREF: sub_EF590+1178↑j
                 move.b  #1,8(a2)
                 movea.l (a4),a0
                 clr.b   $30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($13).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46338,7 +46338,7 @@ loc_F071C:                              ; CODE XREF: sub_EF590+1178↑j
 loc_F0754:                              ; CODE XREF: sub_EF590+119C↑j
                 movea.l (a4),a0
                 move.b  #1,$30(a0)
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($13).w
                 move.l  (a4),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46494,7 +46494,7 @@ arg_0           =  4
                 beq.s   loc_F0942
                 clr.b   9(a2)
                 pea     (2).w
-                pea     (off_18).w
+                pea     ($18).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $C(sp),sp
@@ -46552,7 +46552,7 @@ arg_0           =  4
                 movea.l (a2),a0
                 movea.l $3A(a0),a0
                 move.w  #3,6(a0)
-                pea     (off_C).w
+                pea     ($0C).w
                 pea     ($1B).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46563,8 +46563,8 @@ arg_0           =  4
                 andi.w  #$4000,d0
                 beq.s   loc_F09D8
                 pea     (unk_4000).w
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
                 addi.w  #-5,d0
@@ -46577,8 +46577,8 @@ arg_0           =  4
 
 loc_F09D8:                              ; CODE XREF: sub_F0948+6C↑j
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
                 addi.w  #-5,d0
@@ -46652,7 +46652,7 @@ loc_F0A80:                              ; CODE XREF: sub_F0A10+9E↓j
                 movea.l d0,a0
                 tst.l   $32(a2,a0.l)
                 bne.s   loc_F0AF0
-                pea     (off_10).w
+                pea     ($10).w
                 bra.s   loc_F0AE8
 ; ---------------------------------------------------------------------------
 
@@ -46772,7 +46772,7 @@ arg_0           =  4
                 clr.l   $1E(a3)
                 clr.l   $22(a3)
                 jsr     sub_DB836
-                pea     (off_8).w
+                pea     ($08).w
                 pea     (1).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -46954,8 +46954,8 @@ arg_0           =  4
                 andi.w  #$4000,d0
                 beq.s   loc_F0D9E
                 pea     (unk_4000).w
-                pea     (off_10).w
-                pea     (off_20).w
+                pea     ($10).w
+                pea     ($20).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
                 addi.w  #-$1C,d0
@@ -46968,8 +46968,8 @@ arg_0           =  4
 
 loc_F0D9E:                              ; CODE XREF: sub_F0D16+62↑j
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_20).w
+                pea     ($10).w
+                pea     ($20).w
                 movea.l (a2),a0
                 move.w  $A(a0),d0
                 addi.w  #-$1C,d0
@@ -47480,8 +47480,8 @@ loc_F127A:                              ; DATA XREF: sub_F10C2+162↑o
                 andi.w  #$4000,d0
                 beq.s   loc_F12C4
                 pea     (unk_4000).w
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 move.w  $14(a2),d0
                 addi.w  #-5,d0
                 move.l  d0,-(sp)
@@ -47499,8 +47499,8 @@ loc_F12AE:                              ; CODE XREF: sub_F10C2+21E↓j
 
 loc_F12C4:                              ; CODE XREF: sub_F10C2+1CE↑j
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 move.w  $14(a2),d0
                 addi.w  #-5,d0
                 move.l  d0,-(sp)
@@ -47534,7 +47534,7 @@ loc_F1312:                              ; DATA XREF: sub_F10C2+15E↑o
                 movea.l (a2),a0
                 clr.b   $2F(a0)
                 pea     ($5A).w
-                pea     (off_14).w
+                pea     ($14).w
 
 loc_F1320:                              ; CODE XREF: sub_F10C2+23C↑j
                 move.l  (a2),-(sp)
@@ -48188,7 +48188,7 @@ loc_F19BE:                              ; CODE XREF: sub_F145E+172↑j
                 beq.w   loc_F1CD6
                 cmpi.w  #2,$10(a3)
                 bne.s   loc_F19E2
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_2C).w
 
 loc_F19D6:                              ; CODE XREF: sub_F145E+83C↓j
@@ -48243,11 +48243,11 @@ loc_F19E2:                              ; CODE XREF: sub_F145E+56E↑j
 
 loc_F1A84:                              ; CODE XREF: sub_F145E+60E↑j
                                         ; sub_F145E+616↑j ...
-                pea     (off_C).w
+                pea     ($0C).w
 
 loc_F1A88:                              ; CODE XREF: sub_F145E+624↑j
                 jsr     ApplyFlipperForceToPlayer
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_2C).w
                 jsr     SetPlayerAnimation
                 lea     $20(sp),sp
@@ -48287,7 +48287,7 @@ loc_F1AE2:                              ; CODE XREF: sub_F145E+67A↑j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
-                pea     (off_4).w
+                pea     ($04).w
                 bra.s   loc_F1B7C
 ; ---------------------------------------------------------------------------
 
@@ -48305,7 +48305,7 @@ loc_F1B32:                              ; CODE XREF: sub_F145E+698↑j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     ($5A).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
@@ -48362,7 +48362,7 @@ loc_F1BCC:                              ; CODE XREF: sub_F145E+764↑j
                 move.l  d0,-(sp)
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
-                pea     (off_8).w
+                pea     ($08).w
                 pea     ($12).w
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
@@ -48385,11 +48385,11 @@ loc_F1C1C:                              ; CODE XREF: sub_F145E+782↑j
                 move.l  (a2),-(sp)
                 jsr     AnimObj_PlayAnimation
                 pea     ($5A).w
-                pea     (off_14).w
+                pea     ($14).w
                 move.l  (a3),-(sp)
                 jsr     AnimObj_PlayAnimation
                 lea     $18(sp),sp
-                pea     (off_8).w
+                pea     ($08).w
                 bra.s   loc_F1C66
 ; ---------------------------------------------------------------------------
 
@@ -48602,7 +48602,7 @@ loc_F1E0A:                              ; CODE XREF: sub_F145E+A6E↓j
                 clr.l   $1E(a4)
                 clr.l   $22(a4)
                 move.w  #$507,$C(a4)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($13).w
                 jsr     SetPlayerAnimation
                 move.w  ($FF02C0).l,d0
@@ -48801,7 +48801,7 @@ loc_F2046:                              ; CODE XREF: sub_F145E+DC2↓j
 ; ---------------------------------------------------------------------------
 
 loc_F20E4:                              ; CODE XREF: sub_F145E+C5A↑j
-                pea     (off_C).w
+                pea     ($0C).w
                 jsr     ApplyFlipperForceToPlayer
                 addq.l  #4,sp
 
@@ -49239,7 +49239,7 @@ var_4           = -4
                 jsr     GEMSStopAll
 
 loc_F2624:                              ; CODE XREF: IntroCutscene_SegaLogo+C2↑j
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     sub_F3362
                 jsr     TurnDisplayOff
                 clr.l   -(sp)
@@ -49360,7 +49360,7 @@ loc_F2794:                              ; CODE XREF: Cutscene_MountMobius+138↑
                 nop
                 addq.l  #8,sp
                 move.l  d0,d2
-                pea     (off_10).w
+                pea     ($10).w
                 bra.s   loc_F27BA
 ; ---------------------------------------------------------------------------
 
@@ -49371,7 +49371,7 @@ loc_F27A8:                              ; CODE XREF: Cutscene_MountMobius+13E↑
                 nop
                 addq.l  #8,sp
                 move.l  d0,d2
-                pea     (off_20).w
+                pea     ($20).w
 
 loc_F27BA:                              ; CODE XREF: Cutscene_MountMobius+154↑j
                 jsr     sub_F3362
@@ -49595,7 +49595,7 @@ loc_F29C6:                              ; CODE XREF: sub_F2946+10E↓j
                 subq.l  #2,sp
                 move.w  (word_9935C).l,-(sp)
                 clr.l   -(sp)
-                pea     (off_8).w
+                pea     ($08).w
                 clr.l   -(sp)
                 btst    #1,d2
                 beq.s   loc_F29F0
@@ -49624,7 +49624,7 @@ loc_F29F6:                              ; CODE XREF: sub_F2946+A8↑j
                 subq.l  #2,sp
                 move.w  (word_9935C).l,-(sp)
                 clr.l   -(sp)
-                pea     (off_8).w
+                pea     ($08).w
                 clr.l   -(sp)
                 btst    #1,d2
                 pea     (off_A17BC).l
@@ -49751,7 +49751,7 @@ loc_F2B52:                              ; CODE XREF: sub_F2946+15C↑j
                 jsr     sub_F43BA
                 pea     (byte_F442C).l
                 jsr     sub_F43BA
-                pea     (off_10).w
+                pea     ($10).w
                 jsr     sub_F34AE
                 lea     $10(sp),sp
                 moveq   #0,d2
@@ -50420,7 +50420,7 @@ arg_8           =  $10
                 movea.l arg_4(a6),a5
                 jsr     WaitForVBlank
                 pea     var_20(a6)
-                pea     (off_10).w
+                pea     ($10).w
                 move.l  d3,d6
                 lsl.l   #4,d6
                 move.l  d6,-(sp)
@@ -50500,7 +50500,7 @@ loc_F3248:                              ; CODE XREF: sub_F3200+11E↓j
                 bgt.w   loc_F3248
                 jsr     WaitForVBlank
                 pea     var_40(a6)
-                pea     (off_10).w
+                pea     ($10).w
                 move.l  d5,-(sp)
                 jsr     LoadPaletteTo
                 lea     $C(sp),sp
@@ -50511,7 +50511,7 @@ loc_F333E:                              ; CODE XREF: sub_F3200+38↑j
                 blt.w   loc_F323C
                 jsr     WaitForVBlank
                 move.l  a5,-(sp)
-                pea     (off_10).w
+                pea     ($10).w
                 move.l  d6,-(sp)
                 jsr     LoadPaletteTo
                 movem.l var_64(a6),d2-d6/a2-a5
@@ -52498,11 +52498,22 @@ arg_6           =  $E
 ; End of function sub_F42FE
 
 ; ---------------------------------------------------------------------------
-word_F4350:     dc.w $808               ; DATA XREF: sub_F42FE+28↑r
-                dc.b $10
-                dc.b 8
-                dc.l $18082008, $8101010, $18102010, $8181018, $18182018
-                dc.l $8201020, $18202020
+word_F4350:	dc.w	$0808		; DATA XREF: sub_F42FE+28↑r
+		dc.w	$1008
+		dc.w	$1808
+		dc.w	$2008
+		dc.w	$0810
+		dc.w	$1010
+		dc.w	$1810
+		dc.w	$2010
+		dc.w	$0818
+		dc.w	$1018
+		dc.w	$1818
+		dc.w	$2018
+		dc.w	$0820
+		dc.w	$1020
+		dc.w	$1820
+		dc.w	$2020
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -53683,8 +53694,8 @@ loc_F4DAA:                              ; CODE XREF: sub_F4D2A+2E↑j
                 subq.l  #2,sp
                 move.w  (rom_intro_sega_logo_sprites_question).l,-(sp)
                 clr.l   -(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 move.w  2(a2),d0
                 lsl.w   #2,d0
                 movea.l #rom_intro_sprite_array,a0
@@ -54258,7 +54269,7 @@ arg_0           =  8
                 lea     var_60(a6),a5
                 jsr     WaitForVBlank
                 pea     var_20(a6)
-                pea     (off_10).w
+                pea     ($10).w
                 pea     (off_30).w
                 jsr     ReadPalette
                 pea     (7).w
@@ -54391,7 +54402,7 @@ loc_F53C8:                              ; CODE XREF: sub_F52EC+1B8↓j
                 blt.w   loc_F53C8
                 jsr     WaitForVBlank
                 pea     var_40(a6)
-                pea     (off_10).w
+                pea     ($10).w
                 pea     (off_30).w
                 jsr     LoadPaletteTo
                 clr.l   -(sp)
@@ -54407,7 +54418,7 @@ loc_F54CE:                              ; CODE XREF: sub_F52EC+B6↑j
                 blt.w   loc_F53A6
                 jsr     WaitForVBlank
                 move.l  a5,-(sp)
-                pea     (off_10).w
+                pea     ($10).w
                 pea     (off_30).w
                 jsr     LoadPaletteTo
                 movem.l var_7C(a6),d2-d4/a2-a5
@@ -54627,8 +54638,8 @@ arg_6           =  $E
                 tst.w   d0
                 bge.s   loc_F5722
                 move.l  a4,-(sp)
-                pea     (off_10).w
-                pea     (off_10).w
+                pea     ($10).w
+                pea     ($10).w
                 jsr     LoadPaletteTo
                 lea     $C(sp),sp
 
@@ -55951,7 +55962,7 @@ loc_F6662:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aArrggg___).l  ; "  ARRGGG. . .                     "
                 pea     (6).w
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F6674:                              ; CODE XREF: BonusStage_DisplayOSDMessage+29C↓j
                 clr.l   -(sp)
@@ -55975,7 +55986,7 @@ loc_F6696:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aPumpItUp).l   ; "  PUMP IT UP                     "
                 pea     (3).w
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
 
 loc_F66AA:                              ; CODE XREF: BonusStage_DisplayOSDMessage+204↓j
@@ -55986,7 +55997,7 @@ loc_F66AA:                              ; CODE XREF: BonusStage_DisplayOSDMessag
 
 loc_F66B2:                              ; DATA XREF: BonusStage_DisplayOSDMessage+60↑o
                 pea     (aJackpot).l    ; "   JACKPOT                       "
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_78).w
                 pea     (3).w
 
@@ -56040,7 +56051,7 @@ loc_F671E:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aInYourFace).l ; "    IN YOUR          FACE      "
 
 loc_F6724:                              ; CODE XREF: BonusStage_DisplayOSDMessage+3CE↓j
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_78).w
                 pea     (6).w
 
@@ -56085,7 +56096,7 @@ loc_F6776:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (off_3C).w
 
 loc_F6784:                              ; CODE XREF: BonusStage_DisplayOSDMessage+272↓j
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F6788:                              ; CODE XREF: BonusStage_DisplayOSDMessage+398↓j
                 pea     (1).w
@@ -56105,7 +56116,7 @@ loc_F67AA:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aHogWild).l    ; "   HOG WILD                       "
                 pea     (5).w
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F67BC:                              ; CODE XREF: BonusStage_DisplayOSDMessage+248↓j
                                         ; BonusStage_DisplayOSDMessage+2B2↓j
@@ -56127,7 +56138,7 @@ loc_F67D8:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aSadMoveHedgeho).l ; "  SAD MOVE,    HEDGEHOG  "
 
 loc_F67DE:                              ; CODE XREF: BonusStage_DisplayOSDMessage+2EE↓j
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_78).w
                 pea     (3).w
                 bra.s   loc_F67BC
@@ -56137,7 +56148,7 @@ loc_F67EC:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (aShakeIt).l    ; "   SHAKE IT                       "
                 pea     (5).w
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F67FE:                              ; CODE XREF: BonusStage_DisplayOSDMessage+2C8↓j
                                         ; BonusStage_DisplayOSDMessage+3AC↓j
@@ -56213,22 +56224,22 @@ loc_F6894:                              ; DATA XREF: BonusStage_DisplayOSDMessag
 
 loc_F689A:                              ; CODE XREF: BonusStage_DisplayOSDMessage+328↓j
                                         ; BonusStage_DisplayOSDMessage+33C↓j ...
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F689E:                              ; CODE XREF: BonusStage_DisplayOSDMessage+334↓j
                                         ; BonusStage_DisplayOSDMessage+36E↓j
                 pea     (off_78).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_F66FE
 ; ---------------------------------------------------------------------------
 
 loc_F68AC:                              ; DATA XREF: BonusStage_DisplayOSDMessage+8E↑o
                 pea     (aBustTeeth).l  ; "BUST TEETH                     "
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (off_78).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_F66AA
 ; ---------------------------------------------------------------------------
 
@@ -56253,7 +56264,7 @@ loc_F68E0:                              ; DATA XREF: BonusStage_DisplayOSDMessag
                 pea     (6).w
                 pea     (off_78).w
                 clr.l   -(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 bra.w   loc_F6676
 ; ---------------------------------------------------------------------------
 
@@ -56383,12 +56394,12 @@ loc_F69E8:                              ; DATA XREF: BonusStage_DisplayOSDMessag
 
 loc_F69F2:                              ; CODE XREF: BonusStage_DisplayOSDMessage+1D0↑j
                 pea     (off_78).w
-                pea     (off_4).w
+                pea     ($04).w
                 pea     (1).w
 
 loc_F69FE:                              ; CODE XREF: BonusStage_DisplayOSDMessage+F0↑j
                                         ; BonusStage_DisplayOSDMessage+288↑j
-                pea     (off_4).w
+                pea     ($04).w
 
 loc_F6A02:                              ; CODE XREF: BonusStage_DisplayOSDMessage+D8↑j
                                         ; BonusStage_DisplayOSDMessage+10C↑j ...
@@ -56785,7 +56796,7 @@ loc_F6D7A:                              ; DATA XREF: BonusStage_EventHandler+36�
 ; ---------------------------------------------------------------------------
 
 loc_F6D8C:                              ; DATA XREF: BonusStage_EventHandler+38↑o
-                pea     (off_24).w
+                pea     ($24).w
                 bsr.w   BonusStage_DisplayOSDMessage
                 bra.w   loc_F7804
 ; ---------------------------------------------------------------------------
@@ -60297,7 +60308,7 @@ loc_F924A:                              ; CODE XREF: sub_F90C4+164↑j
                 jsr     (a4)
                 pea     (off_78).w
                 jsr     (a4)
-                pea     (off_4).w
+                pea     ($04).w
                 bsr.w   BonusStage_DisplayOSDMessage
                 lea     $14(sp),sp
                 moveq   #0,d2
@@ -62547,7 +62558,7 @@ loc_FA746:                              ; CODE XREF: RunUpdate_BonusStage+1C6↓
                 clr.w   ($FF559E).l
                 clr.l   -(sp)
                 move.l  #$C014,-(sp)
-                pea     (off_28).w
+                pea     ($28).w
                 jsr     sub_DF7A6
                 movea.l #$C00004,a0
                 move.l  a0,var_4(a6)
@@ -62897,7 +62908,7 @@ loc_FAAAE:                              ; DATA XREF: RunUpdate_BonusStage:off_FA
                 pea     ($1F).w
                 clr.l   -(sp)
                 jsr     sub_D8674
-                pea     (off_20).w
+                pea     ($20).w
                 pea     (1).w
                 jsr     sub_D8674
                 pea     ($21).w
@@ -62913,7 +62924,7 @@ loc_FAAEC:                              ; DATA XREF: RunUpdate_BonusStage+520↑
                 pea     ($23).w
                 clr.l   -(sp)
                 jsr     sub_D8674
-                pea     (off_24).w
+                pea     ($24).w
                 pea     (1).w
                 jsr     sub_D8674
                 pea     ($25).w
@@ -62929,7 +62940,7 @@ loc_FAB28:                              ; DATA XREF: RunUpdate_BonusStage+522↑
                 pea     ($27).w
                 clr.l   -(sp)
                 jsr     sub_D8674
-                pea     (off_28).w
+                pea     ($28).w
                 pea     (1).w
                 jsr     sub_D8674
                 pea     ($29).w
@@ -66434,7 +66445,7 @@ loc_FDCE4:                              ; DATA XREF: RunUpdate_BonusStage:off_FD
 ; ---------------------------------------------------------------------------
 
 loc_FDCEA:                              ; DATA XREF: RunUpdate_BonusStage+3756↑o
-                pea     (off_20).w
+                pea     ($20).w
                 bra.s   loc_FDCFA
 ; ---------------------------------------------------------------------------
 
@@ -66444,7 +66455,7 @@ loc_FDCF0:                              ; DATA XREF: RunUpdate_BonusStage+3758�
 ; ---------------------------------------------------------------------------
 
 loc_FDCF6:                              ; DATA XREF: RunUpdate_BonusStage+375A↑o
-                pea     (off_1C).w
+                pea     ($1C).w
 
 loc_FDCFA:                              ; CODE XREF: RunUpdate_BonusStage+3760↑j
                                         ; RunUpdate_BonusStage+3766↑j ...
@@ -66524,7 +66535,7 @@ loc_FDD88:                              ; CODE XREF: RunUpdate_BonusStage+37F4�
                 bne.w   loc_FDEEC
                 tst.w   ($FFF1F0).l
                 bne.s   loc_FDDA4
-                pea     (off_14).w
+                pea     ($14).w
                 bsr.w   BonusStage_DisplayOSDMessage
                 addq.l  #4,sp
 
@@ -66995,7 +67006,7 @@ off_FE29A:      dc.w loc_FE2A2-*        ; DATA XREF: RunUpdate_BonusStage+3D0A�
 
 loc_FE2A2:                              ; DATA XREF: RunUpdate_BonusStage:off_FE29A↑o
                                         ; RunUpdate_BonusStage+3D16↑o
-                pea     (off_C).w
+                pea     ($0C).w
                 bra.s   loc_FE2B2
 ; ---------------------------------------------------------------------------
 
@@ -67231,7 +67242,7 @@ loc_FE47E:                              ; CODE XREF: sub_FE460+36↓j
                 addq.l  #4,a2
                 movea.l a2,a4
                 addq.l  #6,a4
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SpriteFramePool_ReserveNumVDPSprites
                 move.b  d0,d2
                 moveq   #0,d0
@@ -67258,7 +67269,7 @@ loc_FE47E:                              ; CODE XREF: sub_FE460+36↓j
                 addq.l  #4,a2
                 movea.l a2,a4
                 addq.l  #6,a4
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SpriteFramePool_ReserveNumVDPSprites
                 move.b  d0,d2
                 moveq   #0,d0
@@ -67313,7 +67324,7 @@ loc_FE47E:                              ; CODE XREF: sub_FE460+36↓j
                 addq.l  #4,a2
                 movea.l a2,a4
                 addq.l  #6,a4
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SpriteFramePool_ReserveNumVDPSprites
                 move.b  d0,d2
                 moveq   #0,d0
@@ -67340,7 +67351,7 @@ loc_FE47E:                              ; CODE XREF: sub_FE460+36↓j
                 addq.l  #4,a2
                 movea.l a2,a4
                 addq.l  #6,a4
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SpriteFramePool_ReserveNumVDPSprites
                 move.b  d0,d2
                 moveq   #0,d0
@@ -67367,7 +67378,7 @@ loc_FE47E:                              ; CODE XREF: sub_FE460+36↓j
                 addq.l  #4,a2
                 movea.l a2,a4
                 addq.l  #6,a4
-                pea     (off_4).w
+                pea     ($04).w
                 jsr     SpriteFramePool_ReserveNumVDPSprites
                 move.b  d0,d2
                 moveq   #0,d0
@@ -68195,9 +68206,9 @@ loc_FEED0:                              ; CODE XREF: sub_FED7E+136↑j
                 lsl.w   #2,d0
                 movea.l #OptionsStrings,a0
                 move.l  (a0,d0.w),-(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($A).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (6).w
                 jsr     OSD_QueueMessage
@@ -68396,7 +68407,7 @@ loc_FF0C0:                              ; CODE XREF: OptionsMenu_Run+184↑j
                 lsl.w   #2,d0
                 movea.l #OptionsStrings,a0
                 move.l  (a0,d0.w),-(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($A).w
                 clr.l   -(sp)
                 clr.l   -(sp)
@@ -68883,9 +68894,9 @@ loc_FF5E0:                              ; CODE XREF: sub_FF5A4+94↓j
                 lsl.w   #2,d0
                 movea.l #CreditsStrings,a0
                 move.l  (a0,d0.w),-(sp)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($A).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (6).w
                 jsr     OSD_QueueMessage
@@ -69007,9 +69018,9 @@ loc_FF6E4:                              ; CODE XREF: sub_FF6B4+76↓j
                 pea     var_20(a6)
                 bsr.w   sub_FF64A
                 pea     var_20(a6)
-                pea     (off_4).w
+                pea     ($04).w
                 pea     ($A).w
-                pea     (off_4).w
+                pea     ($04).w
                 clr.l   -(sp)
                 pea     (7).w
                 jsr     OSD_QueueMessage
