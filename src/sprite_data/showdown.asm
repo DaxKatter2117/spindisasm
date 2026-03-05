@@ -1756,7 +1756,7 @@ byte_34511:     dcb.b 3,0               ; DATA XREF: ROM:00024044↑o
                 dc.b $E0
                 align 4
                 dcb.l 2,0
-                dc.l byte_FFF45
+                dc.l $FFF45
                 dc.b $6E ; n
                 align 4
                 dcb.l 2,0
@@ -2975,7 +2975,7 @@ aUyvfl:         dc.b 'UYVfl',0
                 dc.l $CCC44F79, $97788320, $ECCC, $CF777997, $78822000
                 dc.l $EEECCF77, $77799782, $2000FEEE, $EF887777, $72000000
                 dc.l $FFFEEF88, $88772000, $FFF, $FF888882, 0
-                dc.l byte_FFF33
+                dc.l $FFF33
                 dc.b $88
                 dc.b $82
                 dcb.b 2,0
@@ -3096,7 +3096,7 @@ aUyvfl:         dc.b 'UYVfl',0
                 dc.l $77997822, $FFFFFEE, $EEEECCCE, $F8877777, $2000000F
                 dc.l $FFFFEEEE, $EECEF888, $87720000, $FFF, $FFEEEEEE
                 dc.l $F8888820, 0
-                dc.l byte_FFFFF
+                dc.l $FFFFF
                 dc.l $EEEEF338, $88200000, 0
                 dc.l $FFFFFEE, $F3333820, 0
                 dc.l $F, $FFFFF233, $33200000, 0

@@ -68583,7 +68583,7 @@ ResetGlobals:                              ; CODE XREF: FrontendLoop+44↑p
                 clr.l   -(sp)
                 clr.l   -(sp)
                 pea     ($22).w
-                pea     (off_A0).w
+                pea     ($A0).w
                 pea     (off_C13D8).l
                 jsr     AnimObj_InitialiseInstance
                 pea     (5).w
@@ -68790,7 +68790,7 @@ arg_0           =  4
                 move.w  d3,d0
                 add.w   d3,d3
                 add.w   d0,d3
-                move.b  (off_D3B4C+3).l,d0
+                move.b  (off_D3B4F).l,d0
                 ext.w   d0
                 add.w   d0,d3
                 clr.w   d2
@@ -69297,7 +69297,7 @@ loc_FF91A:                              ; CODE XREF: Divide+30↑j
 
 sub_FF922:                              ; CODE XREF: Divide:loc_FF912↑p
                                         ; sub_FF982:loc_FF998↓p ...
-                cmpi.l  #off_10000,d1
+                cmpi.l  #$10000,d1
                 bcc.s   loc_FF95A
                 divu.w  d1,d0
                 bvs.s   loc_FF93A
@@ -69359,7 +69359,7 @@ loc_FF978:                              ; CODE XREF: sub_FF922+50↑j
 sub_FF982:
                 move.l  (a0),d1
                 exg     d0,d1
-                cmpi.l  #off_10000,d1
+                cmpi.l  #$10000,d1
                 bcc.s   loc_FF998
                 divu.w  d1,d0
                 bvs.s   loc_FF998
@@ -69543,7 +69543,7 @@ loc_FFA8C:                              ; CODE XREF: sub_FFA4A:loc_FFA8E↓j
 
 loc_FFA8E:                              ; CODE XREF: sub_FFA4A+40↑j
                 dbf     d1,loc_FFA8C
-                subi.l  #off_10000,d1
+                subi.l  #$10000,d1
                 cmpi.l  #$FFFFFFFF,d1
                 bne.s   loc_FFA8C
                 bra.s   loc_FFAA4
@@ -69572,29 +69572,16 @@ sprintfDoInt:                           ; CODE XREF: sprintf+3A↑p
 ; End of function sprintfDoInt
 
 ; ---------------------------------------------------------------------------
-dword_FFAB4:    dc.l 0                  ; DATA XREF: IntroCutscene_SegaLogo+6↑r
-dword_FFAB8:    dc.l $50                ; DATA XREF: Cutscene_MountMobius+C↑r
-dword_FFABC:    dc.l 0                  ; DATA XREF: IntroCutscene_Prologue+6↑r
-dword_FFAC0:    dc.l 0                  ; DATA XREF: MainMenu_Run+E↑r
-dword_FFAC4:    dc.l 0                  ; DATA XREF: MainMenu_Run+16↑r
-dword_FFAC8:    dc.l 0                  ; DATA XREF: Cutscene_EndingSequence+6↑r
-dword_FFACC:    dc.l 0                  ; DATA XREF: Cutscene_EndingSequence+E↑r
-                dcb.l $118,$FFFFFFFF
-                dcb.b 3,$FF
-byte_FFF33:     dc.b $FF                ; DATA XREF: ROM:0003602C↑o
-                dcb.l 4,$FFFFFFFF
-                dc.b $FF
-byte_FFF45:     dcb.b 3,$FF             ; DATA XREF: ROM:00035020↑o
-                dcb.l $22,$FFFFFFFF
-                dcb.b 2,$FF
-word_FFFD2:     dc.w $FFFF              ; DATA XREF: ROM:00099CC8↑o
-                dcb.l 7,$FFFFFFFF
-                dc.b $FF
-byte_FFFF1:     dcb.b 3,$FF             ; DATA XREF: ROM:off_A1490↑o
-                                        ; ROM:off_A1498↑o
-                dcb.l 2,$FFFFFFFF
-                dcb.b 3,$FF
-byte_FFFFF:     dc.b $FF                ; DATA XREF: ROM:000363CC↑o
+dword_FFAB4:	dc.l 0                  ; DATA XREF: IntroCutscene_SegaLogo+6↑r
+dword_FFAB8:	dc.l $50                ; DATA XREF: Cutscene_MountMobius+C↑r
+dword_FFABC:	dc.l 0                  ; DATA XREF: IntroCutscene_Prologue+6↑r
+dword_FFAC0:	dc.l 0                  ; DATA XREF: MainMenu_Run+E↑r
+dword_FFAC4:	dc.l 0                  ; DATA XREF: MainMenu_Run+16↑r
+dword_FFAC8:	dc.l 0                  ; DATA XREF: Cutscene_EndingSequence+6↑r
+dword_FFACC:	dc.l 0                  ; DATA XREF: Cutscene_EndingSequence+E↑r
+
+	align	$100000, $FF
+
 ; end of 'ROM'
 
 EndofRom:

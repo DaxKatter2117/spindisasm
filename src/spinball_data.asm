@@ -45729,7 +45729,7 @@ dword_99A00:    dc.l 0                  ; DATA XREF: ROM:00024B98↑o
                 dc.b 2, 8, 0
                 dc.l dword_99440+$7A
                 dc.l $C, $FFCF0746, 0
-                dc.l word_FFFD2
+                dc.l $FFFD2
                 dc.l off_9C052
                 dc.l $9020800, $99534, $E, $FFDC0746, 0
                 dc.l $11FFDF, $9C052, $9020800, $995AE, $10, $FFE90746
@@ -50637,9 +50637,9 @@ off_A1480:      dc.l $AFFF5         ; DATA XREF: ROM:0009BC72↑o
                 dc.l $FFF6802F
 off_A1488:      dc.l $AFFF6          ; DATA XREF: ROM:0009BC76↑o
                 dc.l $FFF68038
-off_A1490:      dc.l byte_FFFF1         ; DATA XREF: ROM:0009BC7A↑o
+off_A1490:      dc.l $FFFF1         ; DATA XREF: ROM:0009BC7A↑o
                 dc.l $FFF18041
-off_A1498:      dc.l byte_FFFF1         ; DATA XREF: ROM:0009BC7E↑o
+off_A1498:      dc.l $FFFF1         ; DATA XREF: ROM:0009BC7E↑o
                 dc.l $FFF18051, $1FFF8, $FFF08061, $5FFF0, $FFF08063, $5FFF0
                 dc.l $FFE88067, $5FFF0, $FFE8806B, $FFF0, $FFF8806F, $FFE8
                 dc.l $FFF88070, $FFF8, $FFE88071, $FFE8, $FFF08072, $4FFE8
@@ -65224,8 +65224,12 @@ off_D3B2E:      dc.l byte_10101         ; DATA XREF: sub_FE784+1FE↓o
                 dc.b 1
                 dc.l $1010101, $1000000
 dword_D3B44:    dc.l 2, $40002          ; DATA XREF: sub_FE784+64↓o
-off_D3B4C:      dc.l unk_40608          ; DATA XREF: sub_FED7E+116↓o
-                                        ; sub_FF4B4:loc_FF54C↓o ...
+
+off_D3B4C:	dc.b $00		; DATA XREF: sub_FED7E+116↓o
+		dc.b $04		; sub_FF4B4:loc_FF54C↓o ...
+		dc.b $06
+off_D3B4F:	dc.b $08
+
 OptionsCounts:  dc.b   4                ; DATA XREF: sub_FEF2A+BC↓o
                                         ; sub_FEF2A+DC↓o
                 dcb.b 2,2
@@ -65253,8 +65257,8 @@ word_D3B98:     dc.w $1B                ; DATA XREF: sub_FF73E+6E↓o
                 dc.w $1C
                 dc.w $1D
                 dc.w $1E
-off_D3BA0:      dc.l off_10000          ; DATA XREF: sub_FF5A4+30↓o
-                dc.l EntryPoint+3
+off_D3BA0:      dc.l $10000          ; DATA XREF: sub_FF5A4+30↓o
+                dc.l $203
                 dc.l 4, $50006, $70800, $600090A, $B06000C, $D0E0F00, $5100011
                 dc.l $121314, $11001516, $171800, $38391718, $191A1B, $1C1D1E
                 dc.l $1F2021, $22002324, $25260027, $28290000, $2A030000
