@@ -1130,7 +1130,7 @@ loc_D3EDA:                              ; CODE XREF: AwardScore+32↑j
                 bne.s   loc_D3F58
                 pea     (aExtraBall).l  ; "** EXTRA BALL **"
                 pea     (6).w
-                pea     (off_3C).w
+                pea     ($3C).w
                 pea     (3).w
                 clr.l   -(sp)
                 pea     (7).w
@@ -49845,7 +49845,6 @@ loc_F2C2C:                              ; CODE XREF: sub_F2C20+1C↓j
 
 ; =============== S U B R O U T I N E =======================================
 
-
 sub_F2C44:                              ; CODE XREF: sub_F2808+C0↑p
                                         ; sub_F2808+100↑p
 
@@ -50378,7 +50377,6 @@ loc_F31D6:                              ; CODE XREF: sub_F3148+5A↑j
 
 ; =============== S U B R O U T I N E =======================================
 
-
 sub_F31EA:                              ; CODE XREF: IntroCutscene_SegaLogo+12↑p
                                         ; IntroCutscene_SegaLogo+E2↑p ...
 
@@ -50766,7 +50764,6 @@ loc_F35DE:                              ; CODE XREF: sub_F34AE+2E↑j
 
 ; =============== S U B R O U T I N E =======================================
 
-
 sub_F360E:                              ; CODE XREF: IntroCutscene_Prologue+3A↑p
                 move.l  a2,-(sp)
                 movea.l #$FF58D4,a0
@@ -51010,7 +51007,6 @@ ReadJoypads:                            ; CODE XREF: GetJoypadState+4↓p
 
 ; =============== S U B R O U T I N E =======================================
 
-
 sub_F3810:                              ; CODE XREF: sub_F39E8↓p
                                         ; sub_F3EB8+C↓p ...
                 move.b  byte_F38BF(pc),d0
@@ -51022,6 +51018,7 @@ sub_F3810:                              ; CODE XREF: sub_F39E8↓p
 ; End of function sub_F3810
 
 ; ---------------------------------------------------------------------------
+
 dword_F3822:    dc.l $1020102           ; DATA XREF: sub_F3810+C↑r
                 dc.l $1020000
                 dc.l $1021C20
@@ -51032,7 +51029,6 @@ dword_F3822:    dc.l $1020102           ; DATA XREF: sub_F3810+C↑r
                 dc.l $1402F002
 
 ; =============== S U B R O U T I N E =======================================
-
 
 InitVDPForGame:                         ; CODE XREF: IntroCutscene_SegaLogo+1E↑p
                                         ; Cutscene_MountMobius+2A↑p ...
@@ -51111,7 +51107,6 @@ byte_F38C4:     dc.b %00000001          ; DATA XREF: sub_F3C06+12↓r
 
 ; =============== S U B R O U T I N E =======================================
 
-
 WaitForVBlank:                          ; CODE XREF: IntroCutscene_SegaLogo+18↑p
                                         ; Cutscene_MountMobius+24↑p ...
                 tst.b   ($FFF2C9).l
@@ -51138,7 +51133,6 @@ TurnDisplayOn:                          ; CODE XREF: IntroCutscene_SegaLogo+8E�
 
 
 ; =============== S U B R O U T I N E =======================================
-
 
 TurnDisplayOff:                         ; CODE XREF: IntroCutscene_SegaLogo+DA↑p
                                         ; Cutscene_MountMobius+176↑p ...
@@ -68239,7 +68233,6 @@ loc_FEF0E:                              ; CODE XREF: sub_FED7E+180↑j
 
 ; =============== S U B R O U T I N E =======================================
 
-
 OptionsMenu_Run:                              ; CODE XREF: FrontendLoop:loc_D47EA↑p
                 movem.l d2-d3/a2-a5,-(sp)
                 movea.l #$FF573C,a3
@@ -69258,7 +69251,6 @@ loc_FF8DE:                              ; CODE XREF: Multiply_unsigned_long+1C�
 
 ; =============== S U B R O U T I N E =======================================
 
-
 Divide:                              ; CODE XREF: AwardScore+82↑p
                                         ; AwardScore+94↑p ...
                 cmpi.l  #$7FFF,d1
@@ -69302,7 +69294,6 @@ loc_FF91A:                              ; CODE XREF: Divide+30↑j
                 exg     d0,d1
 
 ; =============== S U B R O U T I N E =======================================
-
 
 sub_FF922:                              ; CODE XREF: Divide:loc_FF912↑p
                                         ; sub_FF982:loc_FF998↓p ...

@@ -45875,6 +45875,7 @@ dword_99E64:    dc.l $FFF60902, $8000009, $98A40000, $FFF8FFF2, $9020800
                 dc.l $FFFF0800, $9A0FE, 0
                 dc.l $FFFF0901
                 dcb.b 2,0
+
 rom_intro_sequences_begin:
                 dc.w $0901, $0200, $0009, $9ECE, $000A, $FFE2, $0168, $0200, $0009, $9F24, $0009
                 dc.w $FFE2, $0168, $0200, $0009, $9F40, $0009, $FFE2, $0168, $0200, $0009
@@ -46669,6 +46670,7 @@ dword_9BB00:    dc.l $8800009, $B35E0000, 0
                 dc.l $80000F, $5E0E0400, $9AECA, $4000009, $AF140400, $9AF62
                 dc.l $4000009, $B30E0400, $9AF44, $4000009, $B3861101
                 dc.l $680000
+
 rom_intro_sega_logo_sprites_question:
                 dc.w 0                  ; DATA XREF: sub_F49B8+36↓r
                                         ; sub_F4AE4+10↓r ...
@@ -46725,6 +46727,7 @@ off_9BCC6:      dc.l off_A1A5C          ; DATA XREF: sub_F56D0+23A↓r
                                         ; sub_F56D0+262↓o
                 dc.l off_A1A64
                 dc.l off_A1A6C
+
 word_9BCD2:     dc.w $1FF               ; DATA XREF: DoLoadCompressed2Tiles+12↓o
                                         ; DoLoadCompressed2Tiles+74↓o
                 dc.l $3FF07FF, $FFF0000, $40006, $A000E, $66E0222, $4220EEE
@@ -50469,6 +50472,7 @@ byte_A0597:     dc.b $8E                ; DATA XREF: ROM:00063B44↑o
                 dc.b $DD
                 dc.b $99
 word_A0A8A:     dc.w $165C              ; DATA XREF: ROM:00016F78↑o
+
 dword_A0A8C:    dc.l $4517AD96, $9C59D1B9, $55A17225, $B075D762, $79DD1624
                 dc.l $EEEA9619, $6596D586, $59DA174A, $80996B46, $91C7124B
                 dc.l $E6F697DF, $764B9E5D, $36652258, $86D9649B, $7ECADF61
@@ -53928,6 +53932,7 @@ off_C0AC4:      dc.l dword_13DC         ; DATA XREF: ROM:off_C0B14↓o
 off_C0ACC:      dc.l dword_13DC         ; DATA XREF: ROM:off_C0B20↓o
 dword_C0AD0:    dc.l $FFE70000, $13DC, $FFEC0000
                                         ; DATA XREF: ROM:000C0B2C↓o
+
 off_C0ADC:      dc.l rom_level_data_sprite_table_the_machine        ; DATA XREF: ROM:off_C0B5C↓o
                                         ; ROM:000C1018↓o ...
                 dc.l 0
@@ -54688,6 +54693,7 @@ dword_C1D70:    dc.l $200260, $3D10021, $28003D1, $2202A0, $3D10023, $2C003D1
                 dc.l $19505A5, $1380172
                 dc.b   5
                 dc.b $9B
+
 word_C1F02:     dc.w $300               ; DATA XREF: sub_E4B64+298↓o
                 dc.l dword_10060+$8E
                 dc.l $73A2048
@@ -55623,6 +55629,7 @@ dword_C3854:    dc.l $6101CB, $67A0062, $1DD0696, $6301F2, $6B10064, $333067A
                 dc.l $940200, $42C0095, $300042C, $960280, $4730097, $23B0494
                 dc.l $9802C4, $4940099, $4640288, $9A03E3, $2C8009B, $40402B8
                 dc.l $9C0423, $2A8009D, $4420298
+
 unk_C39B0:      dc.b   7                ; DATA XREF: sub_E6240+2C↓o
                 dc.b 1
                 dcb.b 2,0
@@ -57905,6 +57912,7 @@ dword_C8F08:    dc.l 1, $16F0000, 1, $96F0008, $20008, $80000, $10171
                 dc.l $100000, $60988, $200000, $1098E, $180018, $61188
                 dc.l $20, $1118E, $100018, $61988, $200020, $1198E
                 dc.b 0, $18
+
 off_C9016:      dc.l unk_19819          ; DATA XREF: sub_FA588+230↓o
                 dc.b $68 ; h
                 dc.b $60
@@ -58677,6 +58685,7 @@ off_CC6FA:      dc.l off_20010          ; DATA XREF: ROM:off_D28E0↓o
                                         ; sub_FA588+101C↓o ...
                 dc.w $27
                 dc.l $F, $2630000, $20000D, $2730000
+
 off_CC710:      dc.l asc_1081C          ; DATA XREF: sub_FA588:loc_FA80E↓o
                                         ; "����������������������\r�����������"
                 dc.b $48 ; H
@@ -59187,6 +59196,7 @@ dword_CDEF0:    dc.l $4208C114, $E84A8185, $2661086F, $19C25F3E, $F957CB25
                 dc.l $D46CA41A, $A92AE758, $219AFA64, $B1BCEE8A, $AB006A82
                 dc.l $B0A7B7D7, $76342114, $50D4661B
                 dc.b 0
+
 byte_CEDDD:     dc.b $50, $C8, $66      ; DATA XREF: ROM:00029284↑o
                 dc.b $DB
                 dc.b $6D, $F1, $D2
@@ -60702,8 +60712,10 @@ byte_CFFF3:     dc.b $81                ; DATA XREF: ROM:0009999C↑o
                 dc.b $88, $38
 byte_CFFFB:     dc.b $84                ; DATA XREF: ROM:off_C5B48↑o
                 dc.b 8, $FA, $83
+
 byte_CFFFF:     dc.b $80                ; DATA XREF: ROM:000358C0↑o
                                         ; ROM:00035B38↑o
+
 unk_D0000:      dc.b $18                ; DATA XREF: ROM:off_FFCC↑o
                                         ; ROM:00055AD0↑o ...
                 dc.b $3C, $64, $16
@@ -64253,6 +64265,7 @@ off_D10B0:      dc.l asc_1081C          ; DATA XREF: sub_FA588:loc_FA806↓o
                 dc.b $7C ; |
                 dc.b $F6
                 dc.b $6D ; m
+
 byte_D1869:     dc.b $F7, $FD, $44      ; DATA XREF: ROM:00059F20↑o
                 dc.b $CF
                 dc.b 6, $60, 4
