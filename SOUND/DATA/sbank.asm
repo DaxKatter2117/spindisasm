@@ -1,172 +1,396 @@
-; TODO - Make a macro for subtracting sequence address from main label
-;        and convert to little endian
+; ---------------------------------------------------------------------------
+; GEMS Sequence Macros
+; ---------------------------------------------------------------------------
 
+SEQPtr	macro loc
+	dc.w ((loc-GEMSSequences)&$00FF)<<8|((loc-GEMSSequences)&$FF00)>>8
+	endm
+
+; ---------------------------------------------------------------------------
+; GEMS Sequence Pointers
+; ---------------------------------------------------------------------------
 
 ; Sequence Index
 GEMSSequences:
 	; ============== MUSIC ================ ;
-	dc.w $FC00	; $00 - BGM - The Machine
-	dc.w $1101	; $01 - NULL
-	dc.w $1201	; $02 - BGM - Options
-	dc.w $2501	; $03 - NULL
-	dc.w $2601	; $04 - BGM - Boss
-	dc.w $3D01	; $05 - NULL
-	dc.w $3E01	; $06 - NULL
-	dc.w $3F01	; $07 - BGM - Lava Powerhouse
-	dc.w $5001	; $08 - BGM - Showdown
-	dc.w $5D01	; $09 - BGM - Bonus Stage
-	dc.w $7001	; $0A - NULL
-	dc.w $7101	; $0B - BGM - Toxic Caves
-	dc.w $8401	; $0C - NULL
-	dc.w $8501	; $0D - NULL
-	dc.w $8601	; $0E - BGM - Chaos Emerald
-	dc.w $9101	; $0F - NULL
-	dc.w $9201	; $10 - BGM - Title Screen
-	dc.w $A301	; $11 - BGM - Watch Out!
-	dc.w $B001	; $12 - BGM - Fanfare A
-	dc.w $B901	; $13 - BGM - Game Over
-	dc.w $C601	; $14 - BGM - Sega
-	dc.w $CD01	; $15 - BGM - Fanfare B
-	dc.w $DA01	; $16 - BGM - Intro
-	dc.w $F701	; $17 - BGM - All Chaos Emeralds Obtained
-	dc.w $0402	; $18 - NULL
-	dc.w $0502	; $19 - NULL
-	dc.w $0602	; $1A - NULL
-	dc.w $0702	; $1B - NULL
-	dc.w $0802	; $1C - NULL
-	dc.w $0902	; $1D - NULL
-	dc.w $0A02	; $1E - NULL
-	dc.w $0B02	; $1F - NULL
-	dc.w $0C02	; $20 - NULL
+	SEQPtr	SEQ_00_Header		; $00 - BGM - The Machine
+	SEQPtr	SEQ_01_Header		; $01 - NULL
+	SEQPtr	SEQ_02_Header		; $02 - BGM - Options
+	SEQPtr	SEQ_03_Header		; $03 - NULL
+	SEQPtr	SEQ_04_Header		; $04 - BGM - Boss
+	SEQPtr	SEQ_05_Header		; $05 - NULL
+	SEQPtr	SEQ_06_Header		; $06 - NULL
+	SEQPtr	SEQ_07_Header		; $07 - BGM - Lava Powerhouse
+	SEQPtr	SEQ_08_Header		; $08 - BGM - Showdown
+	SEQPtr	SEQ_09_Header		; $09 - BGM - Bonus Stage
+	SEQPtr	SEQ_0A_Header		; $0A - NULL
+	SEQPtr	SEQ_0B_Header		; $0B - BGM - Toxic Caves
+	SEQPtr	SEQ_0C_Header		; $0C - NULL
+	SEQPtr	SEQ_0D_Header		; $0D - NULL
+	SEQPtr	SEQ_0E_Header		; $0E - BGM - Chaos Emerald
+	SEQPtr	SEQ_0F_Header		; $0F - NULL
+	SEQPtr	SEQ_10_Header		; $10 - BGM - Title Screen
+	SEQPtr	SEQ_11_Header		; $11 - BGM - Watch Out!
+	SEQPtr	SEQ_12_Header		; $12 - BGM - Fanfare A
+	SEQPtr	SEQ_13_Header		; $13 - BGM - Game Over
+	SEQPtr	SEQ_14_Header		; $14 - BGM - Sega
+	SEQPtr	SEQ_15_Header		; $15 - BGM - Fanfare B
+	SEQPtr	SEQ_16_Header		; $16 - BGM - Intro
+	SEQPtr	SEQ_17_Header		; $17 - BGM - All Chaos Emeralds Obtained
+	SEQPtr	SEQ_18_Header		; $18 - NULL
+	SEQPtr	SEQ_19_Header		; $19 - NULL
+	SEQPtr	SEQ_1A_Header		; $1A - NULL
+	SEQPtr	SEQ_1B_Header		; $1B - NULL
+	SEQPtr	SEQ_1C_Header		; $1C - NULL
+	SEQPtr	SEQ_1D_Header		; $1D - NULL
+	SEQPtr	SEQ_1E_Header		; $1E - NULL
+	SEQPtr	SEQ_1F_Header		; $1F - NULL
+	SEQPtr	SEQ_20_Header		; $20 - NULL
 
 	; =============== SFX ================= ;
-	dc.w $0D02	; $21 - 
-	dc.w $1402	; $22 - 
-	dc.w $1902	; $23 - 
-	dc.w $1A02	; $24 - 
-	dc.w $1B02	; $25 - 
-	dc.w $1E02	; $26 - 
-	dc.w $2502	; $27 - 
-	dc.w $2802	; $28 - 
-	dc.w $4102	; $29 - 
-	dc.w $4A02	; $2A - 
-	dc.w $4F02	; $2B - 
-	dc.w $5202	; $2C - 
-	dc.w $5502	; $2D - 
-	dc.w $5802	; $2E - 
-	dc.w $5B02	; $2F - 
-	dc.w $6202	; $30 - 
-	dc.w $6B02	; $31 - 
-	dc.w $6E02	; $32 - 
-	dc.w $6F02	; $33 - 
-	dc.w $7202	; $34 - 
-	dc.w $7702	; $35 - 
-	dc.w $7C02	; $36 - 
-	dc.w $8502	; $37 - 
-	dc.w $8802	; $38 - 
-	dc.w $8D02	; $39 - 
-	dc.w $9002	; $3A - 
-	dc.w $9902	; $3B - 
-	dc.w $9C02	; $3C - 
-	dc.w $A102	; $3D - 
-	dc.w $A202	; $3E - 
-	dc.w $A702	; $3F - 
-	dc.w $AA02	; $40 - 
-	dc.w $AD02	; $41 - 
-	dc.w $B002	; $42 - 
-	dc.w $B102	; $43 - 
-	dc.w $B202	; $44 - 
-	dc.w $B302	; $45 - 
-	dc.w $B602	; $46 - 
-	dc.w $B702	; $47 - 
-	dc.w $B802	; $48 - 
-	dc.w $B902	; $49 - 
-	dc.w $BC02	; $4A - 
-	dc.w $BF02	; $4B - 
-	dc.w $C202	; $4C - 
-	dc.w $C502	; $4D - 
-	dc.w $C802	; $4E - 
-	dc.w $CB02	; $4F - 
-	dc.w $CC02	; $50 - 
-	dc.w $D302	; $51 - 
-	dc.w $D402	; $52 - 
-	dc.w $D502	; $53 - 
-	dc.w $D802	; $54 - 
-	dc.w $DB02	; $55 - 
-	dc.w $DC02	; $56 - 
-	dc.w $DD02	; $57 - 
-	dc.w $DE02	; $58 - 
-	dc.w $E102	; $59 - 
-	dc.w $E202	; $5A - 
-	dc.w $E302	; $5B - 
-	dc.w $E602	; $5C - 
-	dc.w $E902	; $5D - 
-	dc.w $F002	; $5E - 
-	dc.w $F302	; $5F - 
-	dc.w $F602	; $60 - 
-	dc.w $F902	; $61 - 
-	dc.w $FC02	; $62 - 
-	dc.w $FF02	; $63 - 
-	dc.w $0403	; $64 - 
-	dc.w $0503	; $65 - 
-	dc.w $0803	; $66 - 
-	dc.w $0B03	; $67 - 
-	dc.w $0E03	; $68 - 
-	dc.w $1103	; $69 - 
-	dc.w $1403	; $6A - 
-	dc.w $1903	; $6B - 
-	dc.w $2003	; $6C - 
-	dc.w $2103	; $6D - 
-	dc.w $2603	; $6E - 
-	dc.w $2B03	; $6F - 
-	dc.w $2E03	; $70 - 
-	dc.w $3303	; $71 - 
-	dc.w $3403	; $72 - 
-	dc.w $3503	; $73 - 
-	dc.w $3803	; $74 - 
-	dc.w $3903	; $75 - 
-	dc.w $3C03	; $76 - 
-	dc.w $3F03	; $77 - 
-	dc.w $4203	; $78 - 
-	dc.w $4703	; $79 - 
-	dc.w $4A03	; $7A - 
-	dc.w $4D03	; $7B - 
-	dc.w $5003	; $7C - 
-	dc.w $5303	; $7D - 
+	SEQPtr	SEQ_21_Header		; $21 - 
+	SEQPtr	SEQ_22_Header	; $22 - 
+	SEQPtr	SEQ_23_Header	; $23 - 
+	SEQPtr	SEQ_24_Header	; $24 - 
+	SEQPtr	SEQ_25_Header	; $25 - 
+	SEQPtr	SEQ_26_Header	; $26 - 
+	SEQPtr	SEQ_27_Header	; $27 - 
+	SEQPtr	SEQ_28_Header	; $28 - 
+	SEQPtr	SEQ_29_Header	; $29 - 
+	SEQPtr	SEQ_2A_Header	; $2A - 
+	SEQPtr	SEQ_2B_Header	; $2B - 
+	BEW2LEW		$0252	; $2C - 
+	BEW2LEW		$0255	; $2D - 
+	BEW2LEW		$0258	; $2E - 
+	BEW2LEW		$025B	; $2F - 
+	BEW2LEW		$0262	; $30 - 
+	BEW2LEW		$026B	; $31 - 
+	BEW2LEW		$026E	; $32 - 
+	BEW2LEW		$026F	; $33 - 
+	BEW2LEW		$0272	; $34 - 
+	BEW2LEW		$0277	; $35 - 
+	BEW2LEW		$027C	; $36 - 
+	BEW2LEW		$0285	; $37 - 
+	BEW2LEW		$0288	; $38 - 
+	BEW2LEW		$028D	; $39 - 
+	BEW2LEW		$0290	; $3A - 
+	BEW2LEW		$0299	; $3B - 
+	BEW2LEW		$029C	; $3C - 
+	BEW2LEW		$02A1	; $3D - 
+	BEW2LEW		$02A2	; $3E - 
+	BEW2LEW		$02A7	; $3F - 
+	BEW2LEW		$02AA	; $40 - 
+	BEW2LEW		$02AD	; $41 - 
+	BEW2LEW		$02B0	; $42 - 
+	BEW2LEW		$02B1	; $43 - 
+	BEW2LEW		$02B2	; $44 - 
+	BEW2LEW		$02B3	; $45 - 
+	BEW2LEW		$02B6	; $46 - 
+	BEW2LEW		$02B7	; $47 - 
+	BEW2LEW		$02B8	; $48 - 
+	BEW2LEW		$02B9	; $49 - 
+	BEW2LEW		$02BC	; $4A - 
+	BEW2LEW		$02BF	; $4B - 
+	BEW2LEW		$02C2	; $4C - 
+	BEW2LEW		$02C5	; $4D - 
+	BEW2LEW		$02C8	; $4E - 
+	BEW2LEW		$02CB	; $4F - 
+	BEW2LEW		$02CC	; $50 - 
+	BEW2LEW		$02D3	; $51 - 
+	BEW2LEW		$02D4	; $52 - 
+	BEW2LEW		$02D5	; $53 - 
+	BEW2LEW		$02D8	; $54 - 
+	BEW2LEW		$02DB	; $55 - 
+	BEW2LEW		$02DC	; $56 - 
+	BEW2LEW		$02DD	; $57 - 
+	BEW2LEW		$02DE	; $58 - 
+	BEW2LEW		$02E1	; $59 - 
+	BEW2LEW		$02E2	; $5A - 
+	BEW2LEW		$02E3	; $5B - 
+	BEW2LEW		$02E6	; $5C - 
+	BEW2LEW		$02E9	; $5D - 
+	BEW2LEW		$02F0	; $5E - 
+	BEW2LEW		$02F3	; $5F - 
+	BEW2LEW		$02F6	; $60 - 
+	BEW2LEW		$02F9	; $61 - 
+	BEW2LEW		$02FC	; $62 - 
+	BEW2LEW		$02FF	; $63 - 
+	BEW2LEW		$0304	; $64 - 
+	BEW2LEW		$0305	; $65 - 
+	BEW2LEW		$0308	; $66 - 
+	BEW2LEW		$030B	; $67 - 
+	BEW2LEW		$030E	; $68 - 
+	BEW2LEW		$0311	; $69 - 
+	BEW2LEW		$0314	; $6A - 
+	BEW2LEW		$0319	; $6B - 
+	BEW2LEW		$0320	; $6C - 
+	BEW2LEW		$0321	; $6D - 
+	BEW2LEW		$0326	; $6E - 
+	BEW2LEW		$032B	; $6F - 
+	BEW2LEW		$032E	; $70 - 
+	BEW2LEW		$0333	; $71 - 
+	BEW2LEW		$0334	; $72 - 
+	BEW2LEW		$0335	; $73 - 
+	BEW2LEW		$0338	; $74 - 
+	BEW2LEW		$0339	; $75 - 
+	BEW2LEW		$033C	; $76 - 
+	BEW2LEW		$033F	; $77 - 
+	BEW2LEW		$0342	; $78 - 
+	BEW2LEW		$0347	; $79 - 
+	BEW2LEW		$034A	; $7A - 
+	BEW2LEW		$034D	; $7B - 
+	BEW2LEW		$0350	; $7C - 
+	BEW2LEW		$0353	; $7D - 
 
-SEQ_00_Header:	; The Machine
-	dc.b	$0A	; Channel Count
-	dc.w	$5603	; Channel 0 Offset
-	dc.w	$C404	; Channel 1 Offset
-	dc.w	$9206	; Channel 2 Offset
-	dc.w	$240C	; Channel 3 Offset
-	dc.w	$C113	; Channel 4 Offset
-	dc.w	$FA13	; Channel 5 Offset
-	dc.w	$9814	; Channel 6 Offset
-	dc.w	$D516	; Channel 7 Offset
-	dc.w	$FE16	; Channel 8 Offset
-	dc.w	$9B17	; Channel 9 Offset
+; ---------------------------------------------------------------------------
+; GEMS BGM Headers
+; ---------------------------------------------------------------------------
 
-SEQ_01_Header:
-	dc.b	$00
+SEQ_00_Header:	dc.b	10	; Channel Count
+	BEW2LEW		$0356	; Channel 0 Offset
+	BEW2LEW		$04C4	; Channel 1 Offset
+	BEW2LEW		$0692	; Channel 2 Offset
+	BEW2LEW		$0C24	; Channel 3 Offset
+	BEW2LEW		$13C1	; Channel 4 Offset
+	BEW2LEW		$13FA	; Channel 5 Offset
+	BEW2LEW		$1498	; Channel 6 Offset
+	BEW2LEW		$16D5	; Channel 7 Offset
+	BEW2LEW		$16FE	; Channel 8 Offset
+	BEW2LEW		$179B	; Channel 9 Offset
 
-		dc.l $093F1822, $1C9C1F1B, $224D2358
-		dc.l $231624AD, $247C2500, $B3B27C0, $27E728C2, $2A8C2D53
-		dc.l $2ED22F9E, $3059317F, $32313300, $8A033, $6836EB39
-		dc.l $363B493C, $9F3F0E42, $504406D9, $45B546E0, $462648C1
-		dc.l $48EE4809, $8749CC49, $8E4AE64A, $A04BE84D, $7450A658
-		dc.l $BD580009, $6D59455B, $365DD061, $CC622564, $9A66F966
-		dc.l $B7680000, $5D96938, $6A476A9C, $6AAB6A00, $8BA6A0A
-		dc.l $6B5C6BBB, $6B096C34, $6C686C7F, $6C06966C, $C56CDE6C
-		dc.l $ED6C066D, $256D0443, $6D796D99, $6DA66D06, $D26D126E
-		dc.l $926ECF6E, $1C6F4D6F, $39C6FB0, $6FC16F06, $CC6F0570
-		dc.l $22706270, $9670AC70, $EBB700E, $712271A7, $71AB71EF
-		dc.l $71297264, $72C57276, $75D775EB, $75087629, $76063176
-		dc.l $56766F76, $85769B76, $A7760000, 0
-		dc.l 3, $B376C676, $D97602F0, $76097700, $11A77, $3427765
-		dc.l $777E7701, $95770CBA, $77C477CC, $77D677DE, $77E677F1
-		dc.l $77FB7705, $780D7815, $78247804, $33784378, $50785D78
-		dc.l $26A7881, $78018E78, $1E47801, $FB780111, $79032279
+SEQ_01_Header:	dc.b	0
+
+SEQ_02_Header:	dc.b	9
+	BEW2LEW		$183F
+	BEW2LEW		$1C22
+	BEW2LEW		$1F9C
+	BEW2LEW		$221B
+	BEW2LEW		$234D
+	BEW2LEW		$2358
+	BEW2LEW		$2416
+	BEW2LEW		$24AD
+	BEW2LEW		$257C
+
+
+SEQ_03_Header:	dc.b	0
+
+SEQ_04_Header:	dc.b	11
+	BEW2LEW		$273B
+	BEW2LEW		$27C0
+	BEW2LEW		$28E7
+	BEW2LEW		$2AC2
+	BEW2LEW		$2D8C
+	BEW2LEW		$2E53
+	BEW2LEW		$2FD2
+	BEW2LEW		$309E
+	BEW2LEW		$3159
+	BEW2LEW		$327F
+	BEW2LEW		$3331
+
+SEQ_05_Header:	dc.b	0
+
+SEQ_06_Header:	dc.b	0
+
+SEQ_07_Header:	dc.b	8
+	BEW2LEW		$33A0
+	BEW2LEW		$3668
+	BEW2LEW		$39EB
+	BEW2LEW		$3B36
+	BEW2LEW		$3C49
+	BEW2LEW		$3F9F
+	BEW2LEW		$420E
+	BEW2LEW		$4450
+
+SEQ_08_Header:	dc.b	6
+	BEW2LEW		$45D9
+	BEW2LEW		$46B5
+	BEW2LEW		$46E0
+	BEW2LEW		$4826
+	BEW2LEW		$48C1
+	BEW2LEW		$48EE
+
+SEQ_09_Header:	dc.b	9
+	BEW2LEW		$4987
+	BEW2LEW		$49CC
+	BEW2LEW		$4A8E
+	BEW2LEW		$4AE6
+	BEW2LEW		$4BA0
+	BEW2LEW		$4DE8
+	BEW2LEW		$5074
+	BEW2LEW		$58A6
+	BEW2LEW		$58BD
+
+SEQ_0A_Header:	dc.b	0
+
+SEQ_0B_Header:	dc.b	9
+	BEW2LEW		$596D
+	BEW2LEW		$5B45
+	BEW2LEW		$5D36
+	BEW2LEW		$61D0
+	BEW2LEW		$62CC
+	BEW2LEW		$6425
+	BEW2LEW		$669A
+	BEW2LEW		$66F9
+	BEW2LEW		$68B7
+
+SEQ_0C_Header:	dc.b	0
+
+SEQ_0D_Header:	dc.b	0
+
+SEQ_0E_Header:	dc.b	5
+	BEW2LEW		$69D9
+	BEW2LEW		$6A38
+	BEW2LEW		$6A47
+	BEW2LEW		$6A9C
+	BEW2LEW		$6AAB
+
+SEQ_0F_Header:	dc.b	0
+
+SEQ_10_Header:	dc.b	8
+	BEW2LEW		$6ABA
+	BEW2LEW		$6B0A
+	BEW2LEW		$6B5C
+	BEW2LEW		$6BBB
+	BEW2LEW		$6C09
+	BEW2LEW		$6C34
+	BEW2LEW		$6C68
+	BEW2LEW		$6C7F
+
+SEQ_11_Header:	dc.b	6
+	BEW2LEW		$6C96
+	BEW2LEW		$6CC5
+	BEW2LEW		$6CDE
+	BEW2LEW		$6CED
+	BEW2LEW		$6D06
+	BEW2LEW		$6D25
+
+SEQ_12_Header:	dc.b	4
+	BEW2LEW		$6D43
+	BEW2LEW		$6D79
+	BEW2LEW		$6D99
+	BEW2LEW		$6DA6
+
+SEQ_13_Header:	dc.b	6
+	BEW2LEW		$6DD2
+	BEW2LEW		$6E12
+	BEW2LEW		$6E92
+	BEW2LEW		$6ECF
+	BEW2LEW		$6F1C
+	BEW2LEW		$6F4D
+
+SEQ_14_Header:	dc.b	3
+	BEW2LEW		$6F9C
+	BEW2LEW		$6FB0
+	BEW2LEW		$6FC1
+
+SEQ_15_Header:	dc.b	6
+	BEW2LEW		$6FCC
+	BEW2LEW		$7005
+	BEW2LEW		$7022
+	BEW2LEW		$7062
+	BEW2LEW		$7096
+	BEW2LEW		$70AC
+
+SEQ_16_Header:	dc.b	14
+	BEW2LEW		$70BB
+	BEW2LEW		$710E
+	BEW2LEW		$7122
+	BEW2LEW		$71A7
+	BEW2LEW		$71AB
+	BEW2LEW		$71EF
+	BEW2LEW		$7229
+	BEW2LEW		$7264
+	BEW2LEW		$72C5
+	BEW2LEW		$7576
+	BEW2LEW		$75D7
+	BEW2LEW		$75EB
+	BEW2LEW		$7608
+	BEW2LEW		$7629
+
+SEQ_17_Header:	dc.b	6
+	BEW2LEW		$7631
+	BEW2LEW		$7656
+	BEW2LEW		$766F
+	BEW2LEW		$7685
+	BEW2LEW		$769B
+	BEW2LEW		$76A7
+
+SEQ_18_Header:	dc.b	0
+
+SEQ_19_Header:	dc.b	0
+
+SEQ_1A_Header:	dc.b	0
+
+SEQ_1B_Header:	dc.b	0
+
+SEQ_1C_Header:	dc.b	0
+
+SEQ_1D_Header:	dc.b	0
+
+SEQ_1E_Header:	dc.b	0
+
+SEQ_1F_Header:	dc.b	0
+
+SEQ_20_Header:	dc.b	0
+
+; ---------------------------------------------------------------------------
+; GEMS SFX Headers
+; ---------------------------------------------------------------------------
+
+SEQ_21_Header:	dc.b	3
+	BEW2LEW		$76B3
+	BEW2LEW		$76C6
+	BEW2LEW		$76D9
+
+SEQ_22_Header:	dc.b	2
+	BEW2LEW		$76F0
+	BEW2LEW		$7709
+
+SEQ_23_Header:	dc.b	0
+
+SEQ_24_Header:	dc.b	0
+
+SEQ_25_Header:	dc.b	1
+	BEW2LEW		$771A
+
+SEQ_26_Header:	dc.b	3
+	BEW2LEW		$7742
+	BEW2LEW		$7765
+	BEW2LEW		$777E
+
+SEQ_27_Header:	dc.b	1
+	BEW2LEW		$7795
+
+SEQ_28_Header:	dc.b	12
+	BEW2LEW		$77BA
+	BEW2LEW		$77C4
+	BEW2LEW		$77CC
+	BEW2LEW		$77D6
+	BEW2LEW		$77DE
+	BEW2LEW		$77E6
+	BEW2LEW		$77F1
+	BEW2LEW		$77FB
+	BEW2LEW		$7805
+	BEW2LEW		$780D
+	BEW2LEW		$7815
+	BEW2LEW		$7824
+
+SEQ_29_Header:	dc.b	4
+	BEW2LEW		$7833
+	BEW2LEW		$7843
+	BEW2LEW		$7850
+	BEW2LEW		$785D
+
+SEQ_2A_Header:	dc.b	2
+	BEW2LEW		$786A
+	BEW2LEW		$7881 
+
+SEQ_2B_Header:	dc.b	1
+	BEW2LEW		$788E
+
+; Unorganised Data
+
+		dc.l $1E47801, $FB780111, $79032279
 		dc.l $2F793C79, $4497953, $795D7967, $7901BB79, $1C979
 		dc.l $2D97AEC, $7A02107B, $277B0431, $7B427B50, $7B607B01
 		dc.l $6D7B0282, $7B977B01, $A17B04C7, $7BD47BE1, $7B0D7C01
